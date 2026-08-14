@@ -2,7 +2,7 @@ import * as z from "zod";
 
 export const FormSchema = z
   .object({
-    travelerCount: z.number().min(1).max(10),
+    travelerCount: z.coerce.number().min(1).max(10),
     from: z.string(),
     to: z.string(),
     startDate: z.iso
@@ -17,22 +17,23 @@ export const FormSchema = z
         (date) => date >= new Date().toLocaleDateString("en-CA"),
         "End date must be greater or equal to today",
       ),
-    budget: z.number().min(0),
+    budget: z.coerce.number().min(0),
   })
   .refine((data) => data.endDate >= data.startDate, "End date must be greater than start date");
 
 export type FormInputData = z.infer<typeof FormSchema>;
+
+export const ActivitiesSchema = z.object({
+  title: z.string(),
+  discretion: z.string(),
+});
 
 export const ResponseSchema = z.object({
   startDate: z.string(),
   endDate: z.string(),
   startLocation: z.string(),
   endLocation: z.string(),
-});
-
-export const ActivitiesSchema = z.object({
-  title: z.string(),
-  discretion: z.string(),
+  activities: z.array(ActivitiesSchema),
 });
 
 export class APIError extends Error {

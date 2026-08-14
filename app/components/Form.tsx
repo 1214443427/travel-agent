@@ -3,7 +3,9 @@ import React, { RefObject, useActionState, useRef } from "react";
 import InputField from "./InputField";
 import NumberButton from "./NumberButton";
 import Button from "./Button";
-import { FormState } from "../type";
+import { FormSchema, FormState } from "../type";
+import Spinner from "@/public/spinner.svg";
+import Image from "next/image";
 
 function Form() {
   const [state, formAction, isPending] = useActionState<FormState, FormData>(submitForm, {
@@ -11,9 +13,21 @@ function Form() {
   });
 
   async function submitForm(prevState: FormState, formData: FormData): Promise<FormState> {
+    const formObject = Object.fromEntries(formData);
+    const parsedData = FormSchema.safeParse(formObject);
+
+    if (!parsedData.success) {
+      return {
+        phase: "invalid",
+        error: parsedData.error,
+        prevData: formData,
+      };
+    }
+
     try {
       const response = await fetch("/api/trip", {
         method: "POST",
+        body: JSON.stringify(parsedData.data),
       });
       if (!response.ok) {
         const result = await response.json();
@@ -62,73 +76,80 @@ function Form() {
   const prevData = "prevData" in state ? state.prevData : null;
 
   return (
-    <form action={formAction} className="flex flex-col justify-center w-full gap-2">
-      <div className="flex flex-col text-center px-8 items-stretch w-full gap-2.5 mb-10">
-        <label htmlFor="travelerCount" className="font-bold text-2xl">
-          Number of travelers
-        </label>
-        <div className="flex relative items-stretch w-full">
-          <NumberButton className="left-2.5" onClick={() => buttonOnclick(countRef, -1)}>
-            -
-          </NumberButton>
-          <input
-            name="travelerCount"
-            type="number"
-            placeholder="1"
-            className="[appearance:textfield] border-4 border-black w-full rounded-full p-2 text-center font-bold text-2xl"
-            defaultValue={prevData?.get("travelerCount")?.toString() || 1}
-            min={1}
-            max={10}
-            ref={countRef}
-          />
-          <NumberButton className="right-2.5" onClick={() => buttonOnclick(countRef, 1)}>
-            +
-          </NumberButton>
+    <div className="w-full h-full relative">
+      <form action={formAction} className="flex flex-col justify-center w-full gap-2">
+        <div className="flex flex-col text-center px-8 items-stretch w-full gap-2.5 mb-10">
+          <label htmlFor="travelerCount" className="font-bold text-2xl">
+            Number of travelers
+          </label>
+          <div className="flex relative items-stretch w-full">
+            <NumberButton className="left-2.5" onClick={() => buttonOnclick(countRef, -1)}>
+              -
+            </NumberButton>
+            <input
+              name="travelerCount"
+              type="number"
+              placeholder="1"
+              className="[appearance:textfield] border-4 border-black w-full rounded-full p-2 text-center font-bold text-2xl"
+              defaultValue={prevData?.get("travelerCount")?.toString() || 1}
+              min={1}
+              max={10}
+              ref={countRef}
+            />
+            <NumberButton className="right-2.5" onClick={() => buttonOnclick(countRef, 1)}>
+              +
+            </NumberButton>
+          </div>
         </div>
-      </div>
-      <InputField
-        name="from"
-        type="text"
-        label="Traveling from"
-        placeholder="New York City"
-        defaultValue={prevData?.get("endDate")?.toString()}
-      />
-      <InputField
-        name="to"
-        type="text"
-        label="Traveling to"
-        placeholder="Paris"
-        defaultValue={prevData?.get("endDate")?.toString()}
-        className="mb-10"
-      />
-      <InputField
-        name="startDate"
-        // type="date"
-        label="From Date"
-        defaultValue={prevData?.get("startDate")?.toString() || todayString}
-        onChange={startDateOnchange}
-        min={todayString}
-      />
-      <InputField
-        name="endDate"
-        type="date"
-        label="To Date"
-        defaultValue={prevData?.get("endDate")?.toString() || nextWeekString}
-        ref={endRef}
-        min={todayString}
-        className="mb-8"
-      />
-      <InputField
-        name="budget"
-        type="number"
-        label="Budget ($)"
-        placeholder="5000"
-        defaultValue={prevData?.get("endDate")?.toString()}
-        min={0}
-        className="mb-2 [appearance:textfield] relative"
-      />
-      <Button type="submit">Plan my Trip!</Button>
-    </form>
+        <InputField
+          name="from"
+          type="text"
+          label="Traveling from"
+          placeholder="New York City"
+          defaultValue={prevData?.get("endDate")?.toString()}
+        />
+        <InputField
+          name="to"
+          type="text"
+          label="Traveling to"
+          placeholder="Paris"
+          defaultValue={prevData?.get("endDate")?.toString()}
+          className="mb-10"
+        />
+        <InputField
+          name="startDate"
+          // type="date"
+          label="From Date"
+          defaultValue={prevData?.get("startDate")?.toString() || todayString}
+          onChange={startDateOnchange}
+          min={todayString}
+        />
+        <InputField
+          name="endDate"
+          type="date"
+          label="To Date"
+          defaultValue={prevData?.get("endDate")?.toString() || nextWeekString}
+          ref={endRef}
+          min={todayString}
+          className="mb-8"
+        />
+        <InputField
+          name="budget"
+          type="number"
+          label="Budget ($)"
+          placeholder="5000"
+          defaultValue={prevData?.get("endDate")?.toString()}
+          min={0}
+          className="mb-2 [appearance:textfield] relative"
+        />
+        <Button type="submit">Plan my Trip!</Button>
+      </form>
+      {isPending && (
+        <div className="flex justify-center items-center z-0 bg-black/80 w-full h-full absolute top-0">
+          <Image src={Spinner} alt="" width={100} />
+        </div>
+      )}
+    </div>
   );
 }
 
