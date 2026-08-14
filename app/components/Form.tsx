@@ -43,7 +43,10 @@ function Form() {
 
   const buttonOnclick = (ref: RefObject<HTMLInputElement | null>, change: number) => {
     if (ref.current) {
-      ref.current.value = String(Number(ref.current.value) + change);
+      let newValue = Number(ref.current.value) + change;
+      if (newValue < 1) newValue = 1;
+      if (newValue > 10) newValue = 10;
+      ref.current.value = String(newValue);
     }
   };
 
