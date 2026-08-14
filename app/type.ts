@@ -21,7 +21,7 @@ export const FormSchema = z
   })
   .refine((data) => data.endDate >= data.startDate, "End date must be greater than start date");
 
-export type FormData = z.infer<typeof FormSchema>;
+export type FormInputData = z.infer<typeof FormSchema>;
 
 export const ResponseSchema = z.object({
   startDate: z.string(),

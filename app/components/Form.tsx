@@ -3,14 +3,35 @@ import React, { RefObject, useActionState, useRef } from "react";
 import InputField from "./InputField";
 import NumberButton from "./NumberButton";
 import Button from "./Button";
+import { FormState } from "../type";
 
 function Form() {
-  const [state, formAction, isPending] = useActionState(
-    () => {
-      return { success: false };
-    },
-    { success: false },
-  );
+  const [state, formAction, isPending] = useActionState<FormState, FormData>(submitForm, {
+    phase: "initial",
+  });
+
+  async function submitForm(prevState: FormState, formData: FormData): Promise<FormState> {
+    try {
+      const response = await fetch("/api/trip", {
+        method: "POST",
+      });
+      if (!response.ok) {
+        const result = await response.json();
+        return {
+          phase: "error",
+          error: {
+            name: response.statusText,
+            code: response.status,
+            message: result.message as string, //temp
+          },
+          prevData: formData,
+        };
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    return prevState;
+  }
 
   const countRef = useRef<HTMLInputElement>(null);
   const endRef = useRef<HTMLInputElement>(null);
@@ -35,6 +56,8 @@ function Form() {
     }
   };
 
+  const prevData = "prevData" in state ? state.prevData : null;
+
   return (
     <form action={formAction} className="flex flex-col justify-center w-full gap-2">
       <div className="flex flex-col text-center px-8 items-stretch w-full gap-2.5 mb-10">
@@ -50,7 +73,7 @@ function Form() {
             type="number"
             placeholder="1"
             className="[appearance:textfield] border-4 border-black w-full rounded-full p-2 text-center font-bold text-2xl"
-            defaultValue={1}
+            defaultValue={prevData?.get("travelerCount")?.toString() || 1}
             min={1}
             max={10}
             ref={countRef}
@@ -60,19 +83,26 @@ function Form() {
           </NumberButton>
         </div>
       </div>
-      <InputField name="from" type="text" label="Traveling from" placeholder="New York City" />
+      <InputField
+        name="from"
+        type="text"
+        label="Traveling from"
+        placeholder="New York City"
+        defaultValue={prevData?.get("endDate")?.toString()}
+      />
       <InputField
         name="to"
         type="text"
         label="Traveling to"
         placeholder="Paris"
+        defaultValue={prevData?.get("endDate")?.toString()}
         className="mb-10"
       />
       <InputField
         name="startDate"
-        type="date"
+        // type="date"
         label="From Date"
-        defaultValue={todayString}
+        defaultValue={prevData?.get("startDate")?.toString() || todayString}
         onChange={startDateOnchange}
         min={todayString}
       />
@@ -80,7 +110,7 @@ function Form() {
         name="endDate"
         type="date"
         label="To Date"
-        defaultValue={nextWeekString}
+        defaultValue={prevData?.get("endDate")?.toString() || nextWeekString}
         ref={endRef}
         min={todayString}
         className="mb-8"
@@ -90,6 +120,7 @@ function Form() {
         type="number"
         label="Budget ($)"
         placeholder="5000"
+        defaultValue={prevData?.get("endDate")?.toString()}
         min={0}
         className="mb-2 [appearance:textfield] relative"
       />
