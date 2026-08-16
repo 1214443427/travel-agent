@@ -16,7 +16,8 @@ export const getFlights = tool({
   parameters: z.object({
     from: z.string().describe("Departure city."),
     to: z.string().describe("Destination city"),
-    departureDate: z.iso.date(),
+    departureDate: z.date().describe("Use ISO date string, such as 2026-09-20"),
+    returningDate: z.date().describe("Use ISO date string, such as 2026-09-27"),
   }),
   async execute({ from, to, departureDate }) {
     return `FN: Flight AC199. ${departureDate}T09:00:00. Economy: $1992.18. Availability: 20`;
@@ -34,7 +35,7 @@ export const getHotels = tool({
     checkOutDate: z.iso.date().describe("The date to check out on. "),
     unit: z
       .string()
-      .optional()
+      .nullable()
       .describe(
         "The currency to display the price in, in ISO format. e.g. USD, CAD, JPY. Defaults to USD",
       ),
