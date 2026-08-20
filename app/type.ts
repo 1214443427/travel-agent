@@ -65,3 +65,19 @@ export type FormState =
       error: APIError;
       prevData: FormData;
     };
+
+export class FetchError extends Error {
+  status: number | null;
+  url: string;
+  constructor(status: number | null, message: string, url: string, cause?: unknown) {
+    super(message, { cause });
+    this.status = status;
+    this.url = url;
+  }
+
+  get retryable() {
+    return this.status === null || this.status === 429 || this.status >= 500;
+  }
+}
+
+// export const LatLonSchema = ;

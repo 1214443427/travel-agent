@@ -1,5 +1,5 @@
 import { FormSchema } from "@/app/type";
-import { agent } from "@/app/utils/config";
+import { agent } from "@/app/utils/agent";
 import { run } from "@openai/agents";
 
 export async function POST(req: Request) {
