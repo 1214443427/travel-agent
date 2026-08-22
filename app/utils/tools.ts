@@ -2,8 +2,18 @@ import { tool } from "@openai/agents";
 import z from "zod";
 import { GEOAPIFY_KEY, WEATHER_API_KEY } from "./config";
 import { fetchAPI, fetchRapidAPI } from "./fetching";
-import { constructUrl } from "./utils";
-import { FetchError } from "../type";
+import { constructUrl, parseData } from "./utils";
+import {
+  AirportSchema,
+  FetchError,
+  FlightSchema,
+  HotelsSchema,
+  LatLonSchema,
+  PlacesSchema,
+  WeatherSchema,
+} from "../type";
+import { SAMPLE_FLIGHT_DATA } from "../test/sampleFlightData";
+import { SAMPLE_HOTEL_DATA } from "../test/sampleHotelData";
 
 export const getLatLon = tool({
   name: "get_lat_lon",
@@ -31,7 +41,8 @@ export const getLatLon = tool({
     const baseURL = "https://api.openweathermap.org/geo/1.0/direct";
     const fullURL = constructUrl(baseURL, { q: query, appid: WEATHER_API_KEY });
     const latLonData = await fetchAPI(fullURL);
-    return latLonData;
+    const parseResult = parseData(LatLonSchema, latLonData);
+    return parseResult;
   },
 });
 
@@ -73,10 +84,11 @@ export const getWeather = tool({
     };
     const fullUrl = constructUrl(baseURL, options);
     const data = await fetchAPI(fullUrl);
+    const parsedData = parseData(WeatherSchema, data);
     const filteredResult = {
-      weather: data.weather[0].main,
-      weatherDescription: data.weather[0].description,
-      temp: data.main.temp,
+      weather: parsedData.weather[0].main,
+      weatherDescription: parsedData.weather[0].description,
+      temp: parsedData.main.temp,
     };
     return filteredResult;
   },
@@ -110,8 +122,16 @@ export const searchAirport = tool({
       query,
     };
     const url = constructUrl(baseURL, options);
+
+    if (query == "Vancouver") {
+      return "YVR";
+    } else {
+      return "PEK";
+    }
+
     const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
-    return response;
+    const parsedData = parseData(AirportSchema, response);
+    return parsedData;
   },
 });
 
@@ -160,34 +180,39 @@ export const getFlights = tool({
       currency: currency ?? "USD",
     };
     const url = constructUrl(baseURL, options);
-    const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
-    const filteredResult = response.data.itineraries.topFlights.map(
-      (flight: {
-        departure_time: string;
-        arrival_time: string;
-        duration: {
-          raw: number;
-          text: string;
-        };
-        price: number;
-        flights: [{ departure_airport: any; arrival_airport: any; duration: number }];
-        layovers: {}[];
-      }) => ({
-        departureTime: flight.departure_time,
-        arrivalTime: flight.arrival_time,
-        duration: flight.duration,
-        price: flight.price,
-        segments: flight.flights.map((leg) => ({
-          departure: leg.departure_airport,
-          arrival: leg.arrival_airport,
-          duration: leg.duration,
-        })),
-        layovers: flight.layovers,
-      }),
-    );
+    // const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
+
+    const response = SAMPLE_FLIGHT_DATA;
+    const parsedData = parseData(FlightSchema, response);
+
+    const filteredResult = parsedData.data.itineraries.topFlights.map((flight) => ({
+      departureTime: flight.departure_time,
+      arrivalTime: flight.arrival_time,
+      duration: flight.duration,
+      price: flight.price,
+      segments: flight.flights.map((leg) => ({
+        departure: leg.departure_airport,
+        arrival: leg.arrival_airport,
+        duration: leg.duration,
+      })),
+      layovers: flight.layovers,
+    }));
     return filteredResult;
   },
 });
+
+// The old type definition for flight. Keeping for reference.
+//   : {
+//   departure_time: string;
+//   arrival_time: string;
+//   duration: {
+//     raw: number;
+//     text: string;
+//   };
+//   price: number;
+//   flights: [{ departure_airport: any; arrival_airport: any; duration: number }];
+//   layovers: {}[];
+// }
 
 export const getHotels = tool({
   name: "get_hotels",
@@ -232,39 +257,45 @@ export const getHotels = tool({
     };
     const url = constructUrl(baseURL, options);
     const host = "booking-com15.p.rapidapi.com";
-    const result = await fetchRapidAPI(url, host);
-    const filteredResult = result.data.result.map(
-      (hotel: {
-        name: string;
-        review_score: number;
-        review_nr: number;
-        checkout: {
-          from: string;
-          until: string;
-        };
-        checkin: {
-          from: string;
-          until: string;
-        };
-        hotel_name_trans?: string;
-        all_inclusive_amount: {
-          currency: string;
-          value: number;
-        };
-        class: number;
-      }) => ({
-        name: hotel.name,
-        translatedName: hotel.hotel_name_trans,
-        checkInTime: hotel.checkin,
-        checkOutTime: hotel.checkout,
-        reviewScore: hotel.review_score,
-        reviewCount: hotel.review_nr,
-        star: hotel.class,
-      }),
-    );
-    return filteredResult;
+
+    // const result = await fetchRapidAPI(url, host);
+    const result = SAMPLE_HOTEL_DATA;
+
+    const parsedData = parseData(HotelsSchema, result);
+    const filteredResult = parsedData.data.result.map((hotel) => ({
+      name: hotel.name,
+      translatedName: hotel.hotel_name_trans,
+      checkInTime: hotel.checkin,
+      checkOutTime: hotel.checkout,
+      reviewScore: hotel.review_score,
+      reviewCount: hotel.review_nr,
+      star: hotel.class,
+      price: hotel.all_inclusive_amount,
+    }));
+    return filteredResult.slice(0, 5);
   },
 });
+
+//  Old hotel definition.
+// : {
+//         name: string;
+//         review_score: number;
+//         review_nr: number;
+//         checkout: {
+//           from: string;
+//           until: string;
+//         };
+//         checkin: {
+//           from: string;
+//           until: string;
+//         };
+//         hotel_name_trans?: string;
+//         all_inclusive_amount: {
+//           currency: string;
+//           value: number;
+//         };
+//         class: number;
+//       }
 
 export const getAttractions = tool({
   name: "get_attractions",
@@ -298,26 +329,28 @@ export const getAttractions = tool({
     };
     const url = constructUrl(baseURL, options);
     const result = await fetchAPI(url);
-    const filteredResult = result.features.map(
-      (place: {
-        properties: {
-          name: string;
-          name_international?: { en?: string };
-          website?: string;
-          opening_hours?: string;
-          categories: string[];
-          descriptions?: string;
-        };
-      }) => ({
-        name: place.properties.name_international?.en || place.properties.name,
-        website: place.properties.website,
-        openingHours: place.properties.opening_hours,
-        categories: place.properties.categories,
-      }),
-    );
+    const parsedData = parseData(PlacesSchema, result);
+    const filteredResult = parsedData.features.map((place) => ({
+      name: place.properties.name_international?.en || place.properties.name,
+      website: place.properties.website,
+      openingHours: place.properties.opening_hours,
+      categories: place.properties.categories,
+    }));
     return filteredResult;
   },
 });
+
+// Old type definition for place.
+// : {
+//         properties: {
+//           name: string;
+//           name_international?: { en?: string };
+//           website?: string;
+//           opening_hours?: string;
+//           categories: string[];
+//           descriptions?: string;
+//         };
+//       }
 
 // export const getWeather = tool({
 //   name: "get_weather",

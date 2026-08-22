@@ -1,3 +1,5 @@
+import z from "zod";
+
 export function combineClassName(baseClass: string, externalClassName?: string) {
   if (externalClassName) {
     return baseClass + " " + externalClassName;
@@ -18,4 +20,13 @@ export function constructUrl(base: string, options: QueryOptions) {
   });
 
   return endpoint;
+}
+
+export function parseData<T extends z.ZodType>(schema: T, data: unknown): z.infer<T> {
+  const result = schema.safeParse(data);
+  if (!result.success) {
+    console.error(z.prettifyError(result.error));
+    throw new Error("The end point returned data with unexpected format. ");
+  }
+  return result.data;
 }

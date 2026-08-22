@@ -80,4 +80,140 @@ export class FetchError extends Error {
   }
 }
 
-// export const LatLonSchema = ;
+export const LatLonSchema = z.array(
+  z.object({
+    name: z.string(),
+    lat: z.number(),
+    lon: z.number(),
+    country: z.string(),
+    state: z.string().nullish(),
+  }),
+);
+
+export const WeatherSchema = z.object({
+  weather: z
+    .array(
+      z.object({
+        main: z.string(),
+        description: z.string(),
+      }),
+    )
+    .min(1),
+  main: z.object({
+    temp: z.number(),
+  }),
+});
+
+export const AirportSchema = z.object({
+  data: z.array(
+    z.object({
+      title: z.string(),
+      city: z.string(),
+      list: z.array(
+        z.object({
+          id: z.string(),
+          type: z.string(),
+          title: z.string(),
+          city: z.string(),
+        }),
+      ),
+    }),
+  ),
+});
+
+const FlightSegmentAirportSchema = z.object({
+  airport_name: z.string(),
+  airport_code: z.string(),
+  time: z.string(),
+});
+
+export const FlightSchema = z.object({
+  data: z.object({
+    itineraries: z.object({
+      topFlights: z.array(
+        z.object({
+          departure_time: z.string(),
+          arrival_time: z.string(),
+          duration: z.object({ raw: z.number(), text: z.string() }),
+          price: z.number(),
+          flights: z.array(
+            z.object({
+              departure_airport: FlightSegmentAirportSchema,
+              arrival_airport: FlightSegmentAirportSchema,
+              duration: z.object({ raw: z.number(), text: z.string() }),
+            }),
+          ),
+          layovers: z
+            .array(
+              z.object({
+                airport_code: z.string(),
+                airport_name: z.string(),
+                duration: z.number(),
+              }),
+            )
+            .nullable(),
+        }),
+      ),
+    }),
+  }),
+});
+
+const HotelTimeSchema = z.object({
+  from: z.string(),
+  until: z.string(),
+});
+
+const HotelSchema = z.object({
+  name: z.string(),
+  review_score: z.number().nullish(),
+  review_nr: z.number().nullish(),
+  checkout: HotelTimeSchema,
+  checkin: HotelTimeSchema,
+  hotel_name_trans: z.string().nullish(),
+  all_inclusive_amount: z.object({ currency: z.string(), value: z.number() }),
+  class: z.number(),
+});
+
+export const HotelsSchema = z.object({
+  data: z.object({
+    result: z
+      .array(HotelSchema.nullable().catch(null))
+      .transform((array) => array.filter((element) => element !== null)),
+    // Catching error to avoid a single bad object ruining the whole array. Converts elements that did not fit the hotel schema into null filter the array to remove null
+  }),
+});
+
+export const PlacesSchema = z.object({
+  features: z
+    .array(
+      z
+        .object({
+          properties: z.object({
+            name: z.string(),
+            name_international: z.object({ en: z.string().nullish() }).nullish(),
+            website: z.string().nullish(),
+            opening_hours: z.string().nullish(),
+            categories: z.array(z.string()),
+            descriptions: z.string().nullish(),
+          }),
+        })
+        .nullable()
+        .catch(null),
+    )
+    .transform((array) => array.filter((element) => element !== null)),
+});
+
+export type ProgressStream =
+  | {
+      event: string;
+      data: {
+        phase: "tool_started";
+        tool: string;
+      };
+    }
+  | {
+      event: string;
+      data: {
+        phase: "tool_finished";
+      };
+    };
