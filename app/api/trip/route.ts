@@ -1,4 +1,4 @@
-import { FormSchema } from "@/app/type";
+import { FormSchema, TripStream } from "@/app/type";
 import { agent } from "@/app/utils/agent";
 import { run } from "@openai/agents";
 
@@ -18,8 +18,9 @@ export async function POST(req: Request) {
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
     async start(controller) {
-      const send = (event: string, data: any) => {
-        controller.enqueue(encoder.encode(`event: ${event}`));
+      const send = (event: TripStream) => {
+        const data = JSON.stringify(event);
+        controller.enqueue(encoder.encode(`data:${data} \n\n`));
       };
 
       try {
@@ -33,18 +34,24 @@ export async function POST(req: Request) {
         for await (const event of result) {
           if (event.type !== "run_item_stream_event") continue; // skip raw token events
           if (event.name === "tool_called" && event.item.rawItem.type === "function_call") {
-            send("progress", { phase: "tool_started", tool: event.item.rawItem.name });
-          } else if (event.name === "tool_output") {
-            send("progress", { phase: "tool_finished" });
+            send({ type: "tool_started", tool: event.item.rawItem.name });
+          } else if (
+            event.name === "tool_output" &&
+            event.item.rawItem.type === "function_call_result"
+          ) {
+            send({ type: "tool_finished", tool: event.item.rawItem.name });
           }
         }
 
         await result.completed;
-        send("done", { output: result.finalOutput });
+        send({ type: "done", output: result.finalOutput });
 
         console.log(result.finalOutput);
       } catch (error) {
-        send("error", { message: error instanceof Error ? error.message : "Agent run failed" });
+        send({
+          type: "error",
+          message: error instanceof Error ? error.message : "Agent run failed",
+        });
       } finally {
         controller.close();
       }

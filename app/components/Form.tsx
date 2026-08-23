@@ -1,16 +1,71 @@
 "use client";
-import React, { RefObject, useActionState, useRef } from "react";
+import React, {
+  Dispatch,
+  RefObject,
+  SetStateAction,
+  useActionState,
+  useRef,
+  useState,
+} from "react";
 import InputField from "./InputField";
 import NumberButton from "./NumberButton";
 import Button from "./Button";
-import { FormSchema, FormState } from "../type";
+import { FormSchema, FormState, ResponseData } from "../type";
 import Spinner from "@/public/spinner.svg";
 import Image from "next/image";
+import { readEventStream } from "../utils/utils";
 
-function Form() {
+const toolMessageString = {
+  get_lat_lon: "Finding information about the destination...",
+  get_weather: "Finding weather information...",
+  search_airport: "Finding the destination airport...",
+  get_flights: "Finding flights for the trip...",
+  get_hotels: "Finding hotels at the destination...",
+  get_attractions: "Finding place to visit during the trip...",
+};
+
+const toolCompletionString = {
+  get_lat_lon: "Got the destination — planning the next step...",
+  get_weather: "Factoring the forecast into the plan...",
+  search_airport: "Working out the route...",
+  get_flights: "Comparing flight options...",
+  get_hotels: "Narrowing down places to stay...",
+  get_attractions: "Building your itinerary...",
+};
+
+function Form({
+  setPhase,
+  setResponseData,
+}: {
+  setPhase: Dispatch<SetStateAction<"start" | "form" | "result">>;
+  setResponseData: Dispatch<SetStateAction<string | undefined>>; //change to response data later.
+}) {
   const [state, formAction, isPending] = useActionState<FormState, FormData>(submitForm, {
     phase: "initial",
   });
+
+  const [message, setMessage] = useState<string>("");
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const queueRef = useRef<string[]>([]);
+
+  const MESSAGE_DELAY = 1000;
+
+  function drainMessage() {
+    const next = queueRef.current.shift();
+    if (next === undefined) {
+      timerRef.current = null;
+    } else {
+      setMessage(next);
+      timerRef.current = setTimeout(() => drainMessage(), MESSAGE_DELAY);
+    }
+  }
+
+  function queueMessage(message: string) {
+    queueRef.current.push(message);
+    if (timerRef.current === null) {
+      drainMessage();
+    }
+  }
 
   async function submitForm(prevState: FormState, formData: FormData): Promise<FormState> {
     const formObject = Object.fromEntries(formData);
@@ -24,26 +79,67 @@ function Form() {
       };
     }
 
+    let response: Response;
     try {
-      const response = await fetch("/api/trip", {
+      response = await fetch("/api/trip", {
         method: "POST",
         body: JSON.stringify(parsedData.data),
       });
-      if (!response.ok) {
-        const result = await response.json();
-        return {
-          phase: "error",
-          error: {
-            name: response.statusText,
-            code: response.status,
-            message: result.message as string, //temp
-          },
-          prevData: formData,
-        };
-      }
     } catch (error) {
-      console.log(error);
+      return {
+        phase: "error",
+        error: {
+          name: "Network error",
+          code: 500,
+          message: error instanceof Error ? error.message : "Failed to submit form",
+        },
+        prevData: formData,
+      };
     }
+    if (!response.ok) {
+      const result = await response.json();
+      return {
+        phase: "error",
+        error: {
+          name: response.statusText,
+          code: response.status,
+          message: result.message as string, //temp
+        },
+        prevData: formData,
+      };
+    }
+    if (!response.body) {
+      return {
+        phase: "error",
+        error: {
+          name: "Internal server error",
+          code: 500,
+          message: "Received empty response from the server",
+        },
+        prevData: formData,
+      };
+    }
+    const stream = readEventStream(response.body);
+
+    for await (const event of stream) {
+      if (event.type === "done") {
+        setResponseData(event.output ?? "Error, did not receive output"); //error msg to be replaced after proper formatting
+        setPhase("result");
+      }
+
+      if (event.type === "tool_finished") {
+        queueMessage(
+          toolCompletionString[event.tool as keyof typeof toolMessageString] ?? "Thinking...",
+        );
+      }
+
+      if (event.type === "tool_started") {
+        queueMessage(
+          toolMessageString[event.tool as keyof typeof toolMessageString] ?? "Pondering...",
+        );
+      }
+    }
+
     return prevState;
   }
 
@@ -118,7 +214,7 @@ function Form() {
         />
         <InputField
           name="startDate"
-          // type="date"
+          type="date"
           label="From Date"
           defaultValue={prevData?.get("startDate")?.toString() || todayString}
           onChange={startDateOnchange}
@@ -147,6 +243,7 @@ function Form() {
       {isPending && (
         <div className="flex justify-center items-center z-0 bg-black/80 w-full h-full absolute top-0">
           <Image src={Spinner} alt="" width={100} />
+          {message}
         </div>
       )}
     </div>

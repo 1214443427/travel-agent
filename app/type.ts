@@ -42,6 +42,8 @@ export const ResponseSchema = z.object({
     .describe("An array of events. Including transit, hotel stay, activities for the user, etc."),
 });
 
+export type ResponseData = z.infer<typeof ResponseSchema>;
+
 export class APIError extends Error {
   code: number;
   constructor(code: number, message: string) {
@@ -164,21 +166,21 @@ const HotelTimeSchema = z.object({
 });
 
 const HotelSchema = z.object({
-  name: z.string(),
+  hotel_name: z.string(),
   review_score: z.number().nullish(),
   review_nr: z.number().nullish(),
   checkout: HotelTimeSchema,
   checkin: HotelTimeSchema,
   hotel_name_trans: z.string().nullish(),
-  all_inclusive_amount: z.object({ currency: z.string(), value: z.number() }),
+  composite_price_breakdown: z.object({
+    all_inclusive_amount: z.object({ currency: z.string(), value: z.number() }),
+  }),
   class: z.number(),
 });
 
 export const HotelsSchema = z.object({
   data: z.object({
-    result: z
-      .array(HotelSchema.nullable().catch(null))
-      .transform((array) => array.filter((element) => element !== null)),
+    result: z.array(HotelSchema).transform((array) => array.filter((element) => element !== null)),
     // Catching error to avoid a single bad object ruining the whole array. Converts elements that did not fit the hotel schema into null filter the array to remove null
   }),
 });
@@ -203,17 +205,11 @@ export const PlacesSchema = z.object({
     .transform((array) => array.filter((element) => element !== null)),
 });
 
-export type ProgressStream =
-  | {
-      event: string;
-      data: {
-        phase: "tool_started";
-        tool: string;
-      };
-    }
-  | {
-      event: string;
-      data: {
-        phase: "tool_finished";
-      };
-    };
+export const TripStreamSchema = z.discriminatedUnion("type", [
+  z.object({ type: z.literal("tool_started"), tool: z.string() }),
+  z.object({ type: z.literal("tool_finished"), tool: z.string() }),
+  z.object({ type: z.literal("done"), output: z.string().nullish() }), //to be replaced with Response Schema latter.
+  z.object({ type: z.literal("error"), message: z.string() }),
+]);
+
+export type TripStream = z.infer<typeof TripStreamSchema>;

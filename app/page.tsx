@@ -3,10 +3,11 @@ import { useState } from "react";
 import Form from "./components/Form";
 import Start from "./components/Start";
 import Button from "./components/Button";
+import { ResponseData } from "./type";
 
 export default function Home() {
   const [phase, setPhase] = useState<"start" | "form" | "result">("start");
-  const [responseData, setResponseData] = useState<FormData>();
+  const [responseData, setResponseData] = useState<string | undefined>();
   return (
     <div className="flex h-213 w-98 max-w-100 bg-[#F2FFFF]">
       {phase === "start" ? (
@@ -16,9 +17,9 @@ export default function Home() {
           </Button>
         </Start>
       ) : phase === "form" ? (
-        <Form />
+        <Form setPhase={setPhase} setResponseData={setResponseData} />
       ) : (
-        <>Result</>
+        <>{responseData}</>
       )}
     </div>
   );

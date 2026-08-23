@@ -260,17 +260,17 @@ export const getHotels = tool({
 
     // const result = await fetchRapidAPI(url, host);
     const result = SAMPLE_HOTEL_DATA;
-
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     const parsedData = parseData(HotelsSchema, result);
     const filteredResult = parsedData.data.result.map((hotel) => ({
-      name: hotel.name,
+      name: hotel.hotel_name,
       translatedName: hotel.hotel_name_trans,
       checkInTime: hotel.checkin,
       checkOutTime: hotel.checkout,
       reviewScore: hotel.review_score,
       reviewCount: hotel.review_nr,
       star: hotel.class,
-      price: hotel.all_inclusive_amount,
+      price: hotel.composite_price_breakdown.all_inclusive_amount,
     }));
     return filteredResult.slice(0, 5);
   },
