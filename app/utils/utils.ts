@@ -60,3 +60,7 @@ export async function* readEventStream(responseBody: ReadableStream<Uint8Array<A
     }
   }
 }
+
+export function randomInt(max: number) {
+  return Math.floor(Math.random() * (max + 1));
+}

@@ -44,9 +44,12 @@ export async function POST(req: Request) {
         }
 
         await result.completed;
-        send({ type: "done", output: result.finalOutput });
-
-        console.log(result.finalOutput);
+        if (result.finalOutput === undefined) {
+          send({ type: "error", message: "LLM failed to produce a final output." });
+        } else {
+          send({ type: "done", output: result.finalOutput });
+          console.log(result.finalOutput);
+        }
       } catch (error) {
         send({
           type: "error",

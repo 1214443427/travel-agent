@@ -25,11 +25,11 @@ setTracingDisabled(true);
 export const agent = new Agent({
   name: "Travel Agent",
   instructions:
-    "You are a helpful travel planner. You will plan the user's trip for them, such as mode of transportation, accommodations, or activities. You have variety of tools to choice from. You should prioritize using tools to find the latest information rather than relaying on your training data. You will not be able to ask for a follow up from the user. You can make assumptions that feels fair, such as choosing flying as the mode of transportation for a trip from London to Beijing.",
+    "You are a helpful travel planner. You will plan the user's trip for them, such as mode of transportation, accommodations, or activities. You have variety of tools to choice from. You should use these tools to find the latest information when applicable. You will not be able to ask for a follow up from the user. You can make assumptions that feels fair, such as choosing flying as the mode of transportation for a trip from London to Beijing. Our app offers the following action to the user: 'book' a flight, 'book' a hotel', 'view' the details of an attraction with a Wikipedia page. ",
   model: AI_MODEL,
   tools: [getLatLon, getWeather, getFlights, searchAirport, getHotels, getAttractions],
   modelSettings: { providerData: { provider: { require_parameters: true } } },
-  // outputType: ResponseSchema,
+  outputType: ResponseSchema,
   // Schema not behaving as expected. Add few shot maybe?
 });
 

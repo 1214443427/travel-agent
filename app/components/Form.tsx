@@ -10,10 +10,10 @@ import React, {
 import InputField from "./InputField";
 import NumberButton from "./NumberButton";
 import Button from "./Button";
-import { FormSchema, FormState, ResponseData } from "../type";
+import { FormSchema, FormState, ResponseData, ResponseSchema } from "../type";
 import Spinner from "@/public/spinner.svg";
 import Image from "next/image";
-import { readEventStream } from "../utils/utils";
+import { readEventStream, randomInt } from "../utils/utils";
 
 const toolMessageString = {
   get_lat_lon: "Finding information about the destination...",
@@ -33,18 +33,24 @@ const toolCompletionString = {
   get_attractions: "Building your itinerary...",
 };
 
+const genericString = [
+  "Making sense of what we found...",
+  "Weighing the options...",
+  "Putting the pieces together...",
+];
+
 function Form({
   setPhase,
   setResponseData,
 }: {
   setPhase: Dispatch<SetStateAction<"start" | "form" | "result">>;
-  setResponseData: Dispatch<SetStateAction<string | undefined>>; //change to response data later.
+  setResponseData: Dispatch<SetStateAction<ResponseData | undefined>>; //change to response data later.
 }) {
   const [state, formAction, isPending] = useActionState<FormState, FormData>(submitForm, {
     phase: "initial",
   });
 
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<string>(() => genericString[randomInt(3)]);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const queueRef = useRef<string[]>([]);
 
@@ -123,19 +129,33 @@ function Form({
 
     for await (const event of stream) {
       if (event.type === "done") {
-        setResponseData(event.output ?? "Error, did not receive output"); //error msg to be replaced after proper formatting
+        const parsedResult = ResponseSchema.safeParse(event.output);
+        if (!parsedResult.success) {
+          return {
+            phase: "error",
+            error: {
+              name: "Internal server error",
+              code: 500,
+              message: "Received malformed response from the server",
+            },
+            prevData: formData,
+          };
+        }
+        setResponseData(parsedResult.data); //error msg to be replaced after proper formatting
         setPhase("result");
       }
 
       if (event.type === "tool_finished") {
         queueMessage(
-          toolCompletionString[event.tool as keyof typeof toolMessageString] ?? "Thinking...",
+          toolCompletionString[event.tool as keyof typeof toolMessageString] ??
+            genericString[randomInt(3)],
         );
       }
 
       if (event.type === "tool_started") {
         queueMessage(
-          toolMessageString[event.tool as keyof typeof toolMessageString] ?? "Pondering...",
+          toolMessageString[event.tool as keyof typeof toolMessageString] ??
+            genericString[randomInt(3)],
         );
       }
     }
@@ -241,9 +261,9 @@ function Form({
         <Button type="submit">Plan my Trip!</Button>
       </form>
       {isPending && (
-        <div className="flex justify-center items-center z-0 bg-black/80 w-full h-full absolute top-0">
+        <div className="flex justify-center items-center z-0 bg-black/80 w-full h-full absolute top-0 flex-col">
           <Image src={Spinner} alt="" width={100} />
-          {message}
+          <div className="text-white">{message}</div>
         </div>
       )}
     </div>

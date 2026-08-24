@@ -28,7 +28,18 @@ export const EventsSchema = z.object({
   description: z
     .string()
     .describe(
-      "A short description of the event. E.g. The best option for you is with Delta Airlines with a layover in Oslo.",
+      "A concise one sentence description of the event. For example: 'The best option for you is with Delta Airlines with a layover in Oslo.', 'Visit the Temple of Heaven early, then head to the Summer Palace once the crowds pick up.'",
+    ),
+  action: z
+    .enum(["book", "view"])
+    .describe(
+      "If the user can perform an action inside the app. For example 'Book' a flight. This will be provided in the system prompt.",
+    )
+    .nullable(),
+  wikipedia: z
+    .string()
+    .describe(
+      "Only applicable to attractions. You should verbatim return the wikipedia field of 'get_attractions'. The frontend will handle the rest. E.g. 'en:Foley Square'",
     ),
 });
 
@@ -197,6 +208,11 @@ export const PlacesSchema = z.object({
             opening_hours: z.string().nullish(),
             categories: z.array(z.string()),
             descriptions: z.string().nullish(),
+            wiki_and_media: z
+              .object({
+                wikipedia: z.string().nullish(),
+              })
+              .nullish(),
           }),
         })
         .nullable()
@@ -208,7 +224,7 @@ export const PlacesSchema = z.object({
 export const TripStreamSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("tool_started"), tool: z.string() }),
   z.object({ type: z.literal("tool_finished"), tool: z.string() }),
-  z.object({ type: z.literal("done"), output: z.string().nullish() }), //to be replaced with Response Schema latter.
+  z.object({ type: z.literal("done"), output: ResponseSchema }), //to be replaced with Response Schema latter.
   z.object({ type: z.literal("error"), message: z.string() }),
 ]);
 
