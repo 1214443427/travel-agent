@@ -52,7 +52,7 @@ export async function* readEventStream(responseBody: ReadableStream<Uint8Array<A
         break;
       }
       if (!parsedEvent.success) {
-        console.log("received invalid stream event");
+        console.log("received invalid stream event", parsedEvent.error);
       } else {
         console.log(parsedEvent.data);
         yield parsedEvent.data;

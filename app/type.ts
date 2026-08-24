@@ -23,7 +23,26 @@ export const FormSchema = z
 
 export type FormInputData = z.infer<typeof FormSchema>;
 
-export const EventsSchema = z.object({
+const FlightAction = z.object({
+  type: z.literal("book_flight"),
+  flightRef: z
+    .string()
+    .describe("The `ref` value shown on the chosen flight option in context, e.g. 'flt_3'."),
+});
+
+const HotelAction = z.object({
+  type: z.literal("book_hotel"),
+  hotelId: z.number().describe("The `hotelId` of the chosen property."),
+});
+
+const AttractionAction = z.object({
+  type: z.literal("view_attraction"),
+  wikipedia: z
+    .string()
+    .describe("Verbatim `wikipedia` field from get_attractions, e.g. 'en:Foley Square'."),
+});
+
+export const EventSchema = z.object({
   title: z.string().describe("The name of the event. E.g. Weather, Flights, Hotel, etc"),
   description: z
     .string()
@@ -31,17 +50,27 @@ export const EventsSchema = z.object({
       "A concise one sentence description of the event. For example: 'The best option for you is with Delta Airlines with a layover in Oslo.', 'Visit the Temple of Heaven early, then head to the Summer Palace once the crowds pick up.'",
     ),
   action: z
-    .enum(["book", "view"])
+    .discriminatedUnion("type", [FlightAction, HotelAction, AttractionAction])
     .describe(
-      "If the user can perform an action inside the app. For example 'Book' a flight. This will be provided in the system prompt.",
+      "If the user can perform an action inside the app. Omit (null) when there's nothing actionable.",
     )
     .nullable(),
-  wikipedia: z
-    .string()
-    .describe(
-      "Only applicable to attractions. You should verbatim return the wikipedia field of 'get_attractions'. The frontend will handle the rest. E.g. 'en:Foley Square'",
-    ),
 });
+
+export type EventData = z.infer<typeof EventSchema>;
+
+const BookingHandleSchema = z.object({
+  kind: z.enum(["next", "booking"]),
+  token: z.string(),
+});
+export type BookingHandle = z.infer<typeof BookingHandleSchema>;
+// { kind: "next" | "booking"; token: string };
+
+const TravelAgentContextSchema = z.object({ refs: z.map(z.string(), BookingHandleSchema) });
+export type TravelAgentContext = z.infer<typeof TravelAgentContextSchema>;
+// { refs: Map<string, BookingHandle> };
+
+const RefsWireSchema = z.record(z.string(), BookingHandleSchema);
 
 export const ResponseSchema = z.object({
   startDate: z.string().describe("Should match the ones given in the prompt."),
@@ -49,11 +78,14 @@ export const ResponseSchema = z.object({
   startLocation: z.string().describe("Should match the ones given in the prompt."),
   endLocation: z.string().describe("Should match the ones given in the prompt."),
   events: z
-    .array(EventsSchema)
+    .array(EventSchema)
     .describe("An array of events. Including transit, hotel stay, activities for the user, etc."),
+  refs: RefsWireSchema,
 });
 
 export type ResponseData = z.infer<typeof ResponseSchema>;
+
+export const ModelOutputSchema = ResponseSchema.omit({ refs: true });
 
 export class APIError extends Error {
   code: number;
@@ -165,6 +197,8 @@ export const FlightSchema = z.object({
               }),
             )
             .nullable(),
+          booking_token: z.string().nullish(),
+          next_token: z.string().nullish(),
         }),
       ),
     }),
@@ -177,6 +211,7 @@ const HotelTimeSchema = z.object({
 });
 
 const HotelSchema = z.object({
+  hotel_id: z.number(),
   hotel_name: z.string(),
   review_score: z.number().nullish(),
   review_nr: z.number().nullish(),

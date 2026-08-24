@@ -1,4 +1,4 @@
-import { tool } from "@openai/agents";
+import { tool, RunContext } from "@openai/agents";
 import z from "zod";
 import { GEOAPIFY_KEY, WEATHER_API_KEY } from "./config";
 import { fetchAPI, fetchRapidAPI } from "./fetching";
@@ -10,6 +10,7 @@ import {
   HotelsSchema,
   LatLonSchema,
   PlacesSchema,
+  TravelAgentContext,
   WeatherSchema,
 } from "../type";
 import { SAMPLE_FLIGHT_DATA } from "../test/sampleFlightData";
@@ -135,26 +136,26 @@ export const searchAirport = tool({
   },
 });
 
-export const getFlights = tool({
+const getFlightsParams = z.object({
+  departure: z.string().describe("Departure Airport's IATA code. Example: LAX"),
+  arrival: z.string().describe("The IATA code of the arrival airport. Example: JFK"),
+  departureDate: z.iso
+    .date()
+    .describe("The date of departure for the trip. /Use ISO date string, such as 2026-09-20"),
+  returningDate: z.iso
+    .date()
+    .describe("The date of return for round-trip flights. Use ISO date string, such as 2026-09-27"),
+  personCount: z.number().describe("The number of passengers."),
+  currency: z
+    .string()
+    .nullable()
+    .describe("Sets the currency for price formatting in the response. Eg. USD, CAD"),
+});
+
+export const getFlights = tool<typeof getFlightsParams, TravelAgentContext>({
   name: "get_flights",
   description: "Return the flights form a city to another city on the given date.",
-  parameters: z.object({
-    departure: z.string().describe("Departure Airport's IATA code. Example: LAX"),
-    arrival: z.string().describe("The IATA code of the arrival airport. Example: JFK"),
-    departureDate: z.iso
-      .date()
-      .describe("The date of departure for the trip. /Use ISO date string, such as 2026-09-20"),
-    returningDate: z.iso
-      .date()
-      .describe(
-        "The date of return for round-trip flights. Use ISO date string, such as 2026-09-27",
-      ),
-    personCount: z.number().describe("The number of passengers."),
-    currency: z
-      .string()
-      .nullable()
-      .describe("Sets the currency for price formatting in the response. Eg. USD, CAD"),
-  }),
+  parameters: getFlightsParams,
   errorFunction(_, error) {
     const toolName = "[get_flights]";
     if (error instanceof FetchError) {
@@ -169,7 +170,10 @@ export const getFlights = tool({
     console.error(toolName, error);
     return `Flights lookup failed. Skip flight information or give the user a rough estimate.`;
   },
-  async execute({ departure, arrival, departureDate, returningDate, personCount, currency }) {
+  async execute(
+    { departure, arrival, departureDate, returningDate, personCount, currency },
+    context,
+  ) {
     const baseURL = "https://google-flights2.p.rapidapi.com/api/v1/searchFlights";
     const options = {
       departure_id: departure,
@@ -185,18 +189,30 @@ export const getFlights = tool({
     const response = SAMPLE_FLIGHT_DATA;
     const parsedData = parseData(FlightSchema, response);
 
-    const filteredResult = parsedData.data.itineraries.topFlights.map((flight) => ({
-      departureTime: flight.departure_time,
-      arrivalTime: flight.arrival_time,
-      duration: flight.duration,
-      price: flight.price,
-      segments: flight.flights.map((leg) => ({
-        departure: leg.departure_airport,
-        arrival: leg.arrival_airport,
-        duration: leg.duration,
-      })),
-      layovers: flight.layovers,
-    }));
+    const filteredResult = parsedData.data.itineraries.topFlights.map((flight, index) => {
+      const flightRef = `flt_${context?.context.refs.size ?? index}`;
+      if (flight.next_token) {
+        context?.context.refs.set(flightRef, { kind: "next", token: flight.next_token });
+      } else if (flight.booking_token) {
+        context?.context.refs.set(flightRef, {
+          kind: "booking",
+          token: flight.booking_token,
+        });
+      }
+      return {
+        departureTime: flight.departure_time,
+        arrivalTime: flight.arrival_time,
+        duration: flight.duration,
+        price: flight.price,
+        segments: flight.flights.map((leg) => ({
+          departure: leg.departure_airport,
+          arrival: leg.arrival_airport,
+          duration: leg.duration,
+        })),
+        layovers: flight.layovers,
+        ref: flightRef,
+      };
+    });
     return filteredResult;
   },
 });
@@ -271,6 +287,7 @@ export const getHotels = tool({
       reviewCount: hotel.review_nr,
       star: hotel.class,
       price: hotel.composite_price_breakdown.all_inclusive_amount,
+      hotelId: hotel.hotel_id,
     }));
     return filteredResult.slice(0, 5);
   },
@@ -335,6 +352,7 @@ export const getAttractions = tool({
       website: place.properties.website,
       openingHours: place.properties.opening_hours,
       categories: place.properties.categories,
+      wikipedia: place.properties.wiki_and_media?.wikipedia,
     }));
     return filteredResult;
   },

@@ -1,8 +1,11 @@
-import { FormSchema, TripStream } from "@/app/type";
+import { BookingHandle, FormSchema, TravelAgentContext, TripStream } from "@/app/type";
 import { agent } from "@/app/utils/agent";
 import { run } from "@openai/agents";
 
 export async function POST(req: Request) {
+  const refs = new Map<string, BookingHandle>();
+  const agentContext: TravelAgentContext = { refs: refs };
+
   const data = await req.json();
   const parsedResult = FormSchema.safeParse(data);
   if (!parsedResult.success) {
@@ -28,7 +31,7 @@ export async function POST(req: Request) {
           stream: true,
           maxTurns: 12,
           signal: req.signal,
-          context: { location: "Vancouver, Canada" },
+          context: agentContext,
         });
 
         for await (const event of result) {
@@ -47,7 +50,7 @@ export async function POST(req: Request) {
         if (result.finalOutput === undefined) {
           send({ type: "error", message: "LLM failed to produce a final output." });
         } else {
-          send({ type: "done", output: result.finalOutput });
+          send({ type: "done", output: { ...result.finalOutput, refs: Object.fromEntries(refs) } });
           console.log(result.finalOutput);
         }
       } catch (error) {

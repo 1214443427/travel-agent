@@ -1,10 +1,17 @@
 import React from "react";
-import { ResponseData } from "../type";
+import { EventData, ResponseData } from "../type";
 import TextBox from "./TextBox";
 import Button from "./Button";
 
 function getCityName(location: string) {
   return location.split(",")[0];
+}
+
+async function actionButtonOnClick(event: EventData) {
+  if (event.action!.type === "view_attraction") {
+    window.open(`https://en.wikipedia.org/wiki/${event.action?.wikipedia}`);
+  } else {
+  }
 }
 
 function ResultPage({ responseData }: { responseData: ResponseData | undefined }) {
@@ -41,7 +48,11 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
           <h1 className="font-bold text-2xl">{event.title}</h1>
           <TextBox className="py-4 px-3">
             <p className="text-[16px]">{event.description}</p>
-            {event.action && <Button>{event.action === "book" ? "Book" : "View Details"}</Button>}
+            {event.action && (
+              <Button onClick={() => actionButtonOnClick(event)}>
+                {event.action.type === "view_attraction" ? "View Details" : "Book"}
+              </Button>
+            )}
           </TextBox>
         </div>
       ))}
