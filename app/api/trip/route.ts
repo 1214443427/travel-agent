@@ -1,12 +1,20 @@
-import { BookingHandle, FormSchema, TravelAgentContext, TripStream } from "@/app/type";
-import { agent } from "@/app/utils/agent";
-import { run } from "@openai/agents";
+import { FormSchema, TripStream } from "@/app/type";
+import { planTrip } from "@/app/utils/planTrip";
 
 export async function POST(req: Request) {
-  const refs = new Map<string, BookingHandle>();
-  const agentContext: TravelAgentContext = { refs: refs };
-
-  const data = await req.json();
+  let data;
+  try {
+    data = await req.json();
+  } catch (error) {
+    console.log(error);
+    return Response.json(
+      {
+        statusText: "Bad request",
+        message: "The request is malformed. ",
+      },
+      { status: 400 },
+    );
+  }
   const parsedResult = FormSchema.safeParse(data);
   if (!parsedResult.success) {
     return Response.json(
@@ -22,38 +30,22 @@ export async function POST(req: Request) {
   const stream = new ReadableStream({
     async start(controller) {
       const send = (event: TripStream) => {
+        if (req.signal.aborted) return;
         const data = JSON.stringify(event);
-        controller.enqueue(encoder.encode(`data:${data} \n\n`));
+        try {
+          controller.enqueue(encoder.encode(`data:${data} \n\n`));
+        } catch {
+          console.error("Stream is aborted. ");
+        }
       };
 
       try {
-        const result = await run(agent, JSON.stringify(parsedResult.data), {
-          stream: true,
-          maxTurns: 12,
-          signal: req.signal,
-          context: agentContext,
-        });
-
-        for await (const event of result) {
-          if (event.type !== "run_item_stream_event") continue; // skip raw token events
-          if (event.name === "tool_called" && event.item.rawItem.type === "function_call") {
-            send({ type: "tool_started", tool: event.item.rawItem.name });
-          } else if (
-            event.name === "tool_output" &&
-            event.item.rawItem.type === "function_call_result"
-          ) {
-            send({ type: "tool_finished", tool: event.item.rawItem.name });
-          }
-        }
-
-        await result.completed;
-        if (result.finalOutput === undefined) {
-          send({ type: "error", message: "LLM failed to produce a final output." });
-        } else {
-          send({ type: "done", output: { ...result.finalOutput, refs: Object.fromEntries(refs) } });
-          console.log(result.finalOutput);
+        const stream = planTrip(parsedResult.data, req.signal);
+        for await (const event of stream) {
+          send(event);
         }
       } catch (error) {
+        console.log(error);
         send({
           type: "error",
           message: error instanceof Error ? error.message : "Agent run failed",

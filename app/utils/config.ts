@@ -15,6 +15,11 @@ if (AI_MODEL === undefined) {
   throw new Error("Missing AI Model");
 }
 
+export const FORMATTER_MODEL = process.env.FORMATTER_MODEL;
+if (FORMATTER_MODEL === undefined) {
+  throw new Error("Missing Formatter Model");
+}
+
 export const WEATHER_API_KEY = process.env.WEATHER_API;
 if (WEATHER_API_KEY === undefined) {
   throw new Error("Missing Weather API Key");

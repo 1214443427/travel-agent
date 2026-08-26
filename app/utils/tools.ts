@@ -124,11 +124,11 @@ export const searchAirport = tool({
     };
     const url = constructUrl(baseURL, options);
 
-    if (query == "Vancouver") {
-      return "YVR";
-    } else {
-      return "PEK";
-    }
+    // if (query == "Vancouver") {
+    //   return "YVR";
+    // } else {
+    //   return "PEK";
+    // }
 
     const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
     const parsedData = parseData(AirportSchema, response);
@@ -184,9 +184,9 @@ export const getFlights = tool<typeof getFlightsParams, TravelAgentContext>({
       currency: currency ?? "USD",
     };
     const url = constructUrl(baseURL, options);
-    // const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
+    const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
 
-    const response = SAMPLE_FLIGHT_DATA;
+    // const response = SAMPLE_FLIGHT_DATA;
     const parsedData = parseData(FlightSchema, response);
 
     const filteredResult = parsedData.data.itineraries.topFlights.map((flight, index) => {
@@ -274,8 +274,8 @@ export const getHotels = tool({
     const url = constructUrl(baseURL, options);
     const host = "booking-com15.p.rapidapi.com";
 
-    // const result = await fetchRapidAPI(url, host);
-    const result = SAMPLE_HOTEL_DATA;
+    const result = await fetchRapidAPI(url, host);
+    // const result = SAMPLE_HOTEL_DATA;
     await new Promise((resolve) => setTimeout(resolve, 3000));
     const parsedData = parseData(HotelsSchema, result);
     const filteredResult = parsedData.data.result.map((hotel) => ({

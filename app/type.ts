@@ -47,13 +47,11 @@ export const EventSchema = z.object({
   description: z
     .string()
     .describe(
-      "A concise one sentence description of the event. For example: 'The best option for you is with Delta Airlines with a layover in Oslo.', 'Visit the Temple of Heaven early, then head to the Summer Palace once the crowds pick up.'",
+      "An one sentence description of the event. This will be shown to the user, keep the content concise and easy to read. Do not include any action data such as URL link to wikipedia in here. For example: 'The best option for you is with Delta Airlines with a layover in Oslo.', 'Visit the Temple of Heaven early, then head to the Summer Palace once the crowds pick up.'",
     ),
   action: z
     .discriminatedUnion("type", [FlightAction, HotelAction, AttractionAction])
-    .describe(
-      "If the user can perform an action inside the app. Omit (null) when there's nothing actionable.",
-    )
+    .describe("Only include for flights, hotel stays, and tourist attractions.")
     .nullable(),
 });
 
@@ -79,13 +77,16 @@ export const ResponseSchema = z.object({
   endLocation: z.string().describe("Should match the ones given in the prompt."),
   events: z
     .array(EventSchema)
-    .describe("An array of events. Including transit, hotel stay, activities for the user, etc."),
+    .describe(
+      "An array of cards to render. Including weather, transit, hotel stay, activities for the user, etc.",
+    ),
   refs: RefsWireSchema,
 });
 
 export type ResponseData = z.infer<typeof ResponseSchema>;
 
 export const ModelOutputSchema = ResponseSchema.omit({ refs: true });
+export type ModelOutput = z.infer<typeof ModelOutputSchema>;
 
 export class APIError extends Error {
   code: number;

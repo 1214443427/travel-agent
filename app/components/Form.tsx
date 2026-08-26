@@ -22,6 +22,7 @@ const toolMessageString = {
   get_flights: "Finding flights for the trip...",
   get_hotels: "Finding hotels at the destination...",
   get_attractions: "Finding place to visit during the trip...",
+  format_itinerary: "Adding the finishing touch...",
 };
 
 const toolCompletionString = {
@@ -31,6 +32,7 @@ const toolCompletionString = {
   get_flights: "Comparing flight options...",
   get_hotels: "Narrowing down places to stay...",
   get_attractions: "Building your itinerary...",
+  format_itinerary: "All finished!",
 };
 
 const genericString = [
@@ -50,7 +52,7 @@ function Form({
     phase: "initial",
   });
 
-  const [message, setMessage] = useState<string>(() => genericString[randomInt(3)]);
+  const [message, setMessage] = useState<string>("Thinking about what to do first...");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const queueRef = useRef<string[]>([]);
 
@@ -147,7 +149,7 @@ function Form({
 
       if (event.type === "tool_finished") {
         queueMessage(
-          toolCompletionString[event.tool as keyof typeof toolMessageString] ??
+          toolCompletionString[event.tool as keyof typeof toolCompletionString] ??
             genericString[randomInt(3)],
         );
       }
