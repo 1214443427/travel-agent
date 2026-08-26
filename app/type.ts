@@ -3,21 +3,24 @@ import * as z from "zod";
 export const FormSchema = z
   .object({
     travelerCount: z.coerce.number().min(1).max(10),
-    from: z.string(),
-    to: z.string(),
+    from: z.string().nonempty("Please state your origin location. "),
+    to: z.string().nonempty("Please state your desired destination. "),
     startDate: z.iso
-      .date()
+      .date("Please set a date in mm/dd/yyyy format. ")
       .refine(
         (date) => date >= new Date().toLocaleDateString("en-CA"),
         "Start date must be greater or equal to today",
       ),
     endDate: z.iso
-      .date()
+      .date("Please set a date in mm/dd/yyyy format. ")
       .refine(
         (date) => date >= new Date().toLocaleDateString("en-CA"),
         "End date must be greater or equal to today",
       ),
-    budget: z.coerce.number().min(0),
+    budget: z
+      .string()
+      .min(1, "Please set a positive number as budget.")
+      .pipe(z.coerce.number("Must be a number")),
   })
   .refine((data) => data.endDate >= data.startDate, "End date must be greater than start date");
 
@@ -100,10 +103,11 @@ export class APIError extends Error {
 export type FormState =
   | {
       phase: "initial";
+      prevData?: FormData;
     }
   | {
       phase: "invalid";
-      error: z.ZodError;
+      error: z.ZodError<FormInputData>;
       prevData: FormData;
     }
   | {

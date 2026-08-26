@@ -14,6 +14,8 @@ import { FormSchema, FormState, ResponseData, ResponseSchema } from "../type";
 import Spinner from "@/public/spinner.svg";
 import Image from "next/image";
 import { readEventStream, randomInt } from "../utils/utils";
+import ErrorModal from "./ErrorModal";
+import z from "zod";
 
 const toolMessageString = {
   get_lat_lon: "Finding information about the destination...",
@@ -55,6 +57,7 @@ function Form({
   const [message, setMessage] = useState<string>("Thinking about what to do first...");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const queueRef = useRef<string[]>([]);
+  const [editedFields, setEditedFields] = useState<Set<string>>(new Set());
 
   const MESSAGE_DELAY = 1000;
 
@@ -76,8 +79,17 @@ function Form({
   }
 
   async function submitForm(prevState: FormState, formData: FormData): Promise<FormState> {
+    if (prevState.phase === "error") {
+      return {
+        phase: "initial",
+        prevData: formData,
+      };
+    }
+
     const formObject = Object.fromEntries(formData);
     const parsedData = FormSchema.safeParse(formObject);
+
+    setEditedFields(new Set());
 
     if (!parsedData.success) {
       return {
@@ -191,12 +203,31 @@ function Form({
     }
   };
 
+  const handleEdit = (event: React.ChangeEvent<HTMLFormElement>) => {
+    const name = event.target.name;
+    if (!editedFields.has(name)) {
+      setEditedFields((prev) => new Set(prev).add(name));
+    }
+  };
+
   const prevData = "prevData" in state ? state.prevData : null;
+  const fieldErrors = state.phase === "invalid" ? z.flattenError(state.error).fieldErrors : {};
+
+  const isInvalid = (name: string) => {
+    return fieldErrors.hasOwnProperty(name) && !editedFields.has(name);
+  };
+
+  console.log(fieldErrors);
+  // const invalidMessage = state.phase === "invalid" ? state.error.issues[0].message : "";
 
   return (
     <div className="w-full h-full relative">
-      <form action={formAction} className="flex flex-col justify-center w-full gap-2">
-        <div className="flex flex-col text-center px-8 items-stretch w-full gap-2.5 mb-10">
+      <form
+        action={formAction}
+        onChange={handleEdit}
+        className="flex flex-col justify-center w-full gap-2"
+      >
+        <div className="flex flex-col text-center px-8 items-stretch w-full gap-2.5 mb-2">
           <label htmlFor="travelerCount" className="font-bold text-2xl">
             Number of travelers
           </label>
@@ -213,26 +244,34 @@ function Form({
               min={1}
               max={10}
               ref={countRef}
+              required
             />
             <NumberButton className="right-2.5" onClick={() => buttonOnclick(countRef, 1)}>
               +
             </NumberButton>
           </div>
+          {isInvalid("travelerCount") && (
+            <p className="text-red-600 -mt-2">{fieldErrors.travelerCount?.[0]}</p>
+          )}
         </div>
         <InputField
           name="from"
           type="text"
           label="Traveling from"
           placeholder="New York City"
-          defaultValue={prevData?.get("endDate")?.toString()}
+          defaultValue={prevData?.get("from")?.toString()}
+          invalid={isInvalid("from")}
+          invalidMessage={fieldErrors.from?.[0]}
         />
         <InputField
           name="to"
           type="text"
           label="Traveling to"
           placeholder="Paris"
-          defaultValue={prevData?.get("endDate")?.toString()}
-          className="mb-10"
+          defaultValue={prevData?.get("to")?.toString()}
+          className="mb-1"
+          invalid={isInvalid("to")}
+          invalidMessage={fieldErrors.to?.[0]}
         />
         <InputField
           name="startDate"
@@ -241,6 +280,8 @@ function Form({
           defaultValue={prevData?.get("startDate")?.toString() || todayString}
           onChange={startDateOnchange}
           min={todayString}
+          invalid={isInvalid("startDate")}
+          invalidMessage={fieldErrors.startDate?.[0]}
         />
         <InputField
           name="endDate"
@@ -249,25 +290,41 @@ function Form({
           defaultValue={prevData?.get("endDate")?.toString() || nextWeekString}
           ref={endRef}
           min={todayString}
-          className="mb-8"
+          invalid={isInvalid("endDate")}
+          invalidMessage={fieldErrors.endDate?.[0]}
         />
         <InputField
           name="budget"
           type="number"
           label="Budget ($)"
           placeholder="5000"
-          defaultValue={prevData?.get("endDate")?.toString()}
-          min={0}
-          className="mb-2 [appearance:textfield] relative"
+          defaultValue={prevData?.get("budget")?.toString()}
+          min={1}
+          className="mb-2 [appearance:textfield]"
+          invalid={isInvalid("budget")}
+          invalidMessage={fieldErrors.budget?.[0]}
         />
         <Button type="submit">Plan my Trip!</Button>
+        {(isPending || state.phase === "error") && (
+          <div className="flex justify-center items-center z-0 bg-black/80 w-full h-full absolute top-0 flex-col">
+            {isPending ? (
+              <>
+                <Image src={Spinner} alt="" width={100} />
+                <div className="text-white">{message}</div>
+              </>
+            ) : (
+              state.phase === "error" && (
+                <ErrorModal>
+                  <p>{state.error.name}</p>
+                  <p>{state.error.code}</p>
+                  <p>{state.error.message}</p>
+                  <Button type="submit">Try again</Button>
+                </ErrorModal>
+              )
+            )}
+          </div>
+        )}
       </form>
-      {isPending && (
-        <div className="flex justify-center items-center z-0 bg-black/80 w-full h-full absolute top-0 flex-col">
-          <Image src={Spinner} alt="" width={100} />
-          <div className="text-white">{message}</div>
-        </div>
-      )}
     </div>
   );
 }
