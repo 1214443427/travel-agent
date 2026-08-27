@@ -269,3 +269,5 @@ export const TripStreamSchema = z.discriminatedUnion("type", [
 ]);
 
 export type TripStream = z.infer<typeof TripStreamSchema>;
+
+export type ErrorMessages = { credentials: string; retryable: string; generic: string };

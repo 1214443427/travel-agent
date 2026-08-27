@@ -1,4 +1,4 @@
-import { tool, RunContext } from "@openai/agents";
+import { tool } from "@openai/agents";
 import z from "zod";
 import { GEOAPIFY_KEY, WEATHER_API_KEY } from "./config";
 import { fetchAPI, fetchRapidAPI } from "./fetching";
@@ -13,8 +13,7 @@ import {
   TravelAgentContext,
   WeatherSchema,
 } from "../type";
-import { SAMPLE_FLIGHT_DATA } from "../test/sampleFlightData";
-import { SAMPLE_HOTEL_DATA } from "../test/sampleHotelData";
+import { TOOL_ERRORS, toolErrorHandler } from "./toolErrors";
 
 export const getLatLon = tool({
   name: "get_lat_lon",
@@ -23,19 +22,24 @@ export const getLatLon = tool({
     city: z.string().describe("The name of the city to search for. "),
     countryCode: z.string().nullable().describe("ISO country code. e.g. GB"),
   }),
+  // errorFunction(_, error) {
+  //   const toolName = "get_lat_lon";
+  //   if (error instanceof FetchError) {
+  //     console.error(toolName, error.status, error.message, error.url);
+  //     if (error.status === 401 || error.status === 402) {
+  //       return "Our end point credentials are invalid or have expired. Skip and continue planing with your own knowledge.";
+  //     }
+  //     if (error.retryable) {
+  //       return "The end point is temporarily unavailable. Try again or continue planing with your own knowledge.";
+  //     }
+  //   }
+  //   console.error(toolName, error);
+  //   return `LatLon look up failed. Please try a different name for the city or continue planing with your knowledge.`;
+  // },
   errorFunction(_, error) {
-    const toolName = "get_lat_lon";
-    if (error instanceof FetchError) {
-      console.error(toolName, error.status, error.message, error.url);
-      if (error.status === 401 || error.status === 402) {
-        return "Our end point credentials are invalid or have expired. Skip and continue planing with your own knowledge.";
-      }
-      if (error.retryable) {
-        return "The end point is temporarily unavailable. Try again or continue planing with your own knowledge.";
-      }
-    }
-    console.error(toolName, error);
-    return `LatLon look up failed. Please try a different name for the city or continue planing with your knowledge.`;
+    const toolName = "get_lat_lon" as const;
+    const handler = toolErrorHandler(toolName, TOOL_ERRORS[toolName]);
+    return handler(_, error);
   },
   async execute({ city, countryCode }) {
     const query = countryCode ? city + "," + countryCode : city;
@@ -60,19 +64,24 @@ export const getWeather = tool({
         "Unit of measurement. 'metric' and 'imperial' units are available. Defaults to 'metric'.",
       ),
   }),
+  // errorFunction(_, error) {
+  //   const toolName = "[get_weather]";
+  //   if (error instanceof FetchError) {
+  //     console.error(toolName, error.status, error.message, error.url);
+  //     if (error.status === 401 || error.status === 402) {
+  //       return "Our weather end point credentials are invalid or have expired. Skip weather and continue planing.";
+  //     }
+  //     if (error.retryable) {
+  //       return "The weather end point is temporarily unavailable. Try again or continue planing without weather.";
+  //     }
+  //   }
+  //   console.error(toolName, error);
+  //   return `Weather look up failed. Try again or continue without weather information. `;
+  // },
   errorFunction(_, error) {
-    const toolName = "[get_weather]";
-    if (error instanceof FetchError) {
-      console.error(toolName, error.status, error.message, error.url);
-      if (error.status === 401 || error.status === 402) {
-        return "Our weather end point credentials are invalid or have expired. Skip weather and continue planing.";
-      }
-      if (error.retryable) {
-        return "The weather end point is temporarily unavailable. Try again or continue planing without weather.";
-      }
-    }
-    console.error(toolName, error);
-    return `Weather look up failed. Try again or continue without weather information. `;
+    const toolName = "get_weather" as const;
+    const handler = toolErrorHandler(toolName, TOOL_ERRORS[toolName]);
+    return handler(_, error);
   },
   async execute({ lat, lon, unit }) {
     const unitCleaned = unit == "imperial" ? "imperial" : "metric";
@@ -103,19 +112,24 @@ export const searchAirport = tool({
       .string()
       .describe("The search term to find an airport, which can be a place name, city, or state."),
   }),
+  // errorFunction(_, error) {
+  //   const toolName = "[search_airport]";
+  //   if (error instanceof FetchError) {
+  //     console.error(toolName, error.status, error.message, error.url);
+  //     if (error.status === 401 || error.status === 402) {
+  //       return "Our Google Flights credentials are invalid or have expired. Continue with your own knowledge.";
+  //     }
+  //     if (error.retryable) {
+  //       return "The Google Flights end point is temporarily unavailable. Try again or continue with your own knowledge.";
+  //     }
+  //   }
+  //   console.error(toolName, error);
+  //   return `Airport lookup failed. Continue with your own knowledge.`;
+  // },
   errorFunction(_, error) {
-    const toolName = "[search_airport]";
-    if (error instanceof FetchError) {
-      console.error(toolName, error.status, error.message, error.url);
-      if (error.status === 401 || error.status === 402) {
-        return "Our Google Flights credentials are invalid or have expired. Continue with your own knowledge.";
-      }
-      if (error.retryable) {
-        return "The Google Flights end point is temporarily unavailable. Try again or continue with your own knowledge.";
-      }
-    }
-    console.error(toolName, error);
-    return `Airport lookup failed. Continue with your own knowledge. `;
+    const toolName = "search_airport" as const;
+    const handler = toolErrorHandler(toolName, TOOL_ERRORS[toolName]);
+    return handler(_, error);
   },
   async execute({ query }) {
     const baseURL = "https://google-flights2.p.rapidapi.com/api/v1/searchAirport";
@@ -157,18 +171,9 @@ export const getFlights = tool<typeof getFlightsParams, TravelAgentContext>({
   description: "Return the flights form a city to another city on the given date.",
   parameters: getFlightsParams,
   errorFunction(_, error) {
-    const toolName = "[get_flights]";
-    if (error instanceof FetchError) {
-      console.error(toolName, error.status, error.message, error.url);
-      if (error.status === 401 || error.status === 402) {
-        return "Our Google Flights credentials are invalid or have expired. Skip flight information or give the user a rough estimate.";
-      }
-      if (error.retryable) {
-        return "The Google Flights end point is temporarily unavailable. Try again or give the user a rough estimate.";
-      }
-    }
-    console.error(toolName, error);
-    return `Flights lookup failed. Skip flight information or give the user a rough estimate.`;
+    const toolName = "get_flights" as const;
+    const handler = toolErrorHandler(toolName, TOOL_ERRORS[toolName]);
+    return handler(_, error);
   },
   async execute(
     { departure, arrival, departureDate, returningDate, personCount, currency },
@@ -248,18 +253,9 @@ export const getHotels = tool({
       ),
   }),
   errorFunction(_, error) {
-    const toolName = "[get_hotels]";
-    if (error instanceof FetchError) {
-      console.error(toolName, error.status, error.message, error.url);
-      if (error.status === 401 || error.status === 402) {
-        return "Our hotels end point credentials are invalid or have expired. Give the user a rough estimate.";
-      }
-      if (error.retryable) {
-        return "The hotels end point is temporarily unavailable. Try again or give the user a rough estimate.";
-      }
-    }
-    console.error(toolName, error);
-    return `Hotels lookup failed. Give the user a rough estimate.`;
+    const toolName = "get_hotels" as const;
+    const handler = toolErrorHandler(toolName, TOOL_ERRORS[toolName]);
+    return handler(_, error);
   },
   async execute({ lat, lon, person, checkInDate, checkOutDate, currencyCode }) {
     const baseURL = "https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotelsByCoordinates";
@@ -276,7 +272,6 @@ export const getHotels = tool({
 
     const result = await fetchRapidAPI(url, host);
     // const result = SAMPLE_HOTEL_DATA;
-    await new Promise((resolve) => setTimeout(resolve, 3000));
     const parsedData = parseData(HotelsSchema, result);
     const filteredResult = parsedData.data.result.map((hotel) => ({
       name: hotel.hotel_name,
@@ -322,18 +317,9 @@ export const getAttractions = tool({
     lon: z.number().describe("The longitude of the city"),
   }),
   errorFunction(_, error) {
-    const toolName = "[get_attractions]";
-    if (error instanceof FetchError) {
-      console.error(toolName, error.status, error.message, error.url);
-      if (error.status === 401 || error.status === 402) {
-        return "Our tourist end point credentials are invalid or have expired. Use your knowledge to give the user some recommendations. ";
-      }
-      if (error.retryable) {
-        return "The tourist end point is temporarily unavailable. Try again or use your knowledge to give the user some recommendations.";
-      }
-    }
-    console.error(toolName, error);
-    return `Attractions look up failed. Try again or use your knowledge to give the user some recommendations.`;
+    const toolName = "get_attractions" as const;
+    const handler = toolErrorHandler(toolName, TOOL_ERRORS[toolName]);
+    return handler(_, error);
   },
   async execute({ lat, lon }) {
     const baseURL = "https://api.geoapify.com/v2/places";
