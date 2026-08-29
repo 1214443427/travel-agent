@@ -10,11 +10,11 @@ function redact(url: string | URL) {
   return newUrl.toString();
 }
 
-export async function fetchAPI(url: string | URL, init?: RequestInit) {
+export async function fetchAPI(url: string | URL, init?: RequestInit, timeout: number = 10_000) {
   const safeUrl = redact(url);
   let response;
   try {
-    response = await fetch(url, { ...init, signal: AbortSignal.timeout(10_000) });
+    response = await fetch(url, { ...init, signal: AbortSignal.timeout(timeout) });
   } catch (error) {
     throw new FetchError(null, "Error when fetching.", safeUrl, error);
   }

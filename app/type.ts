@@ -264,7 +264,7 @@ export const PlacesSchema = z.object({
 export const TripStreamSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("tool_started"), tool: z.string() }),
   z.object({ type: z.literal("tool_finished"), tool: z.string() }),
-  z.object({ type: z.literal("done"), output: ResponseSchema }), //to be replaced with Response Schema latter.
+  z.object({ type: z.literal("done"), output: ResponseSchema }),
   z.object({ type: z.literal("error"), message: z.string() }),
 ]);
 

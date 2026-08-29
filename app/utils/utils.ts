@@ -27,7 +27,7 @@ export function parseData<T extends z.ZodType>(schema: T, data: unknown): z.infe
   const result = schema.safeParse(data);
   if (!result.success) {
     console.error(z.prettifyError(result.error));
-    throw new Error("The end point returned data with unexpected format. ");
+    throw new Error("The end point returned data with unexpected format.");
   }
   return result.data;
 }
@@ -37,7 +37,7 @@ export async function* readEventStream(responseBody: ReadableStream<Uint8Array<A
   let buffer = "";
 
   for await (const chunk of responseBody) {
-    const data = decoder.decode(chunk);
+    const data = decoder.decode(chunk, { stream: true });
     buffer += data;
     let split: number;
     while ((split = buffer.indexOf("\n\n")) !== -1) {
@@ -49,7 +49,7 @@ export async function* readEventStream(responseBody: ReadableStream<Uint8Array<A
         const eventJson = JSON.parse(payload);
         parsedEvent = TripStreamSchema.safeParse(eventJson);
       } catch {
-        break;
+        continue;
       }
       if (!parsedEvent.success) {
         console.log("received invalid stream event", parsedEvent.error);

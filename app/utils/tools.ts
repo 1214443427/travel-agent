@@ -218,7 +218,7 @@ export const getFlights = tool<typeof getFlightsParams, TravelAgentContext>({
         ref: flightRef,
       };
     });
-    return filteredResult;
+    return filteredResult.slice(0, 3);
   },
 });
 
@@ -274,15 +274,15 @@ export const getHotels = tool({
     // const result = SAMPLE_HOTEL_DATA;
     const parsedData = parseData(HotelsSchema, result);
     const filteredResult = parsedData.data.result.map((hotel) => ({
-      name: hotel.hotel_name,
-      translatedName: hotel.hotel_name_trans,
-      checkInTime: hotel.checkin,
-      checkOutTime: hotel.checkout,
-      reviewScore: hotel.review_score,
-      reviewCount: hotel.review_nr,
-      star: hotel.class,
-      price: hotel.composite_price_breakdown.all_inclusive_amount,
-      hotelId: hotel.hotel_id,
+      name: hotel.hotel_name, //"Cordis, Beijing Capital Airport By Langham Hospitality Group"
+      translatedName: hotel.hotel_name_trans, //"Cordis, Beijing Capital Airport By Langham Hospitality Group"
+      checkInTime: hotel.checkin, //          until: "23:30",from: "14:00",
+      checkOutTime: hotel.checkout, //          {from: "01:00",          until: "12:00",}
+      reviewScore: hotel.review_score, //8.7
+      reviewCount: hotel.review_nr, //1830
+      star: hotel.class, //5
+      price: hotel.composite_price_breakdown.all_inclusive_amount, //{value: 3352.39818467217, currency: "USD"}
+      hotelId: hotel.hotel_id, //247527
     }));
     return filteredResult.slice(0, 5);
   },
@@ -340,7 +340,7 @@ export const getAttractions = tool({
       categories: place.properties.categories,
       wikipedia: place.properties.wiki_and_media?.wikipedia,
     }));
-    return filteredResult;
+    return filteredResult.slice(0, 10);
   },
 });
 
