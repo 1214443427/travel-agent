@@ -32,6 +32,8 @@ export function parseData<T extends z.ZodType>(schema: T, data: unknown): z.infe
   return result.data;
 }
 
+const MAX_FRAME_CHAR_SIZE = 1_000_000;
+
 export async function* readEventStream(responseBody: ReadableStream<Uint8Array<ArrayBuffer>>) {
   let decoder = new TextDecoder();
   let buffer = "";
@@ -39,6 +41,9 @@ export async function* readEventStream(responseBody: ReadableStream<Uint8Array<A
   for await (const chunk of responseBody) {
     const data = decoder.decode(chunk, { stream: true });
     buffer += data;
+    if (buffer.length > MAX_FRAME_CHAR_SIZE) {
+      throw new Error("Event stream frame exceeded maximum allowed size.");
+    }
     let split: number;
     while ((split = buffer.indexOf("\n\n")) !== -1) {
       let parsedEvent;
@@ -57,6 +62,11 @@ export async function* readEventStream(responseBody: ReadableStream<Uint8Array<A
         console.log(parsedEvent.data);
         yield parsedEvent.data;
       }
+    }
+
+    buffer += decoder.decode();
+    if (buffer.trim() != "") {
+      throw new Error("The event stream ended mid-frame.");
     }
   }
 }

@@ -16,6 +16,7 @@ export async function POST(req: Request) {
     );
   }
   const parsedResult = FormSchema.safeParse(data);
+  console.log(parsedResult);
   if (!parsedResult.success) {
     return Response.json(
       {

@@ -103,7 +103,7 @@ function Form({
     try {
       response = await fetch("/api/trip", {
         method: "POST",
-        body: JSON.stringify(parsedData.data),
+        body: JSON.stringify(formObject), //sending the raw object so the budget stays as string. (to preserve coerce)
       });
     } catch (error) {
       return {
@@ -164,6 +164,7 @@ function Form({
           toolCompletionString[event.tool as keyof typeof toolCompletionString] ??
             genericString[randomInt(3)],
         );
+        return prevState;
       }
 
       if (event.type === "tool_started") {
@@ -171,10 +172,31 @@ function Form({
           toolMessageString[event.tool as keyof typeof toolMessageString] ??
             genericString[randomInt(3)],
         );
+        return prevState;
+      }
+
+      if (event.type === "error") {
+        return {
+          phase: "error",
+          error: {
+            name: "Server Error",
+            code: 500,
+            message: event.message,
+          },
+          prevData: formData,
+        };
       }
     }
 
-    return prevState;
+    return {
+      phase: "error",
+      error: {
+        name: "Incomplete response",
+        code: 500,
+        message: "The server stopped responding before finishing. Please try again.",
+      },
+      prevData: formData,
+    };
   }
 
   const countRef = useRef<HTMLInputElement>(null);
@@ -217,7 +239,6 @@ function Form({
     return fieldErrors.hasOwnProperty(name) && !editedFields.has(name);
   };
 
-  console.log(fieldErrors);
   // const invalidMessage = state.phase === "invalid" ? state.error.issues[0].message : "";
 
   return (

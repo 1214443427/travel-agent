@@ -265,7 +265,7 @@ export const TripStreamSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("tool_started"), tool: z.string() }),
   z.object({ type: z.literal("tool_finished"), tool: z.string() }),
   z.object({ type: z.literal("done"), output: ResponseSchema }),
-  z.object({ type: z.literal("error"), message: z.string() }),
+  z.object({ type: z.literal("error"), code: z.number().nullish(), message: z.string() }),
 ]);
 
 export type TripStream = z.infer<typeof TripStreamSchema>;
