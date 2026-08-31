@@ -31,7 +31,12 @@ export default defineConfig({
     },
   },
   test: {
-    setupFiles: ["./__tests__/test-setup.js"],
+    coverage: {
+      include: ["app/**/*.{ts,tsx}"],
+      exclude: ["app/**/*.d.ts", "app/type.ts", "app/utils/config.ts"],
+    },
+
+    setupFiles: ["./__tests__/test-setup.ts"],
     environment: "jsdom",
     env: {
       WEATHER_API: "test-weather-key",

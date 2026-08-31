@@ -59,15 +59,13 @@ export async function* readEventStream(responseBody: ReadableStream<Uint8Array<A
       if (!parsedEvent.success) {
         console.log("received invalid stream event", parsedEvent.error);
       } else {
-        console.log(parsedEvent.data);
         yield parsedEvent.data;
       }
     }
-
-    buffer += decoder.decode();
-    if (buffer.trim() != "") {
-      throw new Error("The event stream ended mid-frame.");
-    }
+  }
+  buffer += decoder.decode();
+  if (buffer.trim() != "") {
+    throw new Error("The event stream ended mid-frame.");
   }
 }
 
