@@ -1,7 +1,7 @@
-import { ResponseData } from "@/app/type";
+import { ModelOutput, ResponseData } from "@/app/type";
 
 // Sample data for testing the result page without running the agent.
-export const SAMPLE_RESPONSE_DATA: ResponseData = {
+export const SAMPLE_FORMATTER_OUTPUT: ModelOutput = {
   startDate: "2026-08-30",
   endDate: "2026-09-18",
   startLocation: "Vancouver",
@@ -42,6 +42,10 @@ export const SAMPLE_RESPONSE_DATA: ResponseData = {
       action: { type: "view_attraction", wikipedia: "en:Temple of Heaven" },
     },
   ],
+};
+
+export const SAMPLE_RESPONSE_DATA: ResponseData = {
+  ...SAMPLE_FORMATTER_OUTPUT,
   refs: {
     flt_0: { kind: "booking", token: "sample_booking_token_0" },
     flt_1: { kind: "next", token: "sample_next_token_1" },

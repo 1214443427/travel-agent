@@ -5,7 +5,7 @@ import {
   TravelAgentContext,
   TripStream,
 } from "@/app/type";
-import { agent, formatterAgent } from "@/app/utils/agent";
+import { plannerAgent, formatterAgent } from "@/app/utils/agent";
 import { run } from "@openai/agents";
 import { type AgentInputItem } from "@openai/agents";
 
@@ -105,7 +105,7 @@ export async function* planTrip(
 
   const userPrompt = JSON.stringify(data);
 
-  const textResult = await run(agent, userPrompt, {
+  const textResult = await run(plannerAgent, userPrompt, {
     stream: true,
     maxTurns: 12,
     signal: signal,
