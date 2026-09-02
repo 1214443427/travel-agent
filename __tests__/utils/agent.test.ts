@@ -110,9 +110,18 @@ describe("Planner agent", () => {
 
     for (const toolResult of toolResults) {
       expect(toolResult.output).toMatchObject({ type: "text" });
-      expect(toolResult.output.text).not.toContain("failed");
-      expect(toolResult.output.text).not.toContain("unavailable");
-      expect(toolResult.output.text).not.toContain("invalid");
+      const output = toolResult.output;
+      if (
+        typeof output === "object" &&
+        output !== null &&
+        !Array.isArray(output) &&
+        "type" in output &&
+        output.type === "text"
+      ) {
+        expect(output.text).not.toContain("failed");
+        expect(output.text).not.toContain("unavailable");
+        expect(output.text).not.toContain("invalid");
+      }
     }
 
     model.assertComplete();
@@ -153,6 +162,7 @@ describe("Planner agent", () => {
       kind: expect.any(String),
       token: expect.any(String),
     });
+    model.assertComplete();
   });
 
   test("The agent should throw after exceeding max turn. ", async () => {
@@ -214,5 +224,6 @@ describe("Formatter agent", () => {
     await expect(runner.run(formatterAgent, "Format this data: ...")).rejects.toThrow(
       ModelBehaviorError,
     );
+    model.assertComplete();
   });
 });

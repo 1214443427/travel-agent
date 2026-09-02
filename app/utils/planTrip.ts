@@ -5,9 +5,9 @@ import {
   TravelAgentContext,
   TripStream,
 } from "@/app/type";
-import { plannerAgent, formatterAgent } from "@/app/utils/agent";
-import { run } from "@openai/agents";
+import { Agent, run } from "@openai/agents";
 import { type AgentInputItem } from "@openai/agents";
+import { formatterAgent, plannerAgent } from "./agent";
 
 const EXAMPLE_OUTPUT: ModelOutput = {
   startDate: "2026-08-31",
@@ -99,13 +99,15 @@ export function getFormatterPrompt(request: string, itineraries: string): AgentI
 export async function* planTrip(
   data: FormInputData,
   signal: AbortSignal,
+  planner: typeof plannerAgent,
+  formatter: typeof formatterAgent,
 ): AsyncGenerator<TripStream> {
   const refs = new Map<string, BookingHandle>();
   const agentContext: TravelAgentContext = { refs: refs };
 
   const userPrompt = JSON.stringify(data);
 
-  const textResult = await run(plannerAgent, userPrompt, {
+  const textResult = await run(planner, userPrompt, {
     stream: true,
     maxTurns: 12,
     signal: signal,
@@ -122,19 +124,18 @@ export async function* planTrip(
   }
 
   await textResult.completed;
-  if (textResult.finalOutput === undefined) {
+  if (!textResult.finalOutput) {
     throw new Error("LLM failed to produce a final output.");
   } else {
     yield { type: "tool_started", tool: "format_itinerary" };
     const jsonResult = await run(
-      formatterAgent,
+      formatter,
       getFormatterPrompt(userPrompt, textResult.finalOutput),
       { signal: signal },
     );
     if (!jsonResult.finalOutput) {
       throw new Error("Formatter failed to produce a final output.");
     }
-    console.log(jsonResult.finalOutput);
 
     yield { type: "tool_finished", tool: "format_itinerary" };
     yield { type: "done", output: { ...jsonResult.finalOutput, refs: Object.fromEntries(refs) } };
