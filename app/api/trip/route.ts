@@ -1,4 +1,5 @@
 import { FormSchema, TripStream } from "@/app/type";
+import { formatterAgent, plannerAgent } from "@/app/utils/agent";
 import { planTrip } from "@/app/utils/planTrip";
 
 export async function POST(req: Request) {
@@ -10,7 +11,7 @@ export async function POST(req: Request) {
     return Response.json(
       {
         statusText: "Bad request",
-        message: "The request is malformed. ",
+        message: "The request is malformed.",
       },
       { status: 400 },
     );
@@ -21,7 +22,7 @@ export async function POST(req: Request) {
     return Response.json(
       {
         statusText: "Bad request",
-        message: "The request is malformed. ",
+        message: "The request is malformed.",
       },
       { status: 400 },
     );
@@ -41,7 +42,7 @@ export async function POST(req: Request) {
       };
 
       try {
-        const stream = planTrip(parsedResult.data, req.signal);
+        const stream = planTrip(parsedResult.data, req.signal, plannerAgent, formatterAgent);
         for await (const event of stream) {
           send(event);
         }
