@@ -35,11 +35,14 @@ export function parseData<T extends z.ZodType>(schema: T, data: unknown): z.infe
 const MAX_FRAME_CHAR_SIZE = 1_000_000;
 
 export async function* readEventStream(responseBody: ReadableStream<Uint8Array<ArrayBuffer>>) {
+  const reader = responseBody.getReader();
   let decoder = new TextDecoder();
   let buffer = "";
 
-  for await (const chunk of responseBody) {
-    const data = decoder.decode(chunk, { stream: true });
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    const data = decoder.decode(value, { stream: true });
     buffer += data;
     if (buffer.length > MAX_FRAME_CHAR_SIZE) {
       throw new Error("Event stream frame exceeded maximum allowed size.");
