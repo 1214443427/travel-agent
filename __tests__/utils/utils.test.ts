@@ -1,7 +1,6 @@
 //@vitest-environment node
 import { combineClassName, constructUrl, parseData, readEventStream } from "@/app/utils/utils";
-import { describe } from "node:test";
-import { expect, test, vi } from "vitest";
+import { expect, test, vi, describe } from "vitest";
 import z, { ZodError } from "zod";
 import { SAMPLE_RESPONSE_DATA } from "../testData/sampleResponseData";
 import { TripStream } from "@/app/type";
