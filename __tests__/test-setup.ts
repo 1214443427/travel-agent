@@ -1,11 +1,11 @@
-import { afterAll, afterEach, vi } from "vitest";
+import { afterAll, afterEach, beforeEach, vi } from "vitest";
 import { cleanup } from "@testing-library/react";
 import { setupServer } from "msw/node";
 import { httpHandlers } from "./httpHandlers";
 import { http, HttpResponse } from "msw";
 
 // Clean up the DOM after each test
-afterEach(() => {
+beforeEach(() => {
   cleanup();
 });
 

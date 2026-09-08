@@ -3,26 +3,31 @@ import * as z from "zod";
 export const FormSchema = z
   .object({
     travelerCount: z.coerce.number().min(1).max(10),
-    from: z.string().nonempty("Please state your origin location. "),
-    to: z.string().nonempty("Please state your desired destination. "),
+    from: z.string().nonempty("Please state your origin location."),
+    to: z.string().nonempty("Please state your desired destination."),
     startDate: z.iso
-      .date("Please set a date in mm/dd/yyyy format. ")
+      .date("Please set a date in mm/dd/yyyy format.")
       .refine(
         (date) => date >= new Date().toLocaleDateString("en-CA"),
         "Start date must be greater or equal to today",
       ),
     endDate: z.iso
-      .date("Please set a date in mm/dd/yyyy format. ")
+      .date("Please set a date in mm/dd/yyyy format.")
       .refine(
         (date) => date >= new Date().toLocaleDateString("en-CA"),
         "End date must be greater or equal to today",
       ),
     budget: z
       .string()
-      .min(1, "Please set a positive number as budget.")
-      .pipe(z.coerce.number("Must be a number")),
+      .min(1, "Please set a budget.")
+      .pipe(
+        z.coerce.number<string>("Must be a number").positive("Please set a positive number as budget."),
+      ),
   })
-  .refine((data) => data.endDate >= data.startDate, "End date must be greater than start date");
+  .refine((data) => data.endDate >= data.startDate, {
+    error: "End date must be greater than start date",
+    path: ["endDate"],
+  });
 
 export type FormInputData = z.infer<typeof FormSchema>;
 

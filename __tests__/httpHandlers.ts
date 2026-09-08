@@ -26,8 +26,4 @@ export const httpHandlers = [
   http.get("https://api.geoapify.com/v2/places", () => {
     return HttpResponse.json(SAMPLE_ATTRACTIONS_DATA);
   }),
-  //Internal APIs;
-  http.get("https://localhost:3000/api/trip", () => {
-    return HttpResponse.json();
-  }),
 ];

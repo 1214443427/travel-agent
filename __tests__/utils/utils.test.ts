@@ -1,5 +1,11 @@
 //@vitest-environment node
-import { combineClassName, constructUrl, parseData, readEventStream } from "@/app/utils/utils";
+import {
+  combineClassName,
+  constructUrl,
+  parseData,
+  randomInt,
+  readEventStream,
+} from "@/app/utils/utils";
 import { expect, test, vi, describe } from "vitest";
 import z, { ZodError } from "zod";
 import { SAMPLE_RESPONSE_DATA } from "../testData/sampleResponseData";
@@ -161,5 +167,16 @@ describe("combineClassName", () => {
 
   test("The function should return normally when second class it not provided.", () => {
     expect(combineClassName(baseClass)).toBe("flex flex-col");
+  });
+});
+
+describe("randomInt", () => {
+  test("The function is lower bound inclusive and upper bound exclusive.", () => {
+    let result: number[] = [];
+    for (let i = 0; i < 100; i++) {
+      result.push(randomInt(3));
+    }
+    expect(result.some((x) => x == 0)).toBe(true);
+    expect(result.some((x) => x == 3)).toBe(false);
   });
 });

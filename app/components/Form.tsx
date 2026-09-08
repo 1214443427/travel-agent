@@ -4,6 +4,7 @@ import React, {
   RefObject,
   SetStateAction,
   useActionState,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -60,6 +61,14 @@ function Form({
   const [editedFields, setEditedFields] = useState<Set<string>>(new Set());
 
   const MESSAGE_DELAY = 1000;
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
 
   function drainMessage() {
     const next = queueRef.current.shift();
@@ -164,7 +173,7 @@ function Form({
           toolCompletionString[event.tool as keyof typeof toolCompletionString] ??
             genericString[randomInt(3)],
         );
-        return prevState;
+        continue;
       }
 
       if (event.type === "tool_started") {
@@ -172,7 +181,7 @@ function Form({
           toolMessageString[event.tool as keyof typeof toolMessageString] ??
             genericString[randomInt(3)],
         );
-        return prevState;
+        continue;
       }
 
       if (event.type === "error") {
@@ -221,7 +230,7 @@ function Form({
       if (endRef.current.value < event.target.value) {
         endRef.current.value = event.target.value;
       }
-      endRef.current.min = event.target.value;
+      endRef.current.min = event.target.value || todayString;
     }
   };
 
@@ -244,6 +253,8 @@ function Form({
   return (
     <div className="w-full h-full relative">
       <form
+        name="tripForm"
+        aria-label="Trip Form"
         action={formAction}
         onChange={handleEdit}
         className="flex flex-col justify-center w-full gap-2"
@@ -257,6 +268,7 @@ function Form({
               -
             </NumberButton>
             <input
+              id="travelerCount"
               name="travelerCount"
               type="number"
               placeholder="1"
@@ -310,7 +322,7 @@ function Form({
           label="To Date"
           defaultValue={prevData?.get("endDate")?.toString() || nextWeekString}
           ref={endRef}
-          min={todayString}
+          // min={todayString}
           invalid={isInvalid("endDate")}
           invalidMessage={fieldErrors.endDate?.[0]}
         />
@@ -339,7 +351,9 @@ function Form({
                   <p>{state.error.name}</p>
                   <p>{state.error.code}</p>
                   <p>{state.error.message}</p>
-                  <Button type="submit">Try again</Button>
+                  <Button type="submit" disabled={isPending}>
+                    Back to form
+                  </Button>
                 </ErrorModal>
               )
             )}

@@ -15,12 +15,7 @@ function InputField({ label, className, invalid, invalidMessage, ...rest }: Prop
       <label htmlFor={rest.name} className="font-bold text-2xl">
         {label}
       </label>
-      <input
-        id={rest.name}
-        {...rest}
-        className={inputStyling}
-        // required
-      ></input>
+      <input id={rest.name} {...rest} className={inputStyling} required></input>
       {invalid && <p className="text-red-600 -mt-2">{invalidMessage}</p>}
     </div>
   );

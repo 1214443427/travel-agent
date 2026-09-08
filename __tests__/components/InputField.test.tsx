@@ -37,4 +37,15 @@ describe("InputField", () => {
     );
     expect(screen.queryByText("Potential stale invalid message")).not.toBeInTheDocument();
   });
+
+  test("passes attributes down correctly.", () => {
+    render(
+      <InputField label="Budget" name="budget" required={true} type="number" min={1} max={5000} />,
+    );
+    const input = screen.getByLabelText("Budget");
+    expect(input).toHaveAttribute("required");
+    expect(input).toHaveAttribute("type", "number");
+    expect(input).toHaveAttribute("min", "1");
+    expect(input).toHaveAttribute("max", "5000");
+  });
 });
