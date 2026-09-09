@@ -16,7 +16,11 @@ function InputField({ label, className, invalid, invalidMessage, ...rest }: Prop
         {label}
       </label>
       <input id={rest.name} {...rest} className={inputStyling} required></input>
-      {invalid && <p className="text-red-600 -mt-2">{invalidMessage}</p>}
+      {invalid && (
+        <p className="text-red-600 -mt-2" aria-invalid="true">
+          {invalidMessage}
+        </p>
+      )}
     </div>
   );
 }

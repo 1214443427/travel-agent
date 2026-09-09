@@ -1,20 +1,25 @@
 import "@testing-library/jest-dom/vitest";
-import { expect, test, describe, vi } from "vitest";
+import { expect, test, describe, vi, beforeEach } from "vitest";
 import {
-  cleanup,
-  findByText,
   fireEvent,
-  getByRole,
   render,
   screen,
   waitFor,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import { UserEvent, userEvent } from "@testing-library/user-event";
-import Form from "@/app/components/Form";
+import Form, { toolCompletionString, toolMessageString } from "@/app/components/Form";
 import { http, HttpResponse } from "msw";
 import { SAMPLE_RESPONSE_DATA } from "../testData/sampleResponseData";
 import { server } from "../test-setup";
+import { afterEach } from "vitest";
+import { MESSAGE_DELAY } from "@/app/utils/const";
+
+vi.mock("@/app/utils/const", () => {
+  return {
+    MESSAGE_DELAY: 250,
+  };
+});
 
 const today = new Date();
 const todayString = today.toLocaleDateString("en-CA");
@@ -111,20 +116,27 @@ async function fillInput({
   }
 }
 
+async function fillValidForm(user: UserEvent) {
+  for (const field of FIELDS) {
+    const input = screen.getByLabelText(field.label) as HTMLInputElement;
+    await fillInput({ user, input, type: field.type, value: field.testValue });
+  }
+}
+
 const frame = (data: any) => `data:${JSON.stringify(data)} \n\n`;
 
-function createRouteHandler(data: string) {
-  let release!: () => void;
-  let gate = new Promise<void>((resolve) => (release = resolve));
+function createRouteHandler() {
+  const encoder = new TextEncoder();
+  let streamController: ReadableStreamDefaultController<Uint8Array>;
+  let markReady: () => void;
+  const ready = new Promise<void>((resolve) => (markReady = resolve));
 
   server.use(
     http.post("/api/trip", () => {
-      const encoder = new TextEncoder();
       const stream = new ReadableStream({
         async start(controller) {
-          controller.enqueue(encoder.encode(data));
-          await gate;
-          controller.close();
+          streamController = controller;
+          markReady();
         },
       });
       return new HttpResponse(stream, {
@@ -138,8 +150,21 @@ function createRouteHandler(data: string) {
     }),
   );
 
-  return release;
+  const send = async (data: string) => {
+    await ready;
+    streamController.enqueue(encoder.encode(data));
+  };
+  const close = async () => {
+    await ready;
+    streamController.close();
+  };
+
+  return { ready, send, close };
 }
+
+test("uses the overridden constant", () => {
+  expect(MESSAGE_DELAY).toBe(250);
+});
 
 describe("Form", () => {
   test("traveler count input works as expected.", async () => {
@@ -192,17 +217,17 @@ describe("Form", () => {
     test("successful submit calls the expected callback function.", async () => {
       const { setPhase, setResponseData } = setUpForm();
       const user = userEvent.setup();
-      const release = createRouteHandler(frame({ type: "done", output: SAMPLE_RESPONSE_DATA }));
-      for (const field of FIELDS) {
-        const input = screen.getByLabelText(field.label) as HTMLInputElement;
-        await fillInput({ user, input, type: field.type, value: field.testValue });
-      }
+      const { send, close } = createRouteHandler();
+      await fillValidForm(user);
       const submitBtn = screen.getByRole("button", { name: "Plan my Trip!" });
       await user.click(submitBtn);
+      await send(frame({ type: "done", output: SAMPLE_RESPONSE_DATA }));
       expect(screen.getByText("Thinking about what to do first...")).toBeInTheDocument();
-      release();
-      expect(setPhase).toHaveBeenCalledWith("result");
-      expect(setResponseData).toHaveBeenCalledWith(SAMPLE_RESPONSE_DATA);
+      await close();
+      await waitFor(() => {
+        expect(setPhase).toHaveBeenCalledWith("result");
+        expect(setResponseData).toHaveBeenCalledWith(SAMPLE_RESPONSE_DATA);
+      });
     });
 
     test("rejects improper formatted data.", async () => {
@@ -225,9 +250,48 @@ describe("Form", () => {
         (screen.getByLabelText("Number of travelers") as HTMLInputElement).validationMessage,
       ).not.toBe("");
     });
+  });
+  describe("Loading messages", () => {
+    beforeEach(() => {
+      vi.useFakeTimers();
+    });
+    afterEach(() => {
+      vi.useRealTimers();
+      vi.clearAllMocks();
+    });
 
+    function seeText(text: string) {
+      return vi.waitFor(() => {
+        return expect(screen.getByText(text)).toBeInTheDocument();
+      });
+    }
+
+    test("should be rendered in order.", async () => {
+      setUpForm();
+      const { ready, send, close } = createRouteHandler();
+      for (const field of FIELDS) {
+        const input = screen.getByLabelText(field.label) as HTMLInputElement;
+        fireEvent.change(input, { target: { value: field.testValue } });
+      }
+      const form = screen.getByRole("form");
+      fireEvent.submit(form);
+
+      await seeText("Thinking about what to do first...");
+      // await ready;
+      await send(frame({ type: "tool_started", tool: "get_weather" }));
+      await send(frame({ type: "tool_started", tool: "get_flights" }));
+      await send(frame({ type: "tool_finished", tool: "get_weather" }));
+
+      await seeText(toolMessageString.get_weather);
+      await seeText(toolMessageString.get_flights);
+      await seeText(toolCompletionString.get_weather);
+      await close();
+    });
+  });
+
+  describe("InputField behavior", () => {
     test("shows validation message upon failed submission.", async () => {
-      const { setPhase, setResponseData } = setUpForm();
+      setUpForm();
       const user = userEvent.setup();
       for (const field of FIELDS) {
         const input = screen.getByLabelText(field.label) as HTMLInputElement;
@@ -289,6 +353,23 @@ describe("Form", () => {
           expect(input.value).toBe(field.invalidValue);
         }
       }
+    });
+
+    test("invalid messages disappear after editing.", async () => {
+      setUpForm();
+      const user = userEvent.setup();
+      const form = screen.getByRole("form", { name: "Trip Form" }) as HTMLFormElement;
+      const input = screen.getByLabelText("Number of travelers") as HTMLInputElement;
+      await user.type(input, "2");
+      fireEvent.submit(form);
+      expect(await screen.findByText("Too big: expected number to be <=10")).toBeInTheDocument();
+      expect(screen.getByText("Please state your origin location.")).toBeInTheDocument();
+      await user.clear(input);
+      expect(screen.queryByRole("Too big: expected number to be <=10")).not.toBeInTheDocument();
+      expect(
+        screen.getByText("Please state your origin location."),
+        "invalid messages should remain on unedited field.",
+      );
     });
   });
 });
