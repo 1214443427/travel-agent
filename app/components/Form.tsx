@@ -17,8 +17,10 @@ import Image from "next/image";
 import { readEventStream, randomInt } from "../utils/utils";
 import ErrorModal from "./ErrorModal";
 import z from "zod";
+import { MESSAGE_DELAY } from "../utils/const";
+import { useMessageQueue } from "../hooks/useMessageQueue";
 
-const toolMessageString = {
+export const toolMessageString = {
   get_lat_lon: "Finding information about the destination...",
   get_weather: "Finding weather information...",
   search_airport: "Finding the destination airport...",
@@ -28,7 +30,7 @@ const toolMessageString = {
   format_itinerary: "Adding the finishing touch...",
 };
 
-const toolCompletionString = {
+export const toolCompletionString = {
   get_lat_lon: "Got the destination — planning the next step...",
   get_weather: "Factoring the forecast into the plan...",
   search_airport: "Working out the route...",
@@ -55,37 +57,11 @@ function Form({
     phase: "initial",
   });
 
-  const [message, setMessage] = useState<string>("Thinking about what to do first...");
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const queueRef = useRef<string[]>([]);
+  const { message, queueMessage } = useMessageQueue(
+    "Thinking about what to do first...",
+    MESSAGE_DELAY,
+  );
   const [editedFields, setEditedFields] = useState<Set<string>>(new Set());
-
-  const MESSAGE_DELAY = 1000;
-
-  useEffect(() => {
-    return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-    };
-  }, []);
-
-  function drainMessage() {
-    const next = queueRef.current.shift();
-    if (next === undefined) {
-      timerRef.current = null;
-    } else {
-      setMessage(next);
-      timerRef.current = setTimeout(() => drainMessage(), MESSAGE_DELAY);
-    }
-  }
-
-  function queueMessage(message: string) {
-    queueRef.current.push(message);
-    if (timerRef.current === null) {
-      drainMessage();
-    }
-  }
 
   async function submitForm(prevState: FormState, formData: FormData): Promise<FormState> {
     if (prevState.phase === "error") {
@@ -150,51 +126,63 @@ function Form({
     }
     const stream = readEventStream(response.body);
 
-    for await (const event of stream) {
-      if (event.type === "done") {
-        const parsedResult = ResponseSchema.safeParse(event.output);
-        if (!parsedResult.success) {
+    try {
+      for await (const event of stream) {
+        if (event.type === "done") {
+          const parsedResult = ResponseSchema.safeParse(event.output);
+          if (!parsedResult.success) {
+            return {
+              phase: "error",
+              error: {
+                name: "Internal server error",
+                code: 500,
+                message: "Received malformed response from the server",
+              },
+              prevData: formData,
+            };
+          }
+          setResponseData(parsedResult.data); //error msg to be replaced after proper formatting
+          setPhase("result");
+        }
+
+        if (event.type === "tool_finished") {
+          queueMessage(
+            toolCompletionString[event.tool as keyof typeof toolCompletionString] ??
+              genericString[randomInt(3)],
+          );
+          continue;
+        }
+
+        if (event.type === "tool_started") {
+          queueMessage(
+            toolMessageString[event.tool as keyof typeof toolMessageString] ??
+              genericString[randomInt(3)],
+          );
+          continue;
+        }
+
+        if (event.type === "error") {
           return {
             phase: "error",
             error: {
-              name: "Internal server error",
+              name: "Server Error",
               code: 500,
-              message: "Received malformed response from the server",
+              message: event.message,
             },
             prevData: formData,
           };
         }
-        setResponseData(parsedResult.data); //error msg to be replaced after proper formatting
-        setPhase("result");
       }
-
-      if (event.type === "tool_finished") {
-        queueMessage(
-          toolCompletionString[event.tool as keyof typeof toolCompletionString] ??
-            genericString[randomInt(3)],
-        );
-        continue;
-      }
-
-      if (event.type === "tool_started") {
-        queueMessage(
-          toolMessageString[event.tool as keyof typeof toolMessageString] ??
-            genericString[randomInt(3)],
-        );
-        continue;
-      }
-
-      if (event.type === "error") {
-        return {
-          phase: "error",
-          error: {
-            name: "Server Error",
-            code: 500,
-            message: event.message,
-          },
-          prevData: formData,
-        };
-      }
+    } catch {
+      return {
+        phase: "error",
+        error: {
+          name: "Connection lost",
+          code: 500,
+          message: "The connection to the server was interrupted. Please try again.",
+        },
+        prevData: formData,
+      };
     }
 
     return {
@@ -284,7 +272,9 @@ function Form({
             </NumberButton>
           </div>
           {isInvalid("travelerCount") && (
-            <p className="text-red-600 -mt-2">{fieldErrors.travelerCount?.[0]}</p>
+            <p className="text-red-600 -mt-2" aria-invalid="true">
+              {fieldErrors.travelerCount?.[0]}
+            </p>
           )}
         </div>
         <InputField
