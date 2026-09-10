@@ -11,6 +11,7 @@ async function actionButtonOnClick(event: EventData) {
   if (event.action!.type === "view_attraction") {
     window.open(`https://en.wikipedia.org/wiki/${event.action?.wikipedia}`);
   } else {
+    window.open("https://booking.com"); //todo: implement real booking api.
   }
 }
 
@@ -20,6 +21,14 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
   }
 
   const startDate = new Date(responseData.startDate).toLocaleDateString("en-US", {
+    timeZone: "UTC",
+    day: "numeric",
+    month: "short",
+    year: "2-digit",
+  });
+
+  const endDate = new Date(responseData.endDate).toLocaleDateString("en-US", {
+    timeZone: "UTC",
     day: "numeric",
     month: "short",
     year: "2-digit",
@@ -31,10 +40,10 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
       <div className="flex w-full flex-col gap-6">
         <div className="flex justify-between w-full">
           <TextBox className="w-[45%]">
-            <p className="font-bold text-[20px]"> → {startDate}</p>
+            <p className="font-bold text-[20px]">→ {startDate}</p>
           </TextBox>
           <TextBox className="w-[45%]">
-            <p className="font-bold text-[20px]">{startDate} ←</p>
+            <p className="font-bold text-[20px]">{endDate} ←</p>
           </TextBox>
         </div>
         <TextBox className="w-full py-3">
