@@ -21,7 +21,9 @@ export const FormSchema = z
       .string()
       .min(1, "Please set a budget.")
       .pipe(
-        z.coerce.number<string>("Must be a number").positive("Please set a positive number as budget."),
+        z.coerce
+          .number<string>("Must be a number")
+          .positive("Please set a positive number as budget."),
       ),
   })
   .refine((data) => data.endDate >= data.startDate, {

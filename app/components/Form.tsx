@@ -40,7 +40,7 @@ export const toolCompletionString = {
   format_itinerary: "All finished!",
 };
 
-const genericString = [
+export const genericString = [
   "Making sense of what we found...",
   "Weighing the options...",
   "Putting the pieces together...",
@@ -106,9 +106,9 @@ function Form({
       return {
         phase: "error",
         error: {
-          name: response.statusText,
+          name: (result.statusText as string) ?? "Request failed",
           code: response.status,
-          message: result.message as string, //temp
+          message: (result.message as string) ?? "Something went wrong",
         },
         prevData: formData,
       };
@@ -128,20 +128,22 @@ function Form({
 
     try {
       for await (const event of stream) {
+        if (event.type === "error") {
+          return {
+            phase: "error",
+            error: {
+              name: "Server Error",
+              code: 500,
+              message: event.message,
+            },
+            prevData: formData,
+          };
+        }
+
         if (event.type === "done") {
-          const parsedResult = ResponseSchema.safeParse(event.output);
-          if (!parsedResult.success) {
-            return {
-              phase: "error",
-              error: {
-                name: "Internal server error",
-                code: 500,
-                message: "Received malformed response from the server",
-              },
-              prevData: formData,
-            };
-          }
-          setResponseData(parsedResult.data); //error msg to be replaced after proper formatting
+          // const parsedResult = ResponseSchema.safeParse(event.output);
+
+          setResponseData(event.output);
           setPhase("result");
         }
 
@@ -159,18 +161,6 @@ function Form({
               genericString[randomInt(3)],
           );
           continue;
-        }
-
-        if (event.type === "error") {
-          return {
-            phase: "error",
-            error: {
-              name: "Server Error",
-              code: 500,
-              message: event.message,
-            },
-            prevData: formData,
-          };
         }
       }
     } catch {
@@ -333,7 +323,9 @@ function Form({
             {isPending ? (
               <>
                 <Image src={Spinner} alt="" width={100} />
-                <div className="text-white">{message}</div>
+                <p className="text-white" data-testid="loadingMessage">
+                  {message}
+                </p>
               </>
             ) : (
               state.phase === "error" && (

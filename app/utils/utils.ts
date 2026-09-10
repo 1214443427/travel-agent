@@ -1,5 +1,5 @@
 import z from "zod";
-import { TripStreamSchema } from "../type";
+import { TripStream, TripStreamSchema } from "../type";
 
 export function combineClassName(baseClass: string, externalClassName?: string) {
   if (externalClassName) {
@@ -34,7 +34,9 @@ export function parseData<T extends z.ZodType>(schema: T, data: unknown): z.infe
 
 const MAX_FRAME_CHAR_SIZE = 1_000_000;
 
-export async function* readEventStream(responseBody: ReadableStream<Uint8Array<ArrayBuffer>>) {
+export async function* readEventStream(
+  responseBody: ReadableStream<Uint8Array<ArrayBuffer>>,
+): AsyncGenerator<TripStream> {
   const reader = responseBody.getReader();
   let decoder = new TextDecoder();
   let buffer = "";
@@ -61,6 +63,7 @@ export async function* readEventStream(responseBody: ReadableStream<Uint8Array<A
       }
       if (!parsedEvent.success) {
         console.log("received invalid stream event", parsedEvent.error);
+        yield { type: "error", code: 500, message: "Server sent malformed data." };
       } else {
         yield parsedEvent.data;
       }

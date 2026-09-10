@@ -8,12 +8,18 @@ import {
   waitForElementToBeRemoved,
 } from "@testing-library/react";
 import { UserEvent, userEvent } from "@testing-library/user-event";
-import Form, { toolCompletionString, toolMessageString } from "@/app/components/Form";
-import { http, HttpResponse } from "msw";
+import Form, {
+  genericString,
+  toolCompletionString,
+  toolMessageString,
+} from "@/app/components/Form";
 import { SAMPLE_RESPONSE_DATA } from "../testData/sampleResponseData";
-import { server } from "../test-setup";
 import { afterEach } from "vitest";
 import { MESSAGE_DELAY } from "@/app/utils/const";
+import createTripRouteHandler from "../helper/createTripRouteHandler";
+import { server } from "../test-setup";
+import { http, HttpResponse } from "msw";
+import { ResponseData } from "@/app/type";
 
 vi.mock("@/app/utils/const", () => {
   return {
@@ -123,43 +129,28 @@ async function fillValidForm(user: UserEvent) {
   }
 }
 
-const frame = (data: any) => `data:${JSON.stringify(data)} \n\n`;
+async function fillFormFireEvent() {
+  for (const field of FIELDS) {
+    const input = screen.getByLabelText(field.label) as HTMLInputElement;
+    fireEvent.change(input, { target: { value: field.testValue } });
+  }
+}
 
-function createRouteHandler() {
-  const encoder = new TextEncoder();
-  let streamController: ReadableStreamDefaultController<Uint8Array>;
-  let markReady: () => void;
-  const ready = new Promise<void>((resolve) => (markReady = resolve));
+async function submitForm(user: UserEvent) {
+  const submitBtn = screen.getByRole("button", { name: "Plan my Trip!" });
+  await user.click(submitBtn);
+}
 
-  server.use(
-    http.post("/api/trip", () => {
-      const stream = new ReadableStream({
-        async start(controller) {
-          streamController = controller;
-          markReady();
-        },
-      });
-      return new HttpResponse(stream, {
-        headers: {
-          "Content-Type": "text/event-stream",
-          "Cache-Control": "no-cache, no-transform",
-          "X-Content-Type-Options": "nosniff",
-          Connection: "keep-alive",
-        },
-      });
-    }),
-  );
+function submitFormFireEvent() {
+  const form = screen.getByRole("form");
+  fireEvent.submit(form);
+}
 
-  const send = async (data: string) => {
-    await ready;
-    streamController.enqueue(encoder.encode(data));
-  };
-  const close = async () => {
-    await ready;
-    streamController.close();
-  };
-
-  return { ready, send, close };
+function seeText(text: string | RegExp) {
+  return vi.waitFor(() => {
+    const element = screen.getByTestId("loadingMessage");
+    return expect(element).toHaveTextContent(text);
+  });
 }
 
 test("uses the overridden constant", () => {
@@ -217,11 +208,10 @@ describe("Form", () => {
     test("successful submit calls the expected callback function.", async () => {
       const { setPhase, setResponseData } = setUpForm();
       const user = userEvent.setup();
-      const { send, close } = createRouteHandler();
+      const { send, close } = createTripRouteHandler();
       await fillValidForm(user);
-      const submitBtn = screen.getByRole("button", { name: "Plan my Trip!" });
-      await user.click(submitBtn);
-      await send(frame({ type: "done", output: SAMPLE_RESPONSE_DATA }));
+      await submitForm(user);
+      await send({ type: "done", output: SAMPLE_RESPONSE_DATA });
       expect(screen.getByText("Thinking about what to do first...")).toBeInTheDocument();
       await close();
       await waitFor(() => {
@@ -251,6 +241,7 @@ describe("Form", () => {
       ).not.toBe("");
     });
   });
+
   describe("Loading messages", () => {
     beforeEach(() => {
       vi.useFakeTimers();
@@ -260,31 +251,38 @@ describe("Form", () => {
       vi.clearAllMocks();
     });
 
-    function seeText(text: string) {
-      return vi.waitFor(() => {
-        return expect(screen.getByText(text)).toBeInTheDocument();
-      });
-    }
-
     test("should be rendered in order.", async () => {
       setUpForm();
-      const { ready, send, close } = createRouteHandler();
-      for (const field of FIELDS) {
-        const input = screen.getByLabelText(field.label) as HTMLInputElement;
-        fireEvent.change(input, { target: { value: field.testValue } });
-      }
-      const form = screen.getByRole("form");
-      fireEvent.submit(form);
+      const { ready, send, close } = createTripRouteHandler();
+      fillFormFireEvent();
+      submitFormFireEvent();
 
       await seeText("Thinking about what to do first...");
       // await ready;
-      await send(frame({ type: "tool_started", tool: "get_weather" }));
-      await send(frame({ type: "tool_started", tool: "get_flights" }));
-      await send(frame({ type: "tool_finished", tool: "get_weather" }));
+      await send({ type: "tool_started", tool: "get_weather" });
+      await send({ type: "tool_started", tool: "get_flights" });
+      await send({ type: "tool_finished", tool: "get_weather" });
 
       await seeText(toolMessageString.get_weather);
       await seeText(toolMessageString.get_flights);
       await seeText(toolCompletionString.get_weather);
+      await close();
+    });
+
+    test("shows fallback generic message for unrecognized tool.", async () => {
+      setUpForm();
+      const { ready, send, close } = createTripRouteHandler();
+      fillFormFireEvent();
+      submitFormFireEvent();
+
+      await seeText("Thinking about what to do first...");
+
+      await send({ type: "tool_started", tool: "not_a_known_tool" });
+      await seeText(new RegExp(`^(${genericString.join("|")})$`));
+      await send({ type: "tool_finished", tool: "not_a_known_tool" });
+      vi.advanceTimersByTime(200);
+      await seeText(new RegExp(`^(${genericString.join("|")})$`));
+
       await close();
     });
   });
@@ -302,8 +300,7 @@ describe("Form", () => {
           value: field.invalidValue,
         });
       }
-      const form = screen.getByRole("form", { name: "Trip Form" }) as HTMLFormElement;
-      fireEvent.submit(form);
+      submitFormFireEvent();
       expect(await screen.findByText("Too big: expected number to be <=10")).toBeInTheDocument();
       expect(screen.getByText("Please state your origin location.")).toBeInTheDocument();
       expect(screen.getByText("Please state your desired destination.")).toBeInTheDocument();
@@ -315,9 +312,9 @@ describe("Form", () => {
       setUpForm();
       const startInput = screen.getByLabelText("From Date");
       const toInput = screen.getByLabelText("To Date");
-      const form = screen.getByRole("form", { name: "Trip Form" }) as HTMLFormElement;
       fireEvent.change(startInput, { target: { value: "2025-09-01" } });
       fireEvent.change(toInput, { target: { value: "2025-09-01" } });
+      const form = screen.getByRole("form", { name: "Trip Form" }) as HTMLFormElement;
       fireEvent.submit(form);
       expect(
         await screen.findByText("Start date must be greater or equal to today"),
@@ -358,10 +355,9 @@ describe("Form", () => {
     test("invalid messages disappear after editing.", async () => {
       setUpForm();
       const user = userEvent.setup();
-      const form = screen.getByRole("form", { name: "Trip Form" }) as HTMLFormElement;
       const input = screen.getByLabelText("Number of travelers") as HTMLInputElement;
       await user.type(input, "2");
-      fireEvent.submit(form);
+      submitFormFireEvent();
       expect(await screen.findByText("Too big: expected number to be <=10")).toBeInTheDocument();
       expect(screen.getByText("Please state your origin location.")).toBeInTheDocument();
       await user.clear(input);
@@ -370,6 +366,149 @@ describe("Form", () => {
         screen.getByText("Please state your origin location."),
         "invalid messages should remain on unedited field.",
       );
+    });
+  });
+
+  describe("handles error gracefully", () => {
+    test("handles server sent error correctly.", async () => {
+      const { setPhase } = setUpForm();
+      const user = userEvent.setup();
+      const { send, close } = createTripRouteHandler();
+      await fillValidForm(user);
+      await submitForm(user);
+
+      await send({ type: "error", code: 500, message: "Internal Server Error" });
+      expect(await screen.findByText("Internal Server Error")).toBeInTheDocument();
+      expect(screen.getByText("Server Error")).toBeInTheDocument();
+      await close();
+      expect(setPhase).not.toHaveBeenCalled();
+    });
+
+    test("shows error modal on server sent error events.", async () => {
+      const { setPhase } = setUpForm();
+      const user = userEvent.setup();
+      const { send, close } = createTripRouteHandler();
+      await fillValidForm(user);
+      await submitForm(user);
+
+      await send({ type: "error", code: 500, message: "Internal Server Error" });
+      await close();
+      expect(await screen.findByText("Internal Server Error")).toBeInTheDocument();
+      expect(screen.getByText("Server Error")).toBeInTheDocument();
+      expect(setPhase).not.toHaveBeenCalled();
+    });
+
+    test("dismisses error modal on button click.", async () => {
+      setUpForm();
+      const user = userEvent.setup();
+      const { send, close } = createTripRouteHandler();
+      await fillValidForm(user);
+      await submitForm(user);
+
+      await send({ type: "error", code: 500, message: "Internal Server Error" });
+      await close();
+      const modalText = await screen.findByText("Internal Server Error");
+
+      expect(modalText).toBeInTheDocument();
+      const backBtn = screen.getByRole("button", { name: "Back to form" });
+      await user.click(backBtn);
+      expect(modalText).not.toBeInTheDocument();
+    });
+
+    test("shows error modal on stream error", async () => {
+      setUpForm();
+      const user = userEvent.setup();
+      const { error } = createTripRouteHandler();
+      await fillValidForm(user);
+      await submitForm(user);
+
+      await error("Unexpected Error");
+      expect(await screen.findByText("Connection lost")).toBeInTheDocument();
+    });
+
+    test("shows error modal on server error", async () => {
+      setUpForm();
+      const user = userEvent.setup();
+      server.use(
+        http.post("/api/trip", () => {
+          return HttpResponse.json(
+            { statusText: "Bad request", message: "The request is malformed." },
+            { status: 400 },
+          );
+        }),
+      );
+      await fillValidForm(user);
+      await submitForm(user);
+
+      expect(await screen.findByText("Bad request")).toBeInTheDocument();
+    });
+
+    test("shows error modal on when stream end before 'done'. ", async () => {
+      setUpForm();
+      const user = userEvent.setup();
+      const { ready, close } = createTripRouteHandler();
+      await fillValidForm(user);
+      await submitForm(user);
+
+      await ready;
+      await close();
+      expect(await screen.findByText("Incomplete response")).toBeInTheDocument();
+      expect(
+        screen.getByText("The server stopped responding before finishing. Please try again."),
+      ).toBeInTheDocument();
+    });
+
+    test("handles empty response", async () => {
+      setUpForm();
+      const user = userEvent.setup();
+      server.use(
+        http.post("/api/trip", () => {
+          return new HttpResponse(null, {
+            headers: {
+              "Content-Type": "text/event-stream",
+            },
+          });
+        }),
+      );
+      await fillValidForm(user);
+      await submitForm(user);
+
+      expect(await screen.findByText("Internal server error")).toBeInTheDocument();
+      expect(screen.getByText("Received empty response from the server")).toBeInTheDocument();
+    });
+
+    test("handles malformed response", async () => {
+      setUpForm();
+      const user = userEvent.setup();
+      const { ready, send, close } = createTripRouteHandler();
+      await fillValidForm(user);
+      await submitForm(user);
+
+      await send({
+        type: "done",
+        output: {
+          ...SAMPLE_RESPONSE_DATA,
+          endLocation: null,
+          startDate: null,
+        } as unknown as ResponseData,
+      });
+      expect(screen.getByText("Thinking about what to do first...")).toBeInTheDocument();
+      await close();
+      expect(await screen.findByText("Server Error")).toBeInTheDocument();
+      expect(screen.getByText("Server sent malformed data.")).toBeInTheDocument();
+    });
+
+    test("handles fetch error", async () => {
+      vi.spyOn(globalThis, "fetch").mockRejectedValue(new TypeError("Failed to fetch"));
+      vi.spyOn(console, "error").mockImplementation(() => {}); //keep test output clean
+
+      setUpForm();
+      const user = userEvent.setup();
+      await fillValidForm(user);
+      await submitForm(user);
+
+      expect(screen.getByText("Network error")).toBeInTheDocument();
+      expect(screen.getByText("Failed to fetch")).toBeInTheDocument();
     });
   });
 });

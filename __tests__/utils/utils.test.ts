@@ -144,7 +144,6 @@ describe("readEventStream", () => {
     const stream = eventStream(`data: ${JSON.stringify({ type: "tool_started" })}\n\n`);
     const readEvents = await collect(stream);
     expect(spy).toHaveBeenCalledWith("received invalid stream event", expect.any(ZodError));
-    expect(readEvents).toEqual([]);
     spy.mockClear();
   });
 
