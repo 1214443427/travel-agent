@@ -5,7 +5,7 @@ import {
   TravelAgentContext,
   TripStream,
 } from "@/app/type";
-import { Agent, run } from "@openai/agents";
+import { run } from "@openai/agents";
 import { type AgentInputItem } from "@openai/agents";
 import { formatterAgent, plannerAgent } from "./agent";
 

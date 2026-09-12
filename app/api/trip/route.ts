@@ -50,7 +50,7 @@ export async function POST(req: Request) {
         console.log(error);
         send({
           type: "error",
-          message: error instanceof Error ? error.message : "Agent run failed",
+          message: "Agent run failed.",
         });
       } finally {
         controller.close();

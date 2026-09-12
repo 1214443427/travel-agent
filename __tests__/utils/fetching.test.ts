@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test } from "vitest";
+import { describe, expect, test } from "vitest";
 import { server } from "../test-setup";
 import { delay, http, HttpResponse } from "msw";
 import { fetchAPI, fetchRapidAPI } from "@/app/utils/fetching";

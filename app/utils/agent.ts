@@ -16,7 +16,7 @@ import {
   getWeather,
   searchAirport,
 } from "./tools";
-import { ModelOutputSchema, TravelAgentContext } from "../type";
+import { ModelOutputSchema } from "../type";
 import { AI_KEY, AI_MODEL, AI_URL, FORMATTER_MODEL } from "./config";
 
 const client = new OpenAI({

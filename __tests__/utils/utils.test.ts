@@ -85,7 +85,7 @@ describe("readEventStream", () => {
 
   const events = {
     toolStart: { type: "tool_started", tool: "get_flights" },
-    toolEnd: { type: "tool_started", tool: "get_flights" },
+    toolEnd: { type: "tool_finished", tool: "get_flights" },
     done: { type: "done", output: SAMPLE_RESPONSE_DATA },
   };
   const toolStartFrame = frame(events.toolStart);

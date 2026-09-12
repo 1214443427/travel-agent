@@ -5,7 +5,6 @@ import { fetchAPI, fetchRapidAPI } from "./fetching";
 import { constructUrl, parseData } from "./utils";
 import {
   AirportSchema,
-  FetchError,
   FlightSchema,
   HotelsSchema,
   LatLonSchema,

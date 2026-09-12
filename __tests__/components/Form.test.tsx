@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom/vitest";
 import { expect, test, describe, vi, beforeEach } from "vitest";
 import {
   fireEvent,
@@ -7,7 +6,7 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from "@testing-library/react";
-import { UserEvent, userEvent } from "@testing-library/user-event";
+import { userEvent } from "@testing-library/user-event";
 import Form, {
   genericString,
   toolCompletionString,
@@ -20,6 +19,16 @@ import createTripRouteHandler from "../helper/createTripRouteHandler";
 import { server } from "../test-setup";
 import { http, HttpResponse } from "msw";
 import { ResponseData } from "@/app/type";
+import {
+  FIELDS,
+  fillFormFireEvent,
+  fillInput,
+  fillValidForm,
+  nextWeekString,
+  submitForm,
+  submitFormFireEvent,
+  todayString,
+} from "../helper/formActions";
 
 vi.mock("@/app/utils/const", () => {
   return {
@@ -27,123 +36,11 @@ vi.mock("@/app/utils/const", () => {
   };
 });
 
-const today = new Date();
-const todayString = today.toLocaleDateString("en-CA");
-const nextWeek = today.setDate(today.getDate() + 7);
-const nextWeekString = new Date(nextWeek).toLocaleDateString("en-CA");
-const generateOffsetDateString = (offset: number) => {
-  const newDate = new Date();
-  return new Date(newDate.setDate(newDate.getDate() + offset)).toLocaleDateString("en-CA");
-};
-
-const FIELDS = [
-  {
-    label: "Number of travelers",
-    name: "travelerCount",
-    type: "text",
-    value: "1",
-    placeholder: "1",
-    testValue: "2",
-    invalidValue: "12",
-  },
-  {
-    label: "Traveling from",
-    name: "from",
-    type: "text",
-    value: "",
-    placeholder: "New York City",
-    testValue: "Vancouver",
-    invalidValue: "",
-  },
-  {
-    label: "Traveling to",
-    name: "to",
-    type: "text",
-    value: "",
-    placeholder: "Paris",
-    testValue: "Beijing",
-    invalidValue: "",
-  },
-  {
-    label: "From Date",
-    name: "startDate",
-    type: "date",
-    value: todayString,
-    placeholder: "",
-    testValue: generateOffsetDateString(3),
-    invalidValue: "September 8th 2026",
-  },
-  {
-    label: "To Date",
-    name: "endDate",
-    type: "date",
-    value: nextWeekString,
-    placeholder: "",
-    testValue: generateOffsetDateString(13),
-    invalidValue: "September 1th 2026",
-  },
-  {
-    label: "Budget ($)",
-    name: "budget",
-    type: "number",
-    value: "",
-    placeholder: "5000",
-    testValue: "7000",
-    invalidValue: "-1000",
-  },
-];
-
 function setUpForm() {
   const setPhase = vi.fn();
   const setResponseData = vi.fn();
   render(<Form setPhase={setPhase} setResponseData={setResponseData} />);
   return { setPhase, setResponseData };
-}
-
-async function fillInput({
-  user,
-  input,
-  type,
-  value,
-}: {
-  user: UserEvent;
-  input: HTMLInputElement;
-  type: string;
-  value: any;
-}) {
-  await user.clear(input);
-  if (!value) {
-    return;
-  }
-  if (type !== "date") {
-    await user.type(input, value);
-  } else {
-    fireEvent.change(input, { target: { value: value } });
-  }
-}
-
-async function fillValidForm(user: UserEvent) {
-  for (const field of FIELDS) {
-    const input = screen.getByLabelText(field.label) as HTMLInputElement;
-    await fillInput({ user, input, type: field.type, value: field.testValue });
-  }
-}
-
-async function fillFormFireEvent() {
-  for (const field of FIELDS) {
-    const input = screen.getByLabelText(field.label) as HTMLInputElement;
-    fireEvent.change(input, { target: { value: field.testValue } });
-  }
-}
-
-async function submitForm(user: UserEvent) {
-  const submitBtn = screen.getByRole("button", { name: "Plan my Trip!" });
-  await user.click(submitBtn);
-}
-
-function submitFormFireEvent() {
-  const form = screen.getByRole("form");
-  fireEvent.submit(form);
 }
 
 function seeText(text: string | RegExp) {
@@ -253,12 +150,11 @@ describe("Form", () => {
 
     test("should be rendered in order.", async () => {
       setUpForm();
-      const { ready, send, close } = createTripRouteHandler();
+      const { send, close } = createTripRouteHandler();
       fillFormFireEvent();
       submitFormFireEvent();
 
       await seeText("Thinking about what to do first...");
-      // await ready;
       await send({ type: "tool_started", tool: "get_weather" });
       await send({ type: "tool_started", tool: "get_flights" });
       await send({ type: "tool_finished", tool: "get_weather" });
@@ -271,7 +167,7 @@ describe("Form", () => {
 
     test("shows fallback generic message for unrecognized tool.", async () => {
       setUpForm();
-      const { ready, send, close } = createTripRouteHandler();
+      const { send, close } = createTripRouteHandler();
       fillFormFireEvent();
       submitFormFireEvent();
 
@@ -478,9 +374,10 @@ describe("Form", () => {
     });
 
     test("handles malformed response", async () => {
+      const logging = vi.spyOn(console, "log").mockImplementation(() => {});
       setUpForm();
       const user = userEvent.setup();
-      const { ready, send, close } = createTripRouteHandler();
+      const { send, close } = createTripRouteHandler();
       await fillValidForm(user);
       await submitForm(user);
 
@@ -496,6 +393,7 @@ describe("Form", () => {
       await close();
       expect(await screen.findByText("Server Error")).toBeInTheDocument();
       expect(screen.getByText("Server sent malformed data.")).toBeInTheDocument();
+      expect(logging).toHaveBeenCalled();
     });
 
     test("handles fetch error", async () => {

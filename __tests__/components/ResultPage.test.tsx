@@ -1,6 +1,5 @@
 import ResultPage from "@/app/components/ResultPage";
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/vitest";
 import { describe, expect, test, vi } from "vitest";
 import { SAMPLE_RESPONSE_DATA } from "../testData/sampleResponseData";
 import userEvent from "@testing-library/user-event";

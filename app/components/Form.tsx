@@ -4,14 +4,13 @@ import React, {
   RefObject,
   SetStateAction,
   useActionState,
-  useEffect,
   useRef,
   useState,
 } from "react";
 import InputField from "./InputField";
 import NumberButton from "./NumberButton";
 import Button from "./Button";
-import { FormSchema, FormState, ResponseData, ResponseSchema } from "../type";
+import { FormSchema, FormState, ResponseData } from "../type";
 import Spinner from "@/public/spinner.svg";
 import Image from "next/image";
 import { readEventStream, randomInt } from "../utils/utils";
@@ -102,7 +101,20 @@ function Form({
       };
     }
     if (!response.ok) {
-      const result = await response.json();
+      let result;
+      try {
+        result = await response.json();
+      } catch {
+        return {
+          phase: "error",
+          error: {
+            name: response.statusText,
+            code: response.status,
+            message: response.statusText,
+          },
+          prevData: formData,
+        };
+      }
       return {
         phase: "error",
         error: {
@@ -142,9 +154,11 @@ function Form({
 
         if (event.type === "done") {
           // const parsedResult = ResponseSchema.safeParse(event.output);
-
           setResponseData(event.output);
           setPhase("result");
+          return {
+            phase: "initial",
+          };
         }
 
         if (event.type === "tool_finished") {
@@ -256,13 +270,15 @@ function Form({
               max={10}
               ref={countRef}
               required
+              aria-invalid={isInvalid("travelerCount")}
+              aria-describedby="travelerCount-error-message"
             />
             <NumberButton className="right-2.5" onClick={() => buttonOnclick(countRef, 1)}>
               +
             </NumberButton>
           </div>
           {isInvalid("travelerCount") && (
-            <p className="text-red-600 -mt-2" aria-invalid="true">
+            <p className="text-red-600 -mt-2" id="travelerCount-error-message">
               {fieldErrors.travelerCount?.[0]}
             </p>
           )}

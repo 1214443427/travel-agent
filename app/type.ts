@@ -2,7 +2,7 @@ import * as z from "zod";
 
 export const FormSchema = z
   .object({
-    travelerCount: z.coerce.number().min(1).max(10),
+    travelerCount: z.coerce.number().int().min(1).max(10),
     from: z.string().nonempty("Please state your origin location."),
     to: z.string().nonempty("Please state your desired destination."),
     startDate: z.iso
@@ -238,7 +238,9 @@ const HotelSchema = z.object({
 
 export const HotelsSchema = z.object({
   data: z.object({
-    result: z.array(HotelSchema).transform((array) => array.filter((element) => element !== null)),
+    result: z
+      .array(HotelSchema.nullable().catch(null))
+      .transform((array) => array.filter((element) => element !== null)),
     // Catching error to avoid a single bad object ruining the whole array. Converts elements that did not fit the hotel schema into null filter the array to remove null
   }),
 });

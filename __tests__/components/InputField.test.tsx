@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom/vitest";
 import { expect, test, describe } from "vitest";
 import { render, screen } from "@testing-library/react";
 import InputField from "@/app/components/InputField";

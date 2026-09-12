@@ -33,7 +33,7 @@ export default defineConfig({
   test: {
     coverage: {
       include: ["app/**/*.{ts,tsx}"],
-      exclude: ["app/**/*.d.ts", "app/type.ts", "app/utils/config.ts"],
+      exclude: ["app/**/*.d.ts", "app/utils/config.ts"],
     },
 
     setupFiles: ["./__tests__/test-setup.ts"],

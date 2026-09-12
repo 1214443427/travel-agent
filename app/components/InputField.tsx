@@ -15,9 +15,16 @@ function InputField({ label, className, invalid, invalidMessage, ...rest }: Prop
       <label htmlFor={rest.name} className="font-bold text-2xl">
         {label}
       </label>
-      <input id={rest.name} {...rest} className={inputStyling} required></input>
+      <input
+        id={rest.name}
+        required
+        {...rest}
+        className={inputStyling}
+        aria-invalid={invalid}
+        aria-describedby={`${label}-error-message`}
+      ></input>
       {invalid && (
-        <p className="text-red-600 -mt-2" aria-invalid="true">
+        <p className="text-red-600 -mt-2" id={`${label}-error-message`}>
           {invalidMessage}
         </p>
       )}

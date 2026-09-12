@@ -10,8 +10,6 @@ import {
 } from "@/app/utils/tools";
 import { RunContext } from "@openai/agents";
 import { describe, expect, test } from "vitest";
-import { server } from "./test-setup";
-import { http, HttpResponse } from "msw";
 import { testUpstreamFailures } from "./helper/toolFailures";
 import { TOOL_ERRORS } from "@/app/utils/toolErrors";
 import { BookingHandle } from "@/app/type";
