@@ -118,7 +118,7 @@ describe("get_flight tool", () => {
 
   test("The tool should return refs to correct booking tokens.", async () => {
     const refs = new Map<string, BookingHandle>();
-    const result = await getFlights.invoke(
+    await getFlights.invoke(
       new RunContext({ refs: refs }),
       JSON.stringify({
         departure: "YVR",

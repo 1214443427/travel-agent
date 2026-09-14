@@ -4,8 +4,9 @@ import { POST } from "@/app/api/trip/route";
 import { describe, expect, test, vi } from "vitest";
 import { SAMPLE_FORM_BODY } from "../testData/sampleFormData";
 import { SAMPLE_RESPONSE_DATA } from "../testData/sampleResponseData";
-import { TripStream } from "@/app/type";
+import { FormSchema, TripStream } from "@/app/type";
 import { readEventStream } from "@/app/utils/utils";
+import { formatterAgent, plannerAgent } from "@/app/utils/agent";
 
 const { planTripMock } = vi.hoisted(() => ({ planTripMock: vi.fn() }));
 vi.mock("@/app/utils/planTrip", () => ({ planTrip: planTripMock }));
@@ -33,9 +34,15 @@ describe("trip Route", () => {
     const stream = result.body;
     expect(stream).not.toBeNull();
     let buffer = "";
-    for await (const frame of stream!) {
-      buffer += decoder.decode(frame, { stream: true });
+    const reader = stream!.getReader();
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
     }
+    // for await (const frame of stream!) {
+    //   buffer += decoder.decode(frame, { stream: true });
+    // }
 
     const frames = buffer.split(" \n\n");
     expect(frames[0]).toBe(`data:${JSON.stringify({ type: "tool_started", tool: "get_weather" })}`);
@@ -106,7 +113,53 @@ describe("trip Route", () => {
     const event = await eventStream.next();
     expect(event.value).toEqual({
       type: "error",
-      message: "LLM failed to produce a final output.",
+      message: "Agent run failed.",
     });
+  });
+
+  test("the route passes parsed data into planTrip", async () => {
+    planTripMock.mockImplementation(async function* (): AsyncGenerator<TripStream> {
+      yield { type: "tool_started", tool: "get_weather" };
+      yield { type: "tool_finished", tool: "get_weather" };
+    });
+    await post(JSON.stringify(SAMPLE_FORM_BODY));
+    expect(planTripMock).toHaveBeenCalledWith(
+      FormSchema.safeParse(SAMPLE_FORM_BODY).data,
+      expect.any(AbortSignal),
+      plannerAgent,
+      formatterAgent,
+    );
+  });
+
+  test("AbortSignal is handed to planTrip.", async () => {
+    let seenSignal: AbortSignal | undefined;
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => (release = resolve));
+
+    planTripMock.mockImplementation(async function* (
+      _data: unknown,
+      signal: AbortSignal,
+    ): AsyncGenerator<TripStream> {
+      seenSignal = signal;
+      yield { type: "tool_started", tool: "get_weather" };
+      await gate;
+    });
+
+    const controller = new AbortController();
+    const result = await POST(
+      new Request("https://localhost:3000/api/trip", {
+        method: "POST",
+        body: JSON.stringify(SAMPLE_FORM_BODY),
+        signal: controller.signal,
+      }),
+    );
+
+    const events = readEventStream(result.body!);
+    await events.next();
+
+    expect(seenSignal!.aborted).toBe(false);
+    controller.abort();
+    expect(seenSignal!.aborted).toBe(true);
+    release();
   });
 });

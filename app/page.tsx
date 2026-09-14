@@ -14,7 +14,7 @@ export default function Home() {
       {phase === "start" ? (
         <Start>
           <Button onClick={() => setPhase("form")} className="-mt-10">
-            Let's Begin
+            {"Let\'s Begin"}
           </Button>
         </Start>
       ) : phase === "form" ? (

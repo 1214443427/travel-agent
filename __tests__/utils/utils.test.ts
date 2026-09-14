@@ -142,7 +142,7 @@ describe("readEventStream", () => {
   test("The function should log invalid formatted events.", async () => {
     const spy = vi.spyOn(console, "log").mockImplementation(() => {});
     const stream = eventStream(`data: ${JSON.stringify({ type: "tool_started" })}\n\n`);
-    const readEvents = await collect(stream);
+    await collect(stream);
     expect(spy).toHaveBeenCalledWith("received invalid stream event", expect.any(ZodError));
     spy.mockClear();
   });
@@ -171,7 +171,7 @@ describe("combineClassName", () => {
 
 describe("randomInt", () => {
   test("The function is lower bound inclusive and upper bound exclusive.", () => {
-    let result: number[] = [];
+    const result: number[] = [];
     for (let i = 0; i < 100; i++) {
       result.push(randomInt(3));
     }

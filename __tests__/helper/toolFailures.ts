@@ -49,6 +49,7 @@ export function testUpstreamFailures({
   args,
   messages,
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tool: FunctionTool<unknown, any, any> | FunctionTool<TravelAgentContext, any, any>;
   endpoint: string;
   args: unknown;

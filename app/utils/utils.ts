@@ -38,7 +38,7 @@ export async function* readEventStream(
   responseBody: ReadableStream<Uint8Array<ArrayBuffer>>,
 ): AsyncGenerator<TripStream> {
   const reader = responseBody.getReader();
-  let decoder = new TextDecoder();
+  const decoder = new TextDecoder();
   let buffer = "";
 
   while (true) {

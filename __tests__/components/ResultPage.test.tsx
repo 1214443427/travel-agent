@@ -64,4 +64,14 @@ describe("ResultPage", () => {
     render(<ResultPage responseData={undefined} />);
     expect(screen.getByText("Data missing")).toBeInTheDocument();
   });
+
+  test("city name is rendered independently without country or regional name.", () => {
+    render(
+      <ResultPage
+        responseData={{ ...SAMPLE_RESPONSE_DATA, startLocation: "San Francisco, California, US" }}
+      />,
+    );
+    expect(screen.getByText("San Francisco → Beijing")).toBeInTheDocument();
+    expect(screen.queryByText("San Francisco, California, US → Beijing")).not.toBeInTheDocument();
+  });
 });

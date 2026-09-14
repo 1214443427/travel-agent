@@ -3,7 +3,7 @@ import { server } from "../test-setup";
 import { TripStream } from "@/app/type";
 import { onTestFinished } from "vitest";
 
-const frame = (data: any) => `data:${data} \n\n`;
+const frame = (data: string) => `data:${data} \n\n`;
 
 export default function createTripRouteHandler() {
   const encoder = new TextEncoder();
@@ -35,12 +35,7 @@ export default function createTripRouteHandler() {
     streamController.enqueue(encoder.encode(frame(JSON.stringify(data))));
   };
 
-  const sendRaw = async (rawData: any) => {
-    await ready;
-    streamController.enqueue(encoder.encode(rawData));
-  };
-
-  const error = async (error: any) => {
+  const error = async (error: unknown) => {
     await ready;
     streamController.error(error);
   };
@@ -50,11 +45,12 @@ export default function createTripRouteHandler() {
     streamController.close();
   };
 
+  //if a test failed, close the stream to prevent leaking into other test suites
   onTestFinished(() => {
     try {
       streamController?.close();
-    } catch (error) {}
+    } catch {}
   });
 
-  return { ready, send, sendRaw, error, close };
+  return { ready, send, error, close };
 }
