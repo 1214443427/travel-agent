@@ -17,7 +17,7 @@ import {
   searchAirport,
 } from "./tools";
 import { ModelOutputSchema } from "../type";
-import { AI_KEY, AI_MODEL, AI_URL, FORMATTER_MODEL } from "./config";
+import { AI_KEY, AI_MODEL, AI_URL, FORMATTER_MODEL, isOpenRouter } from "./config";
 
 const client = new OpenAI({
   baseURL: AI_URL,
@@ -27,6 +27,10 @@ const client = new OpenAI({
 setDefaultOpenAIClient(client);
 setOpenAIAPI("chat_completions");
 setTracingDisabled(true);
+
+const providerData = isOpenRouter
+  ? { provider: { require_parameters: true, allow_fallbacks: false } }
+  : {};
 
 export function createPlannerAgent(model: string | Model | undefined) {
   return new Agent({
@@ -41,7 +45,7 @@ export function createPlannerAgent(model: string | Model | undefined) {
     model: model,
     tools: [getLatLon, getWeather, getFlights, searchAirport, getHotels, getAttractions],
     modelSettings: {
-      providerData: { provider: { require_parameters: true, allow_fallbacks: false } },
+      providerData,
     },
     // outputType: ModelOutputSchema,
   });
@@ -53,12 +57,7 @@ export function createFormatterAgent(model: string | Model | undefined) {
     instructions: `You are a formatter agent. You will convert the plain text itinerary into the required JSON format. Copy every ref, hotelId and wikipedia value verbatim. The itinerary will contain events such as weather, transportation, accommodation, things to do, etc. Produce one event per item in the itinerary: one for transportation, one for the hotel, one for weather if mentioned, and one for each attraction. A typical trip yields 5-8 events. Never return an empty events array — if the text describes N items, emit N events.`,
     model: model,
     modelSettings: {
-      providerData: {
-        provider: {
-          require_parameters: true,
-          // maxTokens: 3000
-        },
-      },
+      providerData,
     },
     outputType: ModelOutputSchema,
   });

@@ -23,7 +23,7 @@ Currently, clicking the "Book" or "View Details" buttons will redirect the user 
 
 ### Framework
 
-The app uses Next.js 16 with the App Router, which allowed the backend to be built alongside the frontend in a single project and keeps sensitive API keys off the front-end.
+The app uses Next.js 16 with the App Router, which allowed the backend to be built alongside the frontend in a single project and keeps sensitive API keys off the frontend.
 
 ### Frontend
 
@@ -54,7 +54,7 @@ The tools also filter what the APIs return, extracting only the important fields
 
 #### Agent Context
 
-The `getFlights` tool uses the Google Flights API, whose endpoints return a `booking_token` used to link to a booking for a given flight. The tokens are long strings with high randomness, so to prevent the LLM from hallucinating non-existent tokens they are saved to the agent context programmatically. Each token is assigned a `ref` as identification, and the Planner Agent is instructed to include that `ref` in its output.
+The `getFlights` tool uses the Google Flights API, whose endpoints return a `booking_token` used to link to a booking for a given flight. The tokens are long strings with high randomness. To prevent the LLM from hallucinating non-existent tokens, they are saved to the agent context programmatically. Each token is assigned a `ref` as identification, and the Planner Agent is instructed to include that `ref` in its output.
 
 The refs are sent to the frontend along with the itinerary, so the booking button has the real token available to it. Redeeming it is not implemented yet — see [Roadmap](#roadmap).
 
@@ -65,12 +65,6 @@ The frontend and backend communicate over an SSE stream. The connection is kept 
 ### Testing
 
 The app is tested with Vitest, React Testing Library, and MSW — 138 tests covering about 97% of statements. OpenAI's `ScriptedModel` is used to mock LLM output, and the tools are tested against stored data from real API responses.
-
-```bash
-npm test           # watch mode
-npm run test:ci    # single run
-npm run test:coverage
-```
 
 Every push and pull request to `main` runs the suite and ESLint in CI.
 
@@ -86,12 +80,12 @@ npm ci
 
 Create an `.env` file following the examples in `.env.example`. You will need credentials for four services, each of which has a free tier:
 
-| Variable                                          | Service                                                                                    |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `AI_URL`, `AI_KEY`, `AI_MODEL`, `FORMATTER_MODEL` | Any OpenAI-compatible endpoint ([OpenRouter](https://openrouter.ai) by default)            |
-| `WEATHER_API`                                     | [OpenWeather](https://openweathermap.org/api), for geocoding and weather                   |
-| `RAPID_API_KEY`                                   | [RapidAPI](https://rapidapi.com), subscribed to both `google-flights2` and `booking-com15` |
-| `GEOAPIFY_KEY`                                    | [Geoapify](https://www.geoapify.com), for attractions                                      |
+| Variable                                          | Service                                                                                          |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `AI_URL`, `AI_KEY`, `AI_MODEL`, `FORMATTER_MODEL` | Any OpenAI chat completions compatible endpoint ([OpenRouter](https://openrouter.ai) by default) |
+| `WEATHER_API`                                     | [OpenWeather](https://openweathermap.org/api), for geocoding and weather                         |
+| `RAPID_API_KEY`                                   | [RapidAPI](https://rapidapi.com), subscribed to both `google-flights2` and `booking-com15`       |
+| `GEOAPIFY_KEY`                                    | [Geoapify](https://www.geoapify.com), for attractions                                            |
 
 The app throws on startup if any of them are missing.
 
