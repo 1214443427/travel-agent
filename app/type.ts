@@ -68,13 +68,14 @@ export const EventSchema = z.object({
 export type EventData = z.infer<typeof EventSchema>;
 
 const BookingHandleSchema = z.object({
-  kind: z.enum(["next", "booking"]),
+  kind: z.enum(["next", "booking", "details"]),
   token: z.string(),
 });
 export type BookingHandle = z.infer<typeof BookingHandleSchema>;
-// { kind: "next" | "booking"; token: string };
 
-const TravelAgentContextSchema = z.object({ refs: z.map(z.string(), BookingHandleSchema) });
+const TravelAgentContextSchema = z.object({
+  refs: z.map(z.string(), BookingHandleSchema),
+});
 export type TravelAgentContext = z.infer<typeof TravelAgentContextSchema>;
 // { refs: Map<string, BookingHandle> };
 

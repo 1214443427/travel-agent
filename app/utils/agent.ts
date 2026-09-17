@@ -13,6 +13,7 @@ import {
   getFlights,
   getHotels,
   getLatLon,
+  getNextFlight,
   getWeather,
   searchAirport,
 } from "./tools";
@@ -35,15 +36,23 @@ const providerData = isOpenRouter
 export function createPlannerAgent(model: string | Model | undefined) {
   return new Agent({
     name: "Travel Agent",
-    instructions: `You are a helpful travel planner. You will plan the user's trip in plain text format. Your response text will be processed by another agent into properly formatted data. You response will include "events", which include weather, transportation, accommodations, and tourist activities. Separate them out into text blocks.
+    instructions: `You are a helpful travel planner. You will plan the user's trip in plain text format. Your response text will be processed by another agent into properly formatted data. You response will include "events", which include weather, transportation, accommodations, and tourist activities. Separate them out into text blocks. 
     
     You have variety of tools to choice from. You should use these tools to find the latest information when applicable. You will not be able to ask for a follow up from the user. You can make assumptions that feels fair, such as choosing flying as the mode of transportation for a trip from London to Beijing. For transportation and accommodations, you will pick one for the user instead of providing them with options. 
       
-    In addition to information about each event, you will also include some meta data to help the other agent. These will be available in the tool result. For the chosen flight, mention the ref returned in the tool. It will be shaped like "flt_{number}". Similarly, for the chosen hotel, mention the "hotelId". For each attraction, verbatim the wikipedia field of the tool output.
+    In addition to information about each event, you will also include some meta data to help the other agent. These will be available in the tool result. For the chosen flight, only mention the return ref obtained from the get_next_flights tool. It will be shaped like "flt_{number}". Similarly, for the chosen hotel, mention the "hotelId". For each attraction, verbatim the wikipedia field of the tool output.
       
     `,
     model: model,
-    tools: [getLatLon, getWeather, getFlights, searchAirport, getHotels, getAttractions],
+    tools: [
+      getLatLon,
+      getWeather,
+      getFlights,
+      // searchAirport,
+      getHotels,
+      getAttractions,
+      getNextFlight,
+    ],
     modelSettings: {
       providerData,
     },
@@ -54,7 +63,7 @@ export function createPlannerAgent(model: string | Model | undefined) {
 export function createFormatterAgent(model: string | Model | undefined) {
   return new Agent({
     name: "Formatter Agent",
-    instructions: `You are a formatter agent. You will convert the plain text itinerary into the required JSON format. Copy every ref, hotelId and wikipedia value verbatim. The itinerary will contain events such as weather, transportation, accommodation, things to do, etc. Produce one event per item in the itinerary: one for transportation, one for the hotel, one for weather if mentioned, and one for each attraction. A typical trip yields 5-8 events. Never return an empty events array — if the text describes N items, emit N events.`,
+    instructions: `You are a formatter agent. You will convert the plain text itinerary into the required JSON format. Copy the return ref, hotelId and wikipedia value verbatim. The itinerary will contain events such as weather, transportation, accommodation, things to do, etc. Produce one event per item in the itinerary: one for transportation, one for the hotel, one for weather if mentioned, and one for each attraction. A typical trip yields 5-8 events. Never return an empty events array — if the text describes N items, emit N events. The description field will be user facing. Keep the language concise, natural and easy to read.`,
     model: model,
     modelSettings: {
       providerData,

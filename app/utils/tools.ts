@@ -1,5 +1,5 @@
-import { tool } from "@openai/agents";
-import z from "zod";
+import { RunContext, tool } from "@openai/agents";
+import z, { string } from "zod";
 import { GEOAPIFY_KEY, WEATHER_API_KEY } from "./config";
 import { fetchAPI, fetchRapidAPI } from "./fetching";
 import { constructUrl, parseData } from "./utils";
@@ -13,6 +13,10 @@ import {
   WeatherSchema,
 } from "../type";
 import { TOOL_ERRORS, toolErrorHandler } from "./toolErrors";
+import {
+  SAMPLE_BOOK_TOKEN_FLIGHT,
+  SAMPLE_NEXT_TOKEN_FLIGHT,
+} from "@/__tests__/testData/sampleFlightDataWithNextToken";
 
 export const getLatLon = tool({
   name: "get_lat_lon",
@@ -165,9 +169,44 @@ const getFlightsParams = z.object({
     .describe("Sets the currency for price formatting in the response. Eg. USD, CAD"),
 });
 
+function filterFlights(
+  parsedData: z.infer<typeof FlightSchema>,
+  numberOfFlights: number,
+  context?: RunContext<TravelAgentContext>,
+) {
+  const filteredResult = parsedData.data.itineraries.topFlights
+    .slice(0, numberOfFlights)
+    .map((flight) => {
+      const flightRef = `flt_${context?.context.refs.size ?? 0}`;
+      if (flight.next_token) {
+        context?.context.refs.set(flightRef, { kind: "next", token: flight.next_token });
+      } else if (flight.booking_token) {
+        context?.context.refs.set(flightRef, {
+          kind: "booking",
+          token: flight.booking_token,
+        });
+      }
+      return {
+        departureTime: flight.departure_time,
+        arrivalTime: flight.arrival_time,
+        duration: flight.duration,
+        roundTripPrice: flight.price,
+        segments: flight.flights.map((leg) => ({
+          departure: leg.departure_airport,
+          arrival: leg.arrival_airport,
+          duration: leg.duration,
+        })),
+        layovers: flight.layovers,
+        ref: flightRef,
+      };
+    });
+  return filteredResult;
+}
+
 export const getFlights = tool<typeof getFlightsParams, TravelAgentContext>({
   name: "get_flights",
-  description: "Return the flights form a city to another city on the given date.",
+  description:
+    "Return the outbound flight form a city to another city on the given date. The returned data will include a ref like 'flt_0'. Call get_next_flights to obtain the returning flight. Note that the price is the estimated amount for a full round trip.",
   parameters: getFlightsParams,
   errorFunction(_, error) {
     const toolName = "get_flights" as const;
@@ -188,36 +227,51 @@ export const getFlights = tool<typeof getFlightsParams, TravelAgentContext>({
       currency: currency ?? "USD",
     };
     const url = constructUrl(baseURL, options);
-    const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
+    // const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
 
-    // const response = SAMPLE_FLIGHT_DATA;
+    const response = SAMPLE_NEXT_TOKEN_FLIGHT;
     const parsedData = parseData(FlightSchema, response);
 
-    const filteredResult = parsedData.data.itineraries.topFlights.map((flight, index) => {
-      const flightRef = `flt_${context?.context.refs.size ?? index}`;
-      if (flight.next_token) {
-        context?.context.refs.set(flightRef, { kind: "next", token: flight.next_token });
-      } else if (flight.booking_token) {
-        context?.context.refs.set(flightRef, {
-          kind: "booking",
-          token: flight.booking_token,
-        });
-      }
-      return {
-        departureTime: flight.departure_time,
-        arrivalTime: flight.arrival_time,
-        duration: flight.duration,
-        price: flight.price,
-        segments: flight.flights.map((leg) => ({
-          departure: leg.departure_airport,
-          arrival: leg.arrival_airport,
-          duration: leg.duration,
-        })),
-        layovers: flight.layovers,
-        ref: flightRef,
-      };
-    });
-    return filteredResult.slice(0, 3);
+    return filterFlights(parsedData, 3, context);
+  },
+});
+
+const getNextFlightParams = z.object({
+  ref: z.string().describe("The ref of a outbound flight obtained from the get_flights call."),
+  currency: z
+    .string()
+    .nullable()
+    .describe(
+      "Sets the currency for price formatting in the response. Allows ISO code. Defaults to USD",
+    ),
+});
+
+export const getNextFlight = tool<typeof getNextFlightParams, TravelAgentContext>({
+  name: "get_next_flights",
+  description:
+    "Returns the returning set of a flight based on the outbound flight from a previous search. Used to retrieve returning flight of a round-trip flight. Note that the price is the accurate amount for the full round trip.",
+  parameters: getNextFlightParams,
+  async execute({ ref, currency }, context) {
+    const handle = context?.context.refs.get(ref);
+    if (!handle) {
+      return `Unknown ref ${ref}. Please select a different flight. `;
+    }
+    if (handle.kind != "next") {
+      return `${ref} is not a outbound flight. Please use an entry from the result of get_flights tool. `;
+    }
+    const baseURL = "https://google-flights2.p.rapidapi.com/api/v1/searchFlights";
+    const options = {
+      next_token: handle.token,
+      currency: currency ?? "USD",
+    };
+
+    const url = constructUrl(baseURL, options);
+    // const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
+
+    const response = SAMPLE_BOOK_TOKEN_FLIGHT;
+    const parsedData = parseData(FlightSchema, response);
+
+    return filterFlights(parsedData, 3, context);
   },
 });
 
