@@ -227,9 +227,10 @@ export const getFlights = tool<typeof getFlightsParams, TravelAgentContext>({
       currency: currency ?? "USD",
     };
     const url = constructUrl(baseURL, options);
-    // const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
 
-    const response = SAMPLE_NEXT_TOKEN_FLIGHT;
+    const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
+    // const response = SAMPLE_NEXT_TOKEN_FLIGHT;
+
     const parsedData = parseData(FlightSchema, response);
 
     return filterFlights(parsedData, 3, context);
@@ -266,9 +267,10 @@ export const getNextFlight = tool<typeof getNextFlightParams, TravelAgentContext
     };
 
     const url = constructUrl(baseURL, options);
-    // const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
 
-    const response = SAMPLE_BOOK_TOKEN_FLIGHT;
+    const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
+    // const response = SAMPLE_BOOK_TOKEN_FLIGHT;
+
     const parsedData = parseData(FlightSchema, response);
 
     return filterFlights(parsedData, 3, context);

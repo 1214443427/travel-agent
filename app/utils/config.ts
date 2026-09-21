@@ -36,4 +36,7 @@ if (GEOAPIFY_KEY === undefined) {
   throw new Error("Missing GEOAPIFY API Key");
 }
 
-export const isOpenRouter = AI_URL.includes("openrouter.ai");
+const isOpenRouter = AI_URL.includes("openrouter.ai");
+export const providerData = isOpenRouter
+  ? { provider: { require_parameters: true, allow_fallbacks: true } }
+  : {};

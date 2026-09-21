@@ -55,7 +55,7 @@ describe("ResultPage", () => {
     const user = userEvent.setup();
     const open = vi.spyOn(window, "open");
 
-    const bookBtn = screen.getAllByRole("button", { name: "Book" })[0];
+    const bookBtn = screen.getAllByRole("button", { name: "Book" })[1]; // Needs to be more specific.
     await user.click(bookBtn);
     expect(open).toHaveBeenCalledWith(`https://booking.com`);
   });

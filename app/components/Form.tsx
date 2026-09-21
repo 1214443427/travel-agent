@@ -11,13 +11,13 @@ import InputField from "./InputField";
 import NumberButton from "./NumberButton";
 import Button from "./Button";
 import { FormSchema, FormState, ResponseData } from "../type";
-import Spinner from "@/public/spinner.svg";
-import Image from "next/image";
 import { readEventStream, randomInt } from "../utils/utils";
 import ErrorModal from "./ErrorModal";
 import z from "zod";
 import { MESSAGE_DELAY } from "../utils/const";
 import { useMessageQueue } from "../hooks/useMessageQueue";
+import ModalContainer from "./ModalContainer";
+import LoadingMessage from "./LoadingMessage";
 
 export const toolMessageString = {
   get_lat_lon: "Finding information about the destination...",
@@ -335,14 +335,9 @@ function Form({
         />
         <Button type="submit">Plan my Trip!</Button>
         {(isPending || state.phase === "error") && (
-          <div className="flex justify-center items-center z-0 bg-black/80 w-full h-full absolute top-0 flex-col">
+          <ModalContainer>
             {isPending ? (
-              <>
-                <Image src={Spinner} alt="" width={100} />
-                <p className="text-white" data-testid="loadingMessage">
-                  {message}
-                </p>
-              </>
+              <LoadingMessage message={message} />
             ) : (
               state.phase === "error" && (
                 <ErrorModal>
@@ -355,7 +350,7 @@ function Form({
                 </ErrorModal>
               )
             )}
-          </div>
+          </ModalContainer>
         )}
       </form>
     </div>

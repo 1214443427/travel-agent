@@ -18,7 +18,7 @@ import {
   searchAirport,
 } from "./tools";
 import { ModelOutputSchema } from "../type";
-import { AI_KEY, AI_MODEL, AI_URL, FORMATTER_MODEL, isOpenRouter } from "./config";
+import { AI_KEY, AI_MODEL, AI_URL, FORMATTER_MODEL, providerData } from "./config";
 
 const client = new OpenAI({
   baseURL: AI_URL,
@@ -28,10 +28,6 @@ const client = new OpenAI({
 setDefaultOpenAIClient(client);
 setOpenAIAPI("chat_completions");
 setTracingDisabled(true);
-
-const providerData = isOpenRouter
-  ? { provider: { require_parameters: true, allow_fallbacks: false } }
-  : {};
 
 export function createPlannerAgent(model: string | Model | undefined) {
   return new Agent({
@@ -48,7 +44,7 @@ export function createPlannerAgent(model: string | Model | undefined) {
       getLatLon,
       getWeather,
       getFlights,
-      // searchAirport,
+      searchAirport,
       getHotels,
       getAttractions,
       getNextFlight,

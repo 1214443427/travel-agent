@@ -281,3 +281,30 @@ export const TripStreamSchema = z.discriminatedUnion("type", [
 export type TripStream = z.infer<typeof TripStreamSchema>;
 
 export type ErrorMessages = { credentials: string; retryable: string; generic: string };
+
+export const FlightDetailsSchema = z.object({
+  data: z.array(
+    z.object({
+      title: z.string(),
+      cabin: z.string(),
+      price: z.number(),
+      meta: z.object({
+        features: z.array(z.string()),
+      }),
+      token: z.string(),
+    }),
+  ),
+});
+
+export type FlightDetails = z.infer<typeof FlightDetailsSchema>;
+
+export type BookingStates =
+  | { state: "init" }
+  | {
+      state: "error";
+      message: string;
+    }
+  | {
+      state: "success";
+      data: FlightDetails;
+    };
