@@ -67,7 +67,7 @@ export const EventSchema = z.object({
 
 export type EventData = z.infer<typeof EventSchema>;
 
-const BookingHandleSchema = z.object({
+export const BookingHandleSchema = z.object({
   kind: z.enum(["next", "booking", "details"]),
   token: z.string(),
 });
@@ -282,18 +282,21 @@ export type TripStream = z.infer<typeof TripStreamSchema>;
 
 export type ErrorMessages = { credentials: string; retryable: string; generic: string };
 
+const FlightOffersSchema = z.object({
+  title: z.string(),
+  cabin: z.string().optional(),
+  price: z.number(),
+  meta: z.object({
+    features: z.array(z.string()),
+  }),
+  is_airline: z.boolean(),
+  token: z.string(),
+});
+
 export const FlightDetailsSchema = z.object({
-  data: z.array(
-    z.object({
-      title: z.string(),
-      cabin: z.string(),
-      price: z.number(),
-      meta: z.object({
-        features: z.array(z.string()),
-      }),
-      token: z.string(),
-    }),
-  ),
+  data: z
+    .array(FlightOffersSchema.nullable().catch(null))
+    .transform((flights) => flights.filter((flight) => flight !== null)),
 });
 
 export type FlightDetails = z.infer<typeof FlightDetailsSchema>;

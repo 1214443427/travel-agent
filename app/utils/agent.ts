@@ -18,7 +18,14 @@ import {
   searchAirport,
 } from "./tools";
 import { ModelOutputSchema } from "../type";
-import { AI_KEY, AI_MODEL, AI_URL, FORMATTER_MODEL, providerData } from "./config";
+import {
+  AI_KEY,
+  AI_MODEL,
+  AI_URL,
+  FORMATTER_MODEL,
+  plannerProviderData,
+  formatterProviderData,
+} from "./config";
 
 const client = new OpenAI({
   baseURL: AI_URL,
@@ -44,13 +51,13 @@ export function createPlannerAgent(model: string | Model | undefined) {
       getLatLon,
       getWeather,
       getFlights,
-      searchAirport,
+      // searchAirport,
       getHotels,
       getAttractions,
       getNextFlight,
     ],
     modelSettings: {
-      providerData,
+      providerData: plannerProviderData,
     },
     // outputType: ModelOutputSchema,
   });
@@ -59,10 +66,10 @@ export function createPlannerAgent(model: string | Model | undefined) {
 export function createFormatterAgent(model: string | Model | undefined) {
   return new Agent({
     name: "Formatter Agent",
-    instructions: `You are a formatter agent. You will convert the plain text itinerary into the required JSON format. Copy the return ref, hotelId and wikipedia value verbatim. The itinerary will contain events such as weather, transportation, accommodation, things to do, etc. Produce one event per item in the itinerary: one for transportation, one for the hotel, one for weather if mentioned, and one for each attraction. A typical trip yields 5-8 events. Never return an empty events array — if the text describes N items, emit N events. The description field will be user facing. Keep the language concise, natural and easy to read.`,
+    instructions: `You are a formatter agent. You will convert the plain text itinerary into the required JSON format. Copy the return ref, hotelId and wikipedia value verbatim. You must only include the ref for the return flight. Not the outbound flight. The itinerary will contain events such as weather, transportation, accommodation, things to do, etc. Produce one event per item in the itinerary: one for transportation, one for the hotel, one for weather if mentioned, and one for each attraction. A typical trip yields 5-8 events. Never return an empty events array — if the text describes N items, emit N events. The description field will be user facing. Keep the language concise, natural and easy to read.`,
     model: model,
     modelSettings: {
-      providerData,
+      providerData: formatterProviderData,
     },
     outputType: ModelOutputSchema,
   });

@@ -260,7 +260,7 @@ export const getNextFlight = tool<typeof getNextFlightParams, TravelAgentContext
     if (handle.kind != "next") {
       return `${ref} is not a outbound flight. Please use an entry from the result of get_flights tool. `;
     }
-    const baseURL = "https://google-flights2.p.rapidapi.com/api/v1/searchFlights";
+    const baseURL = "https://google-flights2.p.rapidapi.com/api/v1/getNextFlights";
     const options = {
       next_token: handle.token,
       currency: currency ?? "USD",
@@ -271,8 +271,9 @@ export const getNextFlight = tool<typeof getNextFlightParams, TravelAgentContext
     const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
     // const response = SAMPLE_BOOK_TOKEN_FLIGHT;
 
+    console.log(response);
     const parsedData = parseData(FlightSchema, response);
-
+    //Todo: handle edge case where topFlights is empty
     return filterFlights(parsedData, 3, context);
   },
 });

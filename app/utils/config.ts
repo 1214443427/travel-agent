@@ -37,6 +37,13 @@ if (GEOAPIFY_KEY === undefined) {
 }
 
 const isOpenRouter = AI_URL.includes("openrouter.ai");
-export const providerData = isOpenRouter
+export const plannerProviderData = isOpenRouter
   ? { provider: { require_parameters: true, allow_fallbacks: true } }
+  : {};
+
+export const formatterProviderData = isOpenRouter
+  ? {
+      provider: { require_parameters: true, allow_fallbacks: true, sort: "throughput" },
+      reasoning: { enabled: false },
+    }
   : {};

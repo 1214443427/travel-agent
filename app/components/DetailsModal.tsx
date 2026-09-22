@@ -1,4 +1,4 @@
-import React from "react";
+import React, { startTransition, useActionState } from "react";
 import { FlightDetails } from "../type";
 import ModalContainer from "./ModalContainer";
 import TextBox from "./TextBox";
@@ -14,7 +14,32 @@ function DetailsModal({
   closeModal: () => void;
   isPending: boolean;
 }) {
-  function bookingOnClick() {}
+  const [bookMap, bookAction, bookPending] = useActionState(
+    async (prevState: Map<string, string>, token: string) => {
+      const response = await fetch("/api/book", {
+        method: "POST",
+        body: JSON.stringify({
+          token: token,
+        }),
+      });
+      const result = await response.json();
+      const nextMap = new Map(prevState);
+      nextMap.set(token, result.data);
+      window.open(result.data);
+      return nextMap;
+    },
+    new Map(),
+  );
+
+  function bookingOnClick(token: string) {
+    if (bookMap.has(token)) {
+      window.open(bookMap.get(token));
+    } else {
+      startTransition(() => {
+        bookAction(token);
+      });
+    }
+  }
 
   return (
     <div className="flex flex-col w-80 h-213 overflow-scroll items-center gap-6">
@@ -31,16 +56,18 @@ function DetailsModal({
           {flightDetails.data.map((option, index) => (
             <TextBox key={index} className="flex flex-col items-center bg-green-100 gap-1 px-3">
               <h1 className="capitalize bg-white py-0.5 px-3 rounded-2xl text-xl font-medium">
-                {option.cabin.toLocaleLowerCase()}
+                {(option.cabin ?? "basic").toLocaleLowerCase()}
               </h1>
               <ul>
-                {option.meta.features.map((feature, index) => (
-                  <li key={index} className="text-left">
-                    ➡️ {feature}
-                  </li>
-                ))}
+                {option.meta
+                  ? option.meta.features.map((feature, index) => (
+                      <li key={index} className="text-left">
+                        ➡️ {feature}
+                      </li>
+                    ))
+                  : "Visit the website for more information."}
               </ul>
-              <Button>${option.price}</Button>
+              <Button onClick={() => bookingOnClick(option.token)}>${option.price}</Button>
             </TextBox>
           ))}
         </div>
@@ -51,6 +78,12 @@ function DetailsModal({
       >
         close
       </Button>
+
+      {bookPending && (
+        <ModalContainer>
+          <LoadingMessage message="Loading..."></LoadingMessage>
+        </ModalContainer>
+      )}
     </div>
   );
 }

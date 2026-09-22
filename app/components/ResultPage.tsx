@@ -26,13 +26,17 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
     ref: string,
   ): Promise<BookingStates> {
     console.log("ref", ref);
+    let cleanedRef;
+    if (ref.split(",").length > 1) {
+      cleanedRef = ref[1];
+    } else {
+      cleanedRef = ref;
+    }
     let response: Response;
     try {
       response = await fetch("/api/flight", {
         method: "POST",
-        body: JSON.stringify({
-          token: responseData!.refs[ref],
-        }),
+        body: JSON.stringify(responseData!.refs[cleanedRef]),
       });
     } catch {
       return {
@@ -51,6 +55,8 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
     }
     const parsedData = FlightDetailsSchema.safeParse(data);
     if (!parsedData.success) {
+      console.log(parsedData.error);
+      console.log(response);
       return {
         state: "error",
         message: "We encountered an issue with the server.",
@@ -76,7 +82,7 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
     } else if (event.action.type === "book_hotel") {
       window.open("https://booking.com"); //todo: implement real booking api.
     } else if (event.action.type === "book_flight") {
-      if (bookingState.state !== "init" && isModalOpen === false) {
+      if (bookingState.state === "success") {
         return setIsModalOpen(true);
       }
       const ref = event.action.flightRef;
