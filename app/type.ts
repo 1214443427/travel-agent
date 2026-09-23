@@ -311,3 +311,13 @@ export type BookingStates =
       state: "success";
       data: FlightDetails;
     };
+
+export const BookingApiRequestSchema = z.object({
+  token: z.string(),
+});
+
+export type BookingApiType = z.infer<typeof BookingApiRequestSchema>;
+
+export const BookingApiResponseSchema = z.object({
+  data: z.string(),
+});

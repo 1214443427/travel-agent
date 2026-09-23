@@ -1,42 +1,32 @@
 import { SAMPLE_FLIGHT_DETAILS } from "@/__tests__/testData/sampleFlightDataWithNextToken";
-import { BookingHandleSchema, FetchError, FlightDetails, FlightDetailsSchema } from "@/app/type";
+import {
+  APIError,
+  BookingHandle,
+  FetchError,
+  FlightDetails,
+  FlightDetailsSchema,
+} from "@/app/type";
 import { fetchRapidAPI } from "@/app/utils/fetching";
 import { constructUrl, parseData } from "@/app/utils/utils";
+import { jsonRoute } from "../jsonRoute";
+import { flightRouteContract } from "@/app/utils/contract";
 
-export async function POST(req: Request) {
+const handler = async (body: BookingHandle) => {
   // const sleep = () =>
   //   new Promise((resolve) => {
   //     setTimeout(resolve, 2000);
   //   });
   // await sleep();
 
-  const body = await req.json();
-  const parsedData = BookingHandleSchema.safeParse(body);
-  if (!parsedData.success) {
-    return Response.json(
-      {
-        statusText: "Bad request",
-        message: "The request is malformed.",
-      },
-      { status: 400 },
-    );
-  }
-
-  if (parsedData.data.kind !== "booking") {
-    return Response.json(
-      {
-        statusText: "Bad request",
-        message: "Expected a booking token.",
-      },
-      { status: 400 },
-    );
+  if (body.kind !== "booking") {
+    throw new APIError(400, "Expected a booking token. Please try booking directly from airline.");
   }
 
   const baseURL = "https://google-flights2.p.rapidapi.com/api/v1/getBookingDetails";
 
-  console.log(parsedData.data.token);
+  console.log(body.token);
   const options = {
-    booking_token: parsedData.data.token,
+    booking_token: body.token,
     currency: "USD", // TODO: Add currency to LLM response.
   };
   const url = constructUrl(baseURL, options);
@@ -51,17 +41,20 @@ export async function POST(req: Request) {
     const responseBody: FlightDetails = {
       data: airlineOffering,
     };
-    return new Response(JSON.stringify(responseBody));
+    return responseBody;
   } catch (error) {
     console.error(error);
     if (error instanceof FetchError) {
-      return Response.json(
-        {
-          message:
-            "We encountered an error when retrieving data from our flight information provider. Please try booking directly from the airline. ",
-        },
-        { status: error.status ?? 400 },
+      throw new APIError(
+        error.status ?? 500,
+        "We encountered an error when retrieving data from our flight information provider. Please try booking directly from the airline. ",
       );
     }
+    throw new APIError(
+      500,
+      "We encountered an unexpected error. Please try booking directly from the airline. ",
+    );
   }
-}
+};
+
+export const POST = jsonRoute(flightRouteContract, handler);

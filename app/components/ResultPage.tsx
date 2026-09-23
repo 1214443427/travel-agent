@@ -23,9 +23,25 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
 
   async function bookingButtonAction(
     prevState: BookingStates,
-    ref: string,
+    ref: string | null,
   ): Promise<BookingStates> {
     console.log("ref", ref);
+
+    if (prevState.state === "error") {
+      setIsModalOpen(false);
+      return {
+        state: "init",
+      };
+    }
+
+    if (!ref) {
+      return {
+        state: "error",
+        message:
+          "We encountered an unexpected error. Please try booking directly from the airline. ",
+      };
+    }
+
     let cleanedRef;
     if (ref.split(",").length > 1) {
       cleanedRef = ref[1];
@@ -53,6 +69,12 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
         message: "We encountered an issue with the server.",
       };
     }
+    if (!response.ok) {
+      return {
+        state: "error",
+        message: data.message,
+      };
+    }
     const parsedData = FlightDetailsSchema.safeParse(data);
     if (!parsedData.success) {
       console.log(parsedData.error);
@@ -68,7 +90,7 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
     };
   }
 
-  const [bookingState, bookingAction, isPending] = useActionState<BookingStates, string>(
+  const [bookingState, bookingAction, isPending] = useActionState<BookingStates, string | null>(
     bookingButtonAction,
     {
       state: "init",
@@ -153,7 +175,16 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
               isPending={isPending}
             ></DetailsModal>
           ) : bookingState.state == "error" ? (
-            <ErrorModal>Error</ErrorModal>
+            <ErrorModal className="w-60">
+              {bookingState.message}
+              <Button
+                onClick={() => {
+                  startTransition(() => bookingAction(null));
+                }}
+              >
+                Close
+              </Button>
+            </ErrorModal>
           ) : (
             <LoadingMessage message="Loading..." />
           )}

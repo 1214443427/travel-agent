@@ -1,9 +1,12 @@
+import { APIError, BookingApiRequestSchema, BookingApiType } from "@/app/type";
 import { RAPID_API_KEY } from "@/app/utils/config";
+import { jsonRoute } from "../jsonRoute";
+import { bookRouteContract } from "@/app/utils/contract";
+import { parseData } from "@/app/utils/utils";
 
-export async function POST(req: Request) {
+export const POST = jsonRoute(bookRouteContract, async (data) => {
   const url = "https://google-flights2.p.rapidapi.com/api/v1/getBookingURL";
 
-  const body = await req.json();
   const options = {
     method: "POST",
     headers: {
@@ -12,7 +15,7 @@ export async function POST(req: Request) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      token: body.token,
+      token: data.token,
     }),
   };
 
@@ -22,13 +25,33 @@ export async function POST(req: Request) {
   //       data: "https://www.google.com",
   //     }),
   //   );
-
+  let response;
   try {
-    const response = await fetch(url, options);
-    const result = await response.json();
-    console.log(result);
-    return new Response(JSON.stringify(result));
+    response = await fetch(url, options);
   } catch (error) {
     console.error(error);
+    throw new APIError(
+      500,
+      "Failed to fetch booking URL. Please try booking directly from the airline. ",
+    );
   }
-}
+  if (!response.ok) {
+    throw new APIError(
+      502,
+      "Failed to fetch booking URL. Please try booking directly from the airline. ",
+    );
+  }
+  let parsedData;
+  try {
+    const result = await response.json();
+    parsedData = parseData(bookRouteContract.responseSchema, result);
+  } catch (error) {
+    console.error(error);
+    throw new APIError(
+      502,
+      "We encountered an error when retrieving data from our flight information provider. Please try booking directly from the airline.",
+    );
+  }
+  console.log(parsedData);
+  return parsedData;
+});
