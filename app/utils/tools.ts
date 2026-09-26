@@ -252,6 +252,11 @@ export const getNextFlight = tool<typeof getNextFlightParams, TravelAgentContext
   description:
     "Returns the returning set of a flight based on the outbound flight from a previous search. Used to retrieve returning flight of a round-trip flight. Note that the price is the accurate amount for the full round trip.",
   parameters: getNextFlightParams,
+  errorFunction(_, error) {
+    const toolName = "get_next_flights" as const;
+    const handler = toolErrorHandler(toolName, TOOL_ERRORS[toolName]);
+    return handler(_, error);
+  },
   async execute({ ref, currency }, context) {
     const handle = context?.context.refs.get(ref);
     if (!handle) {
@@ -268,7 +273,7 @@ export const getNextFlight = tool<typeof getNextFlightParams, TravelAgentContext
 
     const url = constructUrl(baseURL, options);
 
-    const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
+    const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com", 25_000);
     // const response = SAMPLE_BOOK_TOKEN_FLIGHT;
 
     console.log(response);

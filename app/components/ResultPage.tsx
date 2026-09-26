@@ -12,6 +12,8 @@ import DetailsModal from "./DetailsModal";
 import ModalContainer from "./ModalContainer";
 import LoadingMessage from "./LoadingMessage";
 import ErrorModal from "./ErrorModal";
+import { fetchInternalAPI } from "../utils/clientFetching";
+import { flightRouteContract } from "../utils/contract";
 
 function getCityName(location: string) {
   return location.split(",")[0];
@@ -42,51 +44,27 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
       };
     }
 
-    let cleanedRef;
-    if (ref.split(",").length > 1) {
-      cleanedRef = ref[1];
-    } else {
-      cleanedRef = ref;
-    }
-    let response: Response;
-    try {
-      response = await fetch("/api/flight", {
-        method: "POST",
-        body: JSON.stringify(responseData!.refs[cleanedRef]),
-      });
-    } catch {
+    // If LLM returned more than one ref, attempt to recover the last one.
+    const cleanedRef = ref.split(",").at(-1) ?? ref;
+    const handle = responseData?.refs[cleanedRef];
+    if (!handle)
       return {
         state: "error",
-        message: "Failed to connect to the server. Please try again later.",
+        message: "We couldn't find this flight. Please try booking directly from the airline.",
       };
-    }
-    let data;
-    try {
-      data = await response.json();
-    } catch {
+
+    const apiResult = await fetchInternalAPI("/api/flight", flightRouteContract, handle);
+
+    if (!apiResult.ok) {
       return {
         state: "error",
-        message: "We encountered an issue with the server.",
+        message: apiResult.message,
       };
     }
-    if (!response.ok) {
-      return {
-        state: "error",
-        message: data.message,
-      };
-    }
-    const parsedData = FlightDetailsSchema.safeParse(data);
-    if (!parsedData.success) {
-      console.log(parsedData.error);
-      console.log(response);
-      return {
-        state: "error",
-        message: "We encountered an issue with the server.",
-      };
-    }
+
     return {
       state: "success",
-      data: parsedData.data,
+      data: apiResult.data,
     };
   }
 

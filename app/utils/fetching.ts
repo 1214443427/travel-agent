@@ -30,7 +30,7 @@ export async function fetchAPI(url: string | URL, init?: RequestInit, timeout: n
   return data;
 }
 
-export async function fetchRapidAPI(url: string | URL, host: string) {
+export async function fetchRapidAPI(url: string | URL, host: string, timeout?: number) {
   const options = {
     method: "GET",
     headers: {

@@ -199,6 +199,7 @@ export const FlightSchema = z.object({
               departure_airport: FlightSegmentAirportSchema,
               arrival_airport: FlightSegmentAirportSchema,
               duration: z.object({ raw: z.number(), text: z.string() }),
+              airline: z.string(),
             }),
           ),
           layovers: z
@@ -286,9 +287,11 @@ const FlightOffersSchema = z.object({
   title: z.string(),
   cabin: z.string().optional(),
   price: z.number(),
-  meta: z.object({
-    features: z.array(z.string()),
-  }),
+  meta: z
+    .object({
+      features: z.array(z.string()),
+    })
+    .nullable(),
   is_airline: z.boolean(),
   token: z.string(),
 });

@@ -4,7 +4,7 @@ import { ErrorMessages, FetchError } from "../type";
 export function toolErrorHandler(toolName: string, messages: ErrorMessages) {
   return (_: RunContext<unknown>, error: Error | unknown) => {
     if (error instanceof FetchError) {
-      console.error(toolName, error.status, error.message, error.url);
+      console.error(toolName, error.status, error.message, error.url, error.cause);
       if (error.status === 401 || error.status === 402) {
         return messages.credentials;
       }
@@ -50,6 +50,14 @@ export const TOOL_ERRORS = {
       "The flight search service is temporarily unavailable. Retry once. If it fails again, give a rough price and duration estimate, state plainly that it is an estimate and not a live quote, and do not invent a flight reference.",
     generic:
       "Flight search failed. Do not retry. Give the user a rough price and duration estimate, state plainly that it is an estimate and not a live quote, and do not invent a flight reference.",
+  },
+  get_next_flights: {
+    credentials:
+      "Return flight lookup is unavailable: our Google Flights credentials are invalid or have expired. Do not retry this tool. The outbound flight you already have is still valid, and its price is the estimated total for the full round trip. Present that flight and price to the user, say the return flight details could not be retrieved, and do not include any flight reference in your response.",
+    retryable:
+      "The return flight lookup service is temporarily unavailable. Retry once. If it fails again, do not retry further. The outbound flight you already have is still valid, and its price is the estimated total for the full round trip. Present that flight and price to the user, say the return flight details could not be retrieved, and do not include any flight reference in your response.",
+    generic:
+      "Return flight lookup failed. Do not retry. The outbound flight you already have is still valid, and its price is the estimated total for the full round trip. Present that flight and price to the user, say the return flight details could not be retrieved, and do not include any flight reference in your response.",
   },
   get_hotels: {
     credentials:

@@ -43,7 +43,11 @@ export const plannerProviderData = isOpenRouter
 
 export const formatterProviderData = isOpenRouter
   ? {
-      provider: { require_parameters: true, allow_fallbacks: true, sort: "throughput" },
+      provider: {
+        require_parameters: true,
+        allow_fallbacks: true,
+        //  sort: "throughput"
+      },
       reasoning: { enabled: false },
     }
   : {};

@@ -1,9 +1,12 @@
-import React, { startTransition, useActionState } from "react";
+import React, { startTransition, useActionState, useState } from "react";
 import { FlightDetails } from "../type";
 import ModalContainer from "./ModalContainer";
 import TextBox from "./TextBox";
 import Button from "./Button";
 import LoadingMessage from "./LoadingMessage";
+import { fetchInternalAPI } from "../utils/clientFetching";
+import { bookRouteContract } from "../utils/contract";
+import ErrorModal from "./ErrorModal";
 
 function DetailsModal({
   flightDetails,
@@ -14,18 +17,20 @@ function DetailsModal({
   closeModal: () => void;
   isPending: boolean;
 }) {
+  const [error, setError] = useState<string>("");
+
   const [bookMap, bookAction, bookPending] = useActionState(
     async (prevState: Map<string, string>, token: string) => {
-      const response = await fetch("/api/book", {
-        method: "POST",
-        body: JSON.stringify({
-          token: token,
-        }),
+      const response = await fetchInternalAPI("/api/book", bookRouteContract, {
+        token: token,
       });
-      const result = await response.json();
+      if (!response.ok) {
+        setError(response.message);
+        return prevState;
+      }
       const nextMap = new Map(prevState);
-      nextMap.set(token, result.data);
-      window.open(result.data);
+      nextMap.set(token, response.data.data);
+      window.open(response.data.data, "_blank");
       return nextMap;
     },
     new Map(),
@@ -83,6 +88,14 @@ function DetailsModal({
         <ModalContainer>
           <LoadingMessage message="Loading..."></LoadingMessage>
         </ModalContainer>
+      )}
+
+      {error && (
+        <ErrorModal className="w-50">
+          {" "}
+          <p>{error}</p>
+          <Button onClick={() => setError("")}>Close</Button>
+        </ErrorModal>
       )}
     </div>
   );

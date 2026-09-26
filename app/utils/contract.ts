@@ -20,8 +20,3 @@ export const bookRouteContract = {
   requestSchema: BookingApiRequestSchema,
   responseSchema: BookingApiResponseSchema,
 } satisfies Contract;
-
-export const bookRouteContract2 = {
-  requestSchem: BookingApiRequestSchema,
-  responseSchema: BookingApiResponseSchema,
-};
