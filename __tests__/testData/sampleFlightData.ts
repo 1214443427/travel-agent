@@ -6,8 +6,8 @@ export const SAMPLE_FLIGHT_DATA = {
     itineraries: {
       topFlights: [
         {
-          departure_time: "30-08-2026 12:55 AM",
-          arrival_time: "31-08-2026 09:40 AM",
+          departure_time: "26-10-2026 12:55 AM",
+          arrival_time: "27-10-2026 09:40 AM",
           duration: {
             raw: 1065,
             text: "17 hr 45 min",
@@ -17,12 +17,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 00:55",
+                time: "2026-10-26 00:55",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 04:25",
+                time: "2026-10-27 04:25",
               },
               duration: {
                 raw: 690,
@@ -47,12 +47,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 08:15",
+                time: "2026-10-27 08:15",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 09:40",
+                time: "2026-10-27 09:40",
               },
               duration: {
                 raw: 145,
@@ -105,8 +105,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwTFJUYzJmRXRGT0RVeEdnc0l2dnNDRUFJYUExVlRSRGdjY0w3N0FnPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSUNOIiwiS0UiLCI3NiJdLFsiSUNOIiwiMjAyNi0wOC0zMSIsIlBFSyIsIktFIiwiODUxIl1dXV0=",
         },
         {
-          departure_time: "30-08-2026 02:55 PM",
-          arrival_time: "01-09-2026 01:25 AM",
+          departure_time: "26-10-2026 02:55 PM",
+          arrival_time: "28-10-2026 01:25 AM",
           duration: {
             raw: 1170,
             text: "19 hr 30 min",
@@ -116,12 +116,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 14:55",
+                time: "2026-10-26 14:55",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 19:20",
+                time: "2026-10-27 19:20",
               },
               duration: {
                 raw: 805,
@@ -146,12 +146,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 21:55",
+                time: "2026-10-27 21:55",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 01:25",
+                time: "2026-10-28 01:25",
               },
               duration: {
                 raw: 210,
@@ -204,8 +204,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOM3hEV0RNME1Cb0xDSitTQXhBQ0dnTlZVMFE0SEhDZmtnTT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjciXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjM0MCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 07:00 AM",
-          arrival_time: "31-08-2026 03:25 PM",
+          departure_time: "26-10-2026 07:00 AM",
+          arrival_time: "27-10-2026 03:25 PM",
           duration: {
             raw: 1045,
             text: "17 hr 25 min",
@@ -215,12 +215,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 07:00",
+                time: "2026-10-26 07:00",
               },
               arrival_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 09:28",
+                time: "2026-10-26 09:28",
               },
               duration: {
                 raw: 148,
@@ -245,12 +245,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 10:45",
+                time: "2026-10-26 10:45",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 15:25",
+                time: "2026-10-27 15:25",
               },
               duration: {
                 raw: 820,
@@ -303,8 +303,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd4VlFUSXpNako4VlVFNE9EZ2FDd2orOHdNUUFob0RWVk5FT0J4dy92TUQiXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiU0ZPIiwiVUEiLCIyMzIyIl0sWyJTRk8iLCIyMDI2LTA4LTMwIiwiUEVLIiwiVUEiLCI4ODgiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 01:40 PM",
-          arrival_time: "31-08-2026 04:55 PM",
+          departure_time: "26-10-2026 01:40 PM",
+          arrival_time: "27-10-2026 04:55 PM",
           duration: {
             raw: 735,
             text: "12 hr 15 min",
@@ -314,12 +314,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 13:40",
+                time: "2026-10-26 13:40",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 16:55",
+                time: "2026-10-27 16:55",
               },
               duration: {
                 raw: 735,
@@ -366,8 +366,8 @@ export const SAMPLE_FLIGHT_DATA = {
       ],
       otherFlights: [
         {
-          departure_time: "30-08-2026 12:55 AM",
-          arrival_time: "31-08-2026 12:05 PM",
+          departure_time: "26-10-2026 12:55 AM",
+          arrival_time: "27-10-2026 12:05 PM",
           duration: {
             raw: 1210,
             text: "20 hr 10 min",
@@ -377,12 +377,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 00:55",
+                time: "2026-10-26 00:55",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 04:25",
+                time: "2026-10-27 04:25",
               },
               duration: {
                 raw: 690,
@@ -407,12 +407,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 10:40",
+                time: "2026-10-27 10:40",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 12:05",
+                time: "2026-10-27 12:05",
               },
               duration: {
                 raw: 145,
@@ -463,8 +463,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwTFJUYzJmRXRGT0RVMUdnc0l2dnNDRUFJYUExVlRSRGdjY0w3N0FnPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSUNOIiwiS0UiLCI3NiJdLFsiSUNOIiwiMjAyNi0wOC0zMSIsIlBFSyIsIktFIiwiODU1Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 02:50 PM",
-          arrival_time: "01-09-2026 09:40 AM",
+          departure_time: "26-10-2026 02:50 PM",
+          arrival_time: "28-10-2026 09:40 AM",
           duration: {
             raw: 1670,
             text: "27 hr 50 min",
@@ -474,12 +474,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 14:50",
+                time: "2026-10-26 14:50",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 17:50",
+                time: "2026-10-27 17:50",
               },
               duration: {
                 raw: 660,
@@ -504,12 +504,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-9-1 08:15",
+                time: "2026-10-28 08:15",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 09:40",
+                time: "2026-10-28 09:40",
               },
               duration: {
                 raw: 145,
@@ -562,8 +562,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwTFJUY3lmRXRGT0RVeEdnc0l2dnNDRUFJYUExVlRSRGdjY0w3N0FnPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSUNOIiwiS0UiLCI3MiJdLFsiSUNOIiwiMjAyNi0wOS0wMSIsIlBFSyIsIktFIiwiODUxIl1dXV0=",
         },
         {
-          departure_time: "30-08-2026 04:45 PM",
-          arrival_time: "01-09-2026 08:15 PM",
+          departure_time: "26-10-2026 04:45 PM",
+          arrival_time: "28-10-2026 08:15 PM",
           duration: {
             raw: 2190,
             text: "36 hr 30 min",
@@ -573,12 +573,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 16:45",
+                time: "2026-10-26 16:45",
               },
               arrival_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-8-31 19:00",
+                time: "2026-10-27 19:00",
               },
               duration: {
                 raw: 615,
@@ -603,12 +603,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-9-1 17:15",
+                time: "2026-10-28 17:15",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 20:15",
+                time: "2026-10-28 20:15",
               },
               duration: {
                 raw: 240,
@@ -661,8 +661,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0T1NERXhOWHhPU0RrMk14b0xDSUtTQXhBQ0dnTlZVMFE0SEhDQ2tnTT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSE5EIiwiTkgiLCIxMTUiXSxbIkhORCIsIjIwMjYtMDktMDEiLCJQRUsiLCJOSCIsIjk2MyJdXV1d",
         },
         {
-          departure_time: "30-08-2026 01:25 AM",
-          arrival_time: "31-08-2026 10:45 AM",
+          departure_time: "26-10-2026 01:25 AM",
+          arrival_time: "27-10-2026 10:45 AM",
           duration: {
             raw: 1100,
             text: "18 hr 20 min",
@@ -672,12 +672,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:25",
+                time: "2026-10-26 01:25",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 05:35",
+                time: "2026-10-27 05:35",
               },
               duration: {
                 raw: 790,
@@ -702,12 +702,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 07:25",
+                time: "2026-10-27 07:25",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 10:45",
+                time: "2026-10-27 10:45",
               },
               duration: {
                 raw: 200,
@@ -760,8 +760,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOWHhEV0RNek5Cb0xDSitTQXhBQ0dnTlZVMFE0SEhDZmtnTT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjUiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjMzNCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 01:25 AM",
-          arrival_time: "31-08-2026 12:25 PM",
+          departure_time: "26-10-2026 01:25 AM",
+          arrival_time: "27-10-2026 12:25 PM",
           duration: {
             raw: 1200,
             text: "20 hr 0 min",
@@ -771,12 +771,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:25",
+                time: "2026-10-26 01:25",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 05:35",
+                time: "2026-10-27 05:35",
               },
               duration: {
                 raw: 790,
@@ -801,12 +801,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 09:00",
+                time: "2026-10-27 09:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 12:25",
+                time: "2026-10-27 12:25",
               },
               duration: {
                 raw: 205,
@@ -859,8 +859,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOWHhEV0RNNU1Cb0xDSitTQXhBQ0dnTlZVMFE0SEhDZmtnTT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjUiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjM5MCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 01:25 AM",
-          arrival_time: "31-08-2026 03:25 PM",
+          departure_time: "26-10-2026 01:25 AM",
+          arrival_time: "27-10-2026 03:25 PM",
           duration: {
             raw: 1380,
             text: "23 hr 0 min",
@@ -870,12 +870,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:25",
+                time: "2026-10-26 01:25",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 05:35",
+                time: "2026-10-27 05:35",
               },
               duration: {
                 raw: 790,
@@ -900,12 +900,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 12:00",
+                time: "2026-10-27 12:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 15:25",
+                time: "2026-10-27 15:25",
               },
               duration: {
                 raw: 205,
@@ -958,8 +958,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOWHhEV0RNek1ob0xDSitTQXhBQ0dnTlZVMFE0SEhDZmtnTT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjUiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjMzMiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 01:25 AM",
-          arrival_time: "31-08-2026 05:25 PM",
+          departure_time: "26-10-2026 01:25 AM",
+          arrival_time: "27-10-2026 05:25 PM",
           duration: {
             raw: 1500,
             text: "25 hr 0 min",
@@ -969,12 +969,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:25",
+                time: "2026-10-26 01:25",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 05:35",
+                time: "2026-10-27 05:35",
               },
               duration: {
                 raw: 790,
@@ -999,12 +999,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 13:55",
+                time: "2026-10-27 13:55",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 17:25",
+                time: "2026-10-27 17:25",
               },
               duration: {
                 raw: 210,
@@ -1056,8 +1056,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOWHhEV0RNNU1ob0xDSitTQXhBQ0dnTlZVMFE0SEhDZmtnTT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjUiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjM5MiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 01:25 AM",
-          arrival_time: "31-08-2026 06:25 PM",
+          departure_time: "26-10-2026 01:25 AM",
+          arrival_time: "27-10-2026 06:25 PM",
           duration: {
             raw: 1560,
             text: "26 hr 0 min",
@@ -1067,12 +1067,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:25",
+                time: "2026-10-26 01:25",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 05:35",
+                time: "2026-10-27 05:35",
               },
               duration: {
                 raw: 790,
@@ -1097,12 +1097,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 15:00",
+                time: "2026-10-27 15:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 18:25",
+                time: "2026-10-27 18:25",
               },
               duration: {
                 raw: 205,
@@ -1154,8 +1154,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOWHhEV0RNek5ob0xDSitTQXhBQ0dnTlZVMFE0SEhDZmtnTT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjUiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjMzNiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 01:25 AM",
-          arrival_time: "31-08-2026 08:25 PM",
+          departure_time: "26-10-2026 01:25 AM",
+          arrival_time: "27-10-2026 08:25 PM",
           duration: {
             raw: 1680,
             text: "28 hr 0 min",
@@ -1165,12 +1165,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:25",
+                time: "2026-10-26 01:25",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 05:35",
+                time: "2026-10-27 05:35",
               },
               duration: {
                 raw: 790,
@@ -1195,12 +1195,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 17:00",
+                time: "2026-10-27 17:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 20:25",
+                time: "2026-10-27 20:25",
               },
               duration: {
                 raw: 205,
@@ -1253,8 +1253,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOWHhEV0RNeE1ob0xDSitTQXhBQ0dnTlZVMFE0SEhDZmtnTT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjUiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjMxMiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 01:25 AM",
-          arrival_time: "31-08-2026 10:25 PM",
+          departure_time: "26-10-2026 01:25 AM",
+          arrival_time: "27-10-2026 10:25 PM",
           duration: {
             raw: 1800,
             text: "30 hr 0 min",
@@ -1264,12 +1264,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:25",
+                time: "2026-10-26 01:25",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 05:35",
+                time: "2026-10-27 05:35",
               },
               duration: {
                 raw: 790,
@@ -1294,12 +1294,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 19:00",
+                time: "2026-10-27 19:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 22:25",
+                time: "2026-10-27 22:25",
               },
               duration: {
                 raw: 205,
@@ -1351,8 +1351,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOWHhEV0RNME5Cb0xDSitTQXhBQ0dnTlZVMFE0SEhDZmtnTT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjUiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjM0NCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 01:25 AM",
-          arrival_time: "01-09-2026 01:25 AM",
+          departure_time: "26-10-2026 01:25 AM",
+          arrival_time: "28-10-2026 01:25 AM",
           duration: {
             raw: 1980,
             text: "33 hr 0 min",
@@ -1362,12 +1362,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:25",
+                time: "2026-10-26 01:25",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 05:35",
+                time: "2026-10-27 05:35",
               },
               duration: {
                 raw: 790,
@@ -1392,12 +1392,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 21:55",
+                time: "2026-10-27 21:55",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 01:25",
+                time: "2026-10-28 01:25",
               },
               duration: {
                 raw: 210,
@@ -1450,8 +1450,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOWHhEV0RNME1Cb0xDSitTQXhBQ0dnTlZVMFE0SEhDZmtnTT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjUiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjM0MCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:55 PM",
-          arrival_time: "01-09-2026 10:45 AM",
+          departure_time: "26-10-2026 02:55 PM",
+          arrival_time: "28-10-2026 10:45 AM",
           duration: {
             raw: 1730,
             text: "28 hr 50 min",
@@ -1461,12 +1461,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 14:55",
+                time: "2026-10-26 14:55",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 19:20",
+                time: "2026-10-27 19:20",
               },
               duration: {
                 raw: 805,
@@ -1491,12 +1491,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-9-1 07:25",
+                time: "2026-10-28 07:25",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 10:45",
+                time: "2026-10-28 10:45",
               },
               duration: {
                 raw: 200,
@@ -1549,8 +1549,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOM3hEV0RNek5Cb0xDSitTQXhBQ0dnTlZVMFE0SEhDZmtnTT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjciXSxbIkhLRyIsIjIwMjYtMDktMDEiLCJQRUsiLCJDWCIsIjMzNCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:55 PM",
-          arrival_time: "01-09-2026 12:25 PM",
+          departure_time: "26-10-2026 02:55 PM",
+          arrival_time: "28-10-2026 12:25 PM",
           duration: {
             raw: 1830,
             text: "30 hr 30 min",
@@ -1560,12 +1560,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 14:55",
+                time: "2026-10-26 14:55",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 19:20",
+                time: "2026-10-27 19:20",
               },
               duration: {
                 raw: 805,
@@ -1590,12 +1590,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-9-1 09:00",
+                time: "2026-10-28 09:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 12:25",
+                time: "2026-10-28 12:25",
               },
               duration: {
                 raw: 205,
@@ -1648,8 +1648,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOM3hEV0RNNU1Cb0xDSitTQXhBQ0dnTlZVMFE0SEhDZmtnTT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjciXSxbIkhLRyIsIjIwMjYtMDktMDEiLCJQRUsiLCJDWCIsIjM5MCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:55 PM",
-          arrival_time: "01-09-2026 03:25 PM",
+          departure_time: "26-10-2026 02:55 PM",
+          arrival_time: "28-10-2026 03:25 PM",
           duration: {
             raw: 2010,
             text: "33 hr 30 min",
@@ -1659,12 +1659,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 14:55",
+                time: "2026-10-26 14:55",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 19:20",
+                time: "2026-10-27 19:20",
               },
               duration: {
                 raw: 805,
@@ -1689,12 +1689,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-9-1 12:00",
+                time: "2026-10-28 12:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 15:25",
+                time: "2026-10-28 15:25",
               },
               duration: {
                 raw: 205,
@@ -1746,8 +1746,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOM3hEV0RNek1ob0xDSitTQXhBQ0dnTlZVMFE0SEhDZmtnTT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjciXSxbIkhLRyIsIjIwMjYtMDktMDEiLCJQRUsiLCJDWCIsIjMzMiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 04:55 PM",
-          arrival_time: "01-09-2026 10:45 AM",
+          departure_time: "26-10-2026 04:55 PM",
+          arrival_time: "28-10-2026 10:45 AM",
           duration: {
             raw: 1610,
             text: "26 hr 50 min",
@@ -1757,12 +1757,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 16:55",
+                time: "2026-10-26 16:55",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 21:05",
+                time: "2026-10-27 21:05",
               },
               duration: {
                 raw: 790,
@@ -1787,12 +1787,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-9-1 07:25",
+                time: "2026-10-28 07:25",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 10:45",
+                time: "2026-10-28 10:45",
               },
               duration: {
                 raw: 200,
@@ -1845,8 +1845,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwQlF6RTFmRU5ZTXpNMEdnc0lnNVVERUFJYUExVlRSRGdjY0lPVkF3PT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQUMiLCIxNSJdLFsiSEtHIiwiMjAyNi0wOS0wMSIsIlBFSyIsIkNYIiwiMzM0Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 04:55 PM",
-          arrival_time: "01-09-2026 03:25 PM",
+          departure_time: "26-10-2026 04:55 PM",
+          arrival_time: "28-10-2026 03:25 PM",
           duration: {
             raw: 1890,
             text: "31 hr 30 min",
@@ -1856,12 +1856,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 16:55",
+                time: "2026-10-26 16:55",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 21:05",
+                time: "2026-10-27 21:05",
               },
               duration: {
                 raw: 790,
@@ -1886,12 +1886,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-9-1 12:00",
+                time: "2026-10-28 12:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 15:25",
+                time: "2026-10-28 15:25",
               },
               duration: {
                 raw: 205,
@@ -1943,8 +1943,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwQlF6RTFmRU5ZTXpNeUdnc0lnNVVERUFJYUExVlRSRGdjY0lPVkF3PT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQUMiLCIxNSJdLFsiSEtHIiwiMjAyNi0wOS0wMSIsIlBFSyIsIkNYIiwiMzMyIl1dXV0=",
         },
         {
-          departure_time: "30-08-2026 12:55 AM",
-          arrival_time: "31-08-2026 10:25 AM",
+          departure_time: "26-10-2026 12:55 AM",
+          arrival_time: "27-10-2026 10:25 AM",
           duration: {
             raw: 1110,
             text: "18 hr 30 min",
@@ -1954,12 +1954,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 00:55",
+                time: "2026-10-26 00:55",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 04:25",
+                time: "2026-10-27 04:25",
               },
               duration: {
                 raw: 690,
@@ -1984,12 +1984,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Gimpo International Airport",
                 airport_code: "GMP",
-                time: "2026-8-31 09:05",
+                time: "2026-10-27 09:05",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 10:25",
+                time: "2026-10-27 10:25",
               },
               duration: {
                 raw: 140,
@@ -2042,8 +2042,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0TFJUYzJmRXRGTWpBMU1Sb0xDSitmQXhBQ0dnTlZVMFE0SEhDZm53TT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSUNOIiwiS0UiLCI3NiJdLFsiR01QIiwiMjAyNi0wOC0zMSIsIlBFSyIsIktFIiwiMjA1MSJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:50 PM",
-          arrival_time: "01-09-2026 10:25 AM",
+          departure_time: "26-10-2026 02:50 PM",
+          arrival_time: "28-10-2026 10:25 AM",
           duration: {
             raw: 1715,
             text: "28 hr 35 min",
@@ -2053,12 +2053,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 14:50",
+                time: "2026-10-26 14:50",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 17:50",
+                time: "2026-10-27 17:50",
               },
               duration: {
                 raw: 660,
@@ -2083,12 +2083,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Gimpo International Airport",
                 airport_code: "GMP",
-                time: "2026-9-1 09:05",
+                time: "2026-10-28 09:05",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 10:25",
+                time: "2026-10-28 10:25",
               },
               duration: {
                 raw: 140,
@@ -2141,8 +2141,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0TFJUY3lmRXRGTWpBMU1Sb0xDSitmQXhBQ0dnTlZVMFE0SEhDZm53TT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSUNOIiwiS0UiLCI3MiJdLFsiR01QIiwiMjAyNi0wOS0wMSIsIlBFSyIsIktFIiwiMjA1MSJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:00 PM",
-          arrival_time: "01-09-2026 12:00 PM",
+          departure_time: "26-10-2026 02:00 PM",
+          arrival_time: "28-10-2026 12:00 PM",
           duration: {
             raw: 1860,
             text: "31 hr 0 min",
@@ -2152,12 +2152,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 14:00",
+                time: "2026-10-26 14:00",
               },
               arrival_airport: {
                 airport_name: "Narita International Airport",
                 airport_code: "NRT",
-                time: "2026-8-31 15:55",
+                time: "2026-10-27 15:55",
               },
               duration: {
                 raw: 595,
@@ -2182,12 +2182,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-9-1 08:50",
+                time: "2026-10-28 08:50",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 12:00",
+                time: "2026-10-28 12:00",
               },
               duration: {
                 raw: 250,
@@ -2240,8 +2240,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdsS1RERTNmRXBNTWpFYUN3aS9xQU1RQWhvRFZWTkVPQnh3djZnRCJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJOUlQiLCJKTCIsIjE3Il0sWyJITkQiLCIyMDI2LTA5LTAxIiwiUEVLIiwiSkwiLCIyMSJdXV1d",
         },
         {
-          departure_time: "30-08-2026 12:55 PM",
-          arrival_time: "01-09-2026 10:25 AM",
+          departure_time: "26-10-2026 12:55 PM",
+          arrival_time: "28-10-2026 10:25 AM",
           duration: {
             raw: 1830,
             text: "30 hr 30 min",
@@ -2251,12 +2251,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 12:55",
+                time: "2026-10-26 12:55",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 16:05",
+                time: "2026-10-27 16:05",
               },
               duration: {
                 raw: 670,
@@ -2281,12 +2281,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Gimpo International Airport",
                 airport_code: "GMP",
-                time: "2026-9-1 09:05",
+                time: "2026-10-28 09:05",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 10:25",
+                time: "2026-10-28 10:25",
               },
               duration: {
                 raw: 140,
@@ -2339,8 +2339,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0QlF6WXpmRXRGTWpBMU1Sb0xDSTZIQkJBQ0dnTlZVMFE0SEhDT2h3UT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSUNOIiwiQUMiLCI2MyJdLFsiR01QIiwiMjAyNi0wOS0wMSIsIlBFSyIsIktFIiwiMjA1MSJdXV1d",
         },
         {
-          departure_time: "30-08-2026 07:20 PM",
-          arrival_time: "01-09-2026 03:25 PM",
+          departure_time: "26-10-2026 07:20 PM",
+          arrival_time: "28-10-2026 03:25 PM",
           duration: {
             raw: 1745,
             text: "29 hr 5 min",
@@ -2350,12 +2350,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 19:20",
+                time: "2026-10-26 19:20",
               },
               arrival_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 21:48",
+                time: "2026-10-26 21:48",
               },
               duration: {
                 raw: 148,
@@ -2380,12 +2380,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-31 10:45",
+                time: "2026-10-27 10:45",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 15:25",
+                time: "2026-10-28 15:25",
               },
               duration: {
                 raw: 820,
@@ -2438,8 +2438,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd4VlFURXdPRE44VlVFNE9EZ2FDd2pIaVFRUUFob0RWVk5FT0J4d3g0a0UiXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiU0ZPIiwiVUEiLCIxMDgzIl0sWyJTRk8iLCIyMDI2LTA4LTMxIiwiUEVLIiwiVUEiLCI4ODgiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 10:55 AM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 10:55 AM",
           duration: {
             raw: 1075,
             text: "17 hr 55 min",
@@ -2449,12 +2449,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -2479,12 +2479,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 07:30",
+                time: "2026-10-27 07:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 10:55",
+                time: "2026-10-27 10:55",
               },
               duration: {
                 raw: 205,
@@ -2537,8 +2537,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwRFNUTXhmRU5KTlRFeEdnc0lxSXNFRUFJYUExVlRSRGdjY0tpTEJBPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiVFBFIiwiQ0kiLCIzMSJdLFsiVFBFIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNJIiwiNTExIl1dXV0=",
         },
         {
-          departure_time: "30-08-2026 07:00 AM",
-          arrival_time: "31-08-2026 08:15 PM",
+          departure_time: "26-10-2026 07:00 AM",
+          arrival_time: "27-10-2026 08:15 PM",
           duration: {
             raw: 1335,
             text: "22 hr 15 min",
@@ -2548,12 +2548,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 07:00",
+                time: "2026-10-26 07:00",
               },
               arrival_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 09:28",
+                time: "2026-10-26 09:28",
               },
               duration: {
                 raw: 148,
@@ -2578,12 +2578,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 10:55",
+                time: "2026-10-26 10:55",
               },
               arrival_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-8-31 13:55",
+                time: "2026-10-27 13:55",
               },
               duration: {
                 raw: 660,
@@ -2608,12 +2608,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-8-31 17:15",
+                time: "2026-10-27 17:15",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 20:15",
+                time: "2026-10-27 20:15",
               },
               duration: {
                 raw: 240,
@@ -2671,8 +2671,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKVlFUSXpNako4VlVFNE56VjhUa2c1TmpNYUN3aTB2QVFRQWhvRFZWTkVPQnh3dEx3RSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRk8iLCJVQSIsIjIzMjIiXSxbIlNGTyIsIjIwMjYtMDgtMzAiLCJITkQiLCJVQSIsIjg3NSJdLFsiSE5EIiwiMjAyNi0wOC0zMSIsIlBFSyIsIk5IIiwiOTYzIl1dXV0=",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 07:30 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 07:30 PM",
           duration: {
             raw: 1590,
             text: "26 hr 30 min",
@@ -2682,12 +2682,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -2712,12 +2712,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 16:05",
+                time: "2026-10-27 16:05",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 19:30",
+                time: "2026-10-27 19:30",
               },
               duration: {
                 raw: 205,
@@ -2770,8 +2770,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdsQ1VqbDhRbEkzTVRZYUN3akx4QVFRQWhvRFZWTkVPQnh3eThRRSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJUUEUiLCJCUiIsIjkiXSxbIlRQRSIsIjIwMjYtMDgtMzEiLCJQRUsiLCJCUiIsIjcxNiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 03:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 03:25 PM",
           duration: {
             raw: 1345,
             text: "22 hr 25 min",
@@ -2781,12 +2781,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -2811,12 +2811,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 08:00",
+                time: "2026-10-27 08:00",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 10:05",
+                time: "2026-10-27 10:05",
               },
               duration: {
                 raw: 125,
@@ -2841,12 +2841,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 12:00",
+                time: "2026-10-27 12:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 15:25",
+                time: "2026-10-27 15:25",
               },
               duration: {
                 raw: 205,
@@ -2906,8 +2906,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhCRFNUTXhmRU5KT1RBemZFTllNek15R2dzSTFjMEVFQUlhQTFWVFJEZ2NjTlhOQkE9PSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJUUEUiLCJDSSIsIjMxIl0sWyJUUEUiLCIyMDI2LTA4LTMxIiwiSEtHIiwiQ0kiLCI5MDMiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjMzMiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 03:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 03:25 PM",
           duration: {
             raw: 1345,
             text: "22 hr 25 min",
@@ -2917,12 +2917,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -2947,12 +2947,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 07:20",
+                time: "2026-10-27 07:20",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 09:15",
+                time: "2026-10-27 09:15",
               },
               duration: {
                 raw: 115,
@@ -2977,12 +2977,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 12:00",
+                time: "2026-10-27 12:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 15:25",
+                time: "2026-10-27 15:25",
               },
               duration: {
                 raw: 205,
@@ -3042,8 +3042,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhCRFNUTXhmRU5KTmpBeGZFTllNek15R2dzSTFjMEVFQUlhQTFWVFJEZ2NjTlhOQkE9PSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJUUEUiLCJDSSIsIjMxIl0sWyJUUEUiLCIyMDI2LTA4LTMxIiwiSEtHIiwiQ0kiLCI2MDEiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjMzMiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 05:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 05:25 PM",
           duration: {
             raw: 1465,
             text: "24 hr 25 min",
@@ -3053,12 +3053,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -3083,12 +3083,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 08:00",
+                time: "2026-10-27 08:00",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 10:05",
+                time: "2026-10-27 10:05",
               },
               duration: {
                 raw: 125,
@@ -3113,12 +3113,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 13:55",
+                time: "2026-10-27 13:55",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 17:25",
+                time: "2026-10-27 17:25",
               },
               duration: {
                 raw: 210,
@@ -3177,8 +3177,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhCRFNUTXhmRU5KT1RBemZFTllNemt5R2dzSTFjMEVFQUlhQTFWVFJEZ2NjTlhOQkE9PSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJUUEUiLCJDSSIsIjMxIl0sWyJUUEUiLCIyMDI2LTA4LTMxIiwiSEtHIiwiQ0kiLCI5MDMiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjM5MiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 05:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 05:25 PM",
           duration: {
             raw: 1465,
             text: "24 hr 25 min",
@@ -3188,12 +3188,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -3218,12 +3218,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 07:20",
+                time: "2026-10-27 07:20",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 09:15",
+                time: "2026-10-27 09:15",
               },
               duration: {
                 raw: 115,
@@ -3248,12 +3248,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 13:55",
+                time: "2026-10-27 13:55",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 17:25",
+                time: "2026-10-27 17:25",
               },
               duration: {
                 raw: 210,
@@ -3312,8 +3312,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhCRFNUTXhmRU5KTmpBeGZFTllNemt5R2dzSTFjMEVFQUlhQTFWVFJEZ2NjTlhOQkE9PSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJUUEUiLCJDSSIsIjMxIl0sWyJUUEUiLCIyMDI2LTA4LTMxIiwiSEtHIiwiQ0kiLCI2MDEiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjM5MiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 06:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 06:25 PM",
           duration: {
             raw: 1525,
             text: "25 hr 25 min",
@@ -3323,12 +3323,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -3353,12 +3353,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 08:00",
+                time: "2026-10-27 08:00",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 10:05",
+                time: "2026-10-27 10:05",
               },
               duration: {
                 raw: 125,
@@ -3383,12 +3383,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 15:00",
+                time: "2026-10-27 15:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 18:25",
+                time: "2026-10-27 18:25",
               },
               duration: {
                 raw: 205,
@@ -3447,8 +3447,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhCRFNUTXhmRU5KT1RBemZFTllNek0yR2dzSTFjMEVFQUlhQTFWVFJEZ2NjTlhOQkE9PSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJUUEUiLCJDSSIsIjMxIl0sWyJUUEUiLCIyMDI2LTA4LTMxIiwiSEtHIiwiQ0kiLCI5MDMiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjMzNiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 06:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 06:25 PM",
           duration: {
             raw: 1525,
             text: "25 hr 25 min",
@@ -3458,12 +3458,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -3488,12 +3488,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 07:20",
+                time: "2026-10-27 07:20",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 09:15",
+                time: "2026-10-27 09:15",
               },
               duration: {
                 raw: 115,
@@ -3518,12 +3518,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 15:00",
+                time: "2026-10-27 15:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 18:25",
+                time: "2026-10-27 18:25",
               },
               duration: {
                 raw: 205,
@@ -3582,8 +3582,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhCRFNUTXhmRU5KTmpBeGZFTllNek0yR2dzSTFjMEVFQUlhQTFWVFJEZ2NjTlhOQkE9PSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJUUEUiLCJDSSIsIjMxIl0sWyJUUEUiLCIyMDI2LTA4LTMxIiwiSEtHIiwiQ0kiLCI2MDEiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjMzNiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 06:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 06:25 PM",
           duration: {
             raw: 1525,
             text: "25 hr 25 min",
@@ -3593,12 +3593,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -3623,12 +3623,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 11:00",
+                time: "2026-10-27 11:00",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 13:05",
+                time: "2026-10-27 13:05",
               },
               duration: {
                 raw: 125,
@@ -3653,12 +3653,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 15:00",
+                time: "2026-10-27 15:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 18:25",
+                time: "2026-10-27 18:25",
               },
               duration: {
                 raw: 205,
@@ -3717,8 +3717,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhCRFNUTXhmRU5KT1RBNWZFTllNek0yR2dzSTFjMEVFQUlhQTFWVFJEZ2NjTlhOQkE9PSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJUUEUiLCJDSSIsIjMxIl0sWyJUUEUiLCIyMDI2LTA4LTMxIiwiSEtHIiwiQ0kiLCI5MDkiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDWCIsIjMzNiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 03:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 03:25 PM",
           duration: {
             raw: 1345,
             text: "22 hr 25 min",
@@ -3728,12 +3728,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -3758,12 +3758,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 07:00",
+                time: "2026-10-27 07:00",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 08:50",
+                time: "2026-10-27 08:50",
               },
               duration: {
                 raw: 110,
@@ -3788,12 +3788,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 12:00",
+                time: "2026-10-27 12:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 15:25",
+                time: "2026-10-27 15:25",
               },
               duration: {
                 raw: 205,
@@ -3853,8 +3853,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWc5Q1VqbDhRbEk0T1RGOFExZ3pNeklhQ3dqQjJBUVFBaG9EVlZORU9CeHd3ZGdFIl1dLFsiMjAyNi0wOC0zMCIsIllWUiIsIlBFSyIsW1siWVZSIiwiMjAyNi0wOC0zMCIsIlRQRSIsIkJSIiwiOSJdLFsiVFBFIiwiMjAyNi0wOC0zMSIsIkhLRyIsIkJSIiwiODkxIl0sWyJIS0ciLCIyMDI2LTA4LTMxIiwiUEVLIiwiQ1giLCIzMzIiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 03:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 03:25 PM",
           duration: {
             raw: 1345,
             text: "22 hr 25 min",
@@ -3864,12 +3864,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -3894,12 +3894,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 08:15",
+                time: "2026-10-27 08:15",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 10:05",
+                time: "2026-10-27 10:05",
               },
               duration: {
                 raw: 110,
@@ -3921,12 +3921,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 12:00",
+                time: "2026-10-27 12:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 15:25",
+                time: "2026-10-27 15:25",
               },
               duration: {
                 raw: 205,
@@ -3986,8 +3986,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWc5Q1VqbDhRbEk0TlRGOFExZ3pNeklhQ3dqQjJBUVFBaG9EVlZORU9CeHd3ZGdFIl1dLFsiMjAyNi0wOC0zMCIsIllWUiIsIlBFSyIsW1siWVZSIiwiMjAyNi0wOC0zMCIsIlRQRSIsIkJSIiwiOSJdLFsiVFBFIiwiMjAyNi0wOC0zMSIsIkhLRyIsIkJSIiwiODUxIl0sWyJIS0ciLCIyMDI2LTA4LTMxIiwiUEVLIiwiQ1giLCIzMzIiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 05:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 05:25 PM",
           duration: {
             raw: 1465,
             text: "24 hr 25 min",
@@ -3997,12 +3997,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -4027,12 +4027,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 10:05",
+                time: "2026-10-27 10:05",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 12:05",
+                time: "2026-10-27 12:05",
               },
               duration: {
                 raw: 120,
@@ -4057,12 +4057,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 13:55",
+                time: "2026-10-27 13:55",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 17:25",
+                time: "2026-10-27 17:25",
               },
               duration: {
                 raw: 210,
@@ -4121,8 +4121,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWc5Q1VqbDhRbEk0TmpkOFExZ3pPVElhQ3dqQjJBUVFBaG9EVlZORU9CeHd3ZGdFIl1dLFsiMjAyNi0wOC0zMCIsIllWUiIsIlBFSyIsW1siWVZSIiwiMjAyNi0wOC0zMCIsIlRQRSIsIkJSIiwiOSJdLFsiVFBFIiwiMjAyNi0wOC0zMSIsIkhLRyIsIkJSIiwiODY3Il0sWyJIS0ciLCIyMDI2LTA4LTMxIiwiUEVLIiwiQ1giLCIzOTIiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 05:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 05:25 PM",
           duration: {
             raw: 1465,
             text: "24 hr 25 min",
@@ -4132,12 +4132,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -4162,12 +4162,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 08:15",
+                time: "2026-10-27 08:15",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 10:05",
+                time: "2026-10-27 10:05",
               },
               duration: {
                 raw: 110,
@@ -4189,12 +4189,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 13:55",
+                time: "2026-10-27 13:55",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 17:25",
+                time: "2026-10-27 17:25",
               },
               duration: {
                 raw: 210,
@@ -4253,8 +4253,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWc5Q1VqbDhRbEk0TlRGOFExZ3pPVElhQ3dqQjJBUVFBaG9EVlZORU9CeHd3ZGdFIl1dLFsiMjAyNi0wOC0zMCIsIllWUiIsIlBFSyIsW1siWVZSIiwiMjAyNi0wOC0zMCIsIlRQRSIsIkJSIiwiOSJdLFsiVFBFIiwiMjAyNi0wOC0zMSIsIkhLRyIsIkJSIiwiODUxIl0sWyJIS0ciLCIyMDI2LTA4LTMxIiwiUEVLIiwiQ1giLCIzOTIiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 05:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 05:25 PM",
           duration: {
             raw: 1465,
             text: "24 hr 25 min",
@@ -4264,12 +4264,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -4294,12 +4294,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 07:00",
+                time: "2026-10-27 07:00",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 08:50",
+                time: "2026-10-27 08:50",
               },
               duration: {
                 raw: 110,
@@ -4324,12 +4324,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 13:55",
+                time: "2026-10-27 13:55",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 17:25",
+                time: "2026-10-27 17:25",
               },
               duration: {
                 raw: 210,
@@ -4388,8 +4388,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWc5Q1VqbDhRbEk0T1RGOFExZ3pPVElhQ3dqQjJBUVFBaG9EVlZORU9CeHd3ZGdFIl1dLFsiMjAyNi0wOC0zMCIsIllWUiIsIlBFSyIsW1siWVZSIiwiMjAyNi0wOC0zMCIsIlRQRSIsIkJSIiwiOSJdLFsiVFBFIiwiMjAyNi0wOC0zMSIsIkhLRyIsIkJSIiwiODkxIl0sWyJIS0ciLCIyMDI2LTA4LTMxIiwiUEVLIiwiQ1giLCIzOTIiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 06:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 06:25 PM",
           duration: {
             raw: 1525,
             text: "25 hr 25 min",
@@ -4399,12 +4399,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -4429,12 +4429,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 10:05",
+                time: "2026-10-27 10:05",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 12:05",
+                time: "2026-10-27 12:05",
               },
               duration: {
                 raw: 120,
@@ -4459,12 +4459,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 15:00",
+                time: "2026-10-27 15:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 18:25",
+                time: "2026-10-27 18:25",
               },
               duration: {
                 raw: 205,
@@ -4523,8 +4523,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWc5Q1VqbDhRbEk0TmpkOFExZ3pNellhQ3dqQjJBUVFBaG9EVlZORU9CeHd3ZGdFIl1dLFsiMjAyNi0wOC0zMCIsIllWUiIsIlBFSyIsW1siWVZSIiwiMjAyNi0wOC0zMCIsIlRQRSIsIkJSIiwiOSJdLFsiVFBFIiwiMjAyNi0wOC0zMSIsIkhLRyIsIkJSIiwiODY3Il0sWyJIS0ciLCIyMDI2LTA4LTMxIiwiUEVLIiwiQ1giLCIzMzYiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 06:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 06:25 PM",
           duration: {
             raw: 1525,
             text: "25 hr 25 min",
@@ -4534,12 +4534,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -4564,12 +4564,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 08:15",
+                time: "2026-10-27 08:15",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 10:05",
+                time: "2026-10-27 10:05",
               },
               duration: {
                 raw: 110,
@@ -4591,12 +4591,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 15:00",
+                time: "2026-10-27 15:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 18:25",
+                time: "2026-10-27 18:25",
               },
               duration: {
                 raw: 205,
@@ -4655,8 +4655,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWc5Q1VqbDhRbEk0TlRGOFExZ3pNellhQ3dqQjJBUVFBaG9EVlZORU9CeHd3ZGdFIl1dLFsiMjAyNi0wOC0zMCIsIllWUiIsIlBFSyIsW1siWVZSIiwiMjAyNi0wOC0zMCIsIlRQRSIsIkJSIiwiOSJdLFsiVFBFIiwiMjAyNi0wOC0zMSIsIkhLRyIsIkJSIiwiODUxIl0sWyJIS0ciLCIyMDI2LTA4LTMxIiwiUEVLIiwiQ1giLCIzMzYiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 06:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 06:25 PM",
           duration: {
             raw: 1525,
             text: "25 hr 25 min",
@@ -4666,12 +4666,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -4696,12 +4696,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 07:00",
+                time: "2026-10-27 07:00",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 08:50",
+                time: "2026-10-27 08:50",
               },
               duration: {
                 raw: 110,
@@ -4726,12 +4726,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 15:00",
+                time: "2026-10-27 15:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 18:25",
+                time: "2026-10-27 18:25",
               },
               duration: {
                 raw: 205,
@@ -4790,8 +4790,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWc5Q1VqbDhRbEk0T1RGOFExZ3pNellhQ3dqQjJBUVFBaG9EVlZORU9CeHd3ZGdFIl1dLFsiMjAyNi0wOC0zMCIsIllWUiIsIlBFSyIsW1siWVZSIiwiMjAyNi0wOC0zMCIsIlRQRSIsIkJSIiwiOSJdLFsiVFBFIiwiMjAyNi0wOC0zMSIsIkhLRyIsIkJSIiwiODkxIl0sWyJIS0ciLCIyMDI2LTA4LTMxIiwiUEVLIiwiQ1giLCIzMzYiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 08:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 08:25 PM",
           duration: {
             raw: 1645,
             text: "27 hr 25 min",
@@ -4801,12 +4801,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -4831,12 +4831,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 08:15",
+                time: "2026-10-27 08:15",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 10:05",
+                time: "2026-10-27 10:05",
               },
               duration: {
                 raw: 110,
@@ -4858,12 +4858,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 17:00",
+                time: "2026-10-27 17:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 20:25",
+                time: "2026-10-27 20:25",
               },
               duration: {
                 raw: 205,
@@ -4923,8 +4923,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWc5Q1VqbDhRbEk0TlRGOFExZ3pNVElhQ3dqQjJBUVFBaG9EVlZORU9CeHd3ZGdFIl1dLFsiMjAyNi0wOC0zMCIsIllWUiIsIlBFSyIsW1siWVZSIiwiMjAyNi0wOC0zMCIsIlRQRSIsIkJSIiwiOSJdLFsiVFBFIiwiMjAyNi0wOC0zMSIsIkhLRyIsIkJSIiwiODUxIl0sWyJIS0ciLCIyMDI2LTA4LTMxIiwiUEVLIiwiQ1giLCIzMTIiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 08:25 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 08:25 PM",
           duration: {
             raw: 1645,
             text: "27 hr 25 min",
@@ -4934,12 +4934,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -4964,12 +4964,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 12:40",
+                time: "2026-10-27 12:40",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 14:25",
+                time: "2026-10-27 14:25",
               },
               duration: {
                 raw: 105,
@@ -4994,12 +4994,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 17:00",
+                time: "2026-10-27 17:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 20:25",
+                time: "2026-10-27 20:25",
               },
               duration: {
                 raw: 205,
@@ -5059,8 +5059,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWc5Q1VqbDhRbEk0TmpsOFExZ3pNVElhQ3dqQjJBUVFBaG9EVlZORU9CeHd3ZGdFIl1dLFsiMjAyNi0wOC0zMCIsIllWUiIsIlBFSyIsW1siWVZSIiwiMjAyNi0wOC0zMCIsIlRQRSIsIkJSIiwiOSJdLFsiVFBFIiwiMjAyNi0wOC0zMSIsIkhLRyIsIkJSIiwiODY5Il0sWyJIS0ciLCIyMDI2LTA4LTMxIiwiUEVLIiwiQ1giLCIzMTIiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 07:30 PM",
-          arrival_time: "01-09-2026 12:35 PM",
+          departure_time: "26-10-2026 07:30 PM",
+          arrival_time: "28-10-2026 12:35 PM",
           duration: {
             raw: 1565,
             text: "26 hr 5 min",
@@ -5070,12 +5070,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 19:30",
+                time: "2026-10-26 19:30",
               },
               arrival_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-30 20:38",
+                time: "2026-10-26 20:38",
               },
               duration: {
                 raw: 68,
@@ -5099,12 +5099,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-31 02:10",
+                time: "2026-10-27 02:10",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-9-1 05:05",
+                time: "2026-10-28 05:05",
               },
               duration: {
                 raw: 715,
@@ -5129,12 +5129,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-9-1 09:10",
+                time: "2026-10-28 09:10",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 12:35",
+                time: "2026-10-28 12:35",
               },
               duration: {
                 raw: 205,
@@ -5194,8 +5194,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhGQlV6SXdNVGQ4UWxJeU5YeENVamN4TmhvTENPVHlCQkFDR2dOVlUwUTRISERrOGdRPSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRUEiLCJBUyIsIjIwMTciXSxbIlNFQSIsIjIwMjYtMDgtMzEiLCJUUEUiLCJCUiIsIjI1Il0sWyJUUEUiLCIyMDI2LTA5LTAxIiwiUEVLIiwiQlIiLCI3MTYiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 09:35 PM",
-          arrival_time: "01-09-2026 09:40 AM",
+          departure_time: "26-10-2026 09:35 PM",
+          arrival_time: "28-10-2026 09:40 AM",
           duration: {
             raw: 1265,
             text: "21 hr 5 min",
@@ -5205,12 +5205,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 21:35",
+                time: "2026-10-26 21:35",
               },
               arrival_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-30 22:42",
+                time: "2026-10-26 22:42",
               },
               duration: {
                 raw: 67,
@@ -5228,12 +5228,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-31 00:10",
+                time: "2026-10-27 00:10",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-9-1 04:00",
+                time: "2026-10-28 04:00",
               },
               duration: {
                 raw: 710,
@@ -5256,12 +5256,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-9-1 08:20",
+                time: "2026-10-28 08:20",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 09:40",
+                time: "2026-10-28 09:40",
               },
               duration: {
                 raw: 140,
@@ -5319,8 +5319,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKQlF6ZzRNVEI4VDFveU56RjhUMW96TXpFYUN3aUNtQVVRQWhvRFZWTkVPQnh3Z3BnRiJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRUEiLCJBQyIsIjg4MTAiXSxbIlNFQSIsIjIwMjYtMDgtMzEiLCJJQ04iLCJPWiIsIjI3MSJdLFsiSUNOIiwiMjAyNi0wOS0wMSIsIlBFSyIsIk9aIiwiMzMxIl1dXV0=",
         },
         {
-          departure_time: "30-08-2026 09:35 PM",
-          arrival_time: "01-09-2026 02:00 PM",
+          departure_time: "26-10-2026 09:35 PM",
+          arrival_time: "28-10-2026 02:00 PM",
           duration: {
             raw: 1525,
             text: "25 hr 25 min",
@@ -5330,12 +5330,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 21:35",
+                time: "2026-10-26 21:35",
               },
               arrival_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-30 22:42",
+                time: "2026-10-26 22:42",
               },
               duration: {
                 raw: 67,
@@ -5353,12 +5353,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-31 00:10",
+                time: "2026-10-27 00:10",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-9-1 04:00",
+                time: "2026-10-28 04:00",
               },
               duration: {
                 raw: 710,
@@ -5381,12 +5381,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-9-1 12:50",
+                time: "2026-10-28 12:50",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 14:00",
+                time: "2026-10-28 14:00",
               },
               duration: {
                 raw: 130,
@@ -5444,8 +5444,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKQlF6ZzRNVEI4VDFveU56RjhUMW96TXpNYUN3aUNtQVVRQWhvRFZWTkVPQnh3Z3BnRiJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRUEiLCJBQyIsIjg4MTAiXSxbIlNFQSIsIjIwMjYtMDgtMzEiLCJJQ04iLCJPWiIsIjI3MSJdLFsiSUNOIiwiMjAyNi0wOS0wMSIsIlBFSyIsIk9aIiwiMzMzIl1dXV0=",
         },
         {
-          departure_time: "30-08-2026 12:55 AM",
-          arrival_time: "31-08-2026 04:10 PM",
+          departure_time: "26-10-2026 12:55 AM",
+          arrival_time: "27-10-2026 04:10 PM",
           duration: {
             raw: 1455,
             text: "24 hr 15 min",
@@ -5455,12 +5455,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 00:55",
+                time: "2026-10-26 00:55",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 04:25",
+                time: "2026-10-27 04:25",
               },
               duration: {
                 raw: 690,
@@ -5485,12 +5485,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Gimpo International Airport",
                 airport_code: "GMP",
-                time: "2026-8-31 15:00",
+                time: "2026-10-27 15:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 16:10",
+                time: "2026-10-27 16:10",
               },
               duration: {
                 raw: 130,
@@ -5541,8 +5541,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0TFJUYzJmRTlhTXpNMU5Sb0xDSzZnQlJBQ0dnTlZVMFE0SEhDdW9BVT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSUNOIiwiS0UiLCI3NiJdLFsiR01QIiwiMjAyNi0wOC0zMSIsIlBFSyIsIk9aIiwiMzM1NSJdXV1d",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "31-08-2026 04:35 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "27-10-2026 04:35 PM",
           duration: {
             raw: 1415,
             text: "23 hr 35 min",
@@ -5552,12 +5552,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -5582,12 +5582,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 13:05",
+                time: "2026-10-27 13:05",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 16:35",
+                time: "2026-10-27 16:35",
               },
               duration: {
                 raw: 210,
@@ -5633,8 +5633,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwQ1VqbDhTRlUzT1RnNEdnc0l0cjBGRUFJYUExVlRSRGdjY0xhOUJRPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiVFBFIiwiQlIiLCI5Il0sWyJUUEUiLCIyMDI2LTA4LTMxIiwiUEVLIiwiSFUiLCI3OTg4Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "01-09-2026 06:50 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "28-10-2026 06:50 PM",
           duration: {
             raw: 2990,
             text: "49 hr 50 min",
@@ -5644,12 +5644,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -5674,12 +5674,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-9-1 15:25",
+                time: "2026-10-28 15:25",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 18:50",
+                time: "2026-10-28 18:50",
               },
               duration: {
                 raw: 205,
@@ -5732,8 +5732,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwRFNUTXhmRU5KTlRFM0dnc0k5cGdHRUFJYUExVlRSRGdjY1BhWUJnPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiVFBFIiwiQ0kiLCIzMSJdLFsiVFBFIiwiMjAyNi0wOS0wMSIsIlBFSyIsIkNJIiwiNTE3Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 04:55 PM",
-          arrival_time: "01-09-2026 11:55 AM",
+          departure_time: "26-10-2026 04:55 PM",
+          arrival_time: "28-10-2026 11:55 AM",
           duration: {
             raw: 1680,
             text: "28 hr 0 min",
@@ -5743,12 +5743,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 16:55",
+                time: "2026-10-26 16:55",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 21:05",
+                time: "2026-10-27 21:05",
               },
               duration: {
                 raw: 790,
@@ -5773,12 +5773,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-9-1 08:30",
+                time: "2026-10-28 08:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 11:55",
+                time: "2026-10-28 11:55",
               },
               duration: {
                 raw: 205,
@@ -5829,8 +5829,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwQlF6RTFmRU5CTVRFNEdnc0lwYW9HRUFJYUExVlRSRGdjY0tXcUJnPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQUMiLCIxNSJdLFsiSEtHIiwiMjAyNi0wOS0wMSIsIlBFSyIsIkNBIiwiMTE4Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 04:55 PM",
-          arrival_time: "01-09-2026 12:25 PM",
+          departure_time: "26-10-2026 04:55 PM",
+          arrival_time: "28-10-2026 12:25 PM",
           duration: {
             raw: 1710,
             text: "28 hr 30 min",
@@ -5840,12 +5840,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 16:55",
+                time: "2026-10-26 16:55",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 21:05",
+                time: "2026-10-27 21:05",
               },
               duration: {
                 raw: 790,
@@ -5870,12 +5870,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-9-1 09:00",
+                time: "2026-10-28 09:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 12:25",
+                time: "2026-10-28 12:25",
               },
               duration: {
                 raw: 205,
@@ -5928,8 +5928,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwQlF6RTFmRU5ZTXprd0dnc0lwYW9HRUFJYUExVlRSRGdjY0tXcUJnPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQUMiLCIxNSJdLFsiSEtHIiwiMjAyNi0wOS0wMSIsIlBFSyIsIkNYIiwiMzkwIl1dXV0=",
         },
         {
-          departure_time: "30-08-2026 04:55 PM",
-          arrival_time: "01-09-2026 02:00 PM",
+          departure_time: "26-10-2026 04:55 PM",
+          arrival_time: "28-10-2026 02:00 PM",
           duration: {
             raw: 1805,
             text: "30 hr 5 min",
@@ -5939,12 +5939,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 16:55",
+                time: "2026-10-26 16:55",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 21:05",
+                time: "2026-10-27 21:05",
               },
               duration: {
                 raw: 790,
@@ -5969,12 +5969,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-9-1 10:30",
+                time: "2026-10-28 10:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 14:00",
+                time: "2026-10-28 14:00",
               },
               duration: {
                 raw: 210,
@@ -6025,8 +6025,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwQlF6RTFmRU5CTVRBNEdnc0lwYW9HRUFJYUExVlRSRGdjY0tXcUJnPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQUMiLCIxNSJdLFsiSEtHIiwiMjAyNi0wOS0wMSIsIlBFSyIsIkNBIiwiMTA4Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 02:00 AM",
-          arrival_time: "01-09-2026 12:35 PM",
+          departure_time: "26-10-2026 02:00 AM",
+          arrival_time: "28-10-2026 12:35 PM",
           duration: {
             raw: 2615,
             text: "43 hr 35 min",
@@ -6036,12 +6036,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 02:00",
+                time: "2026-10-26 02:00",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-8-31 05:00",
+                time: "2026-10-27 05:00",
               },
               duration: {
                 raw: 720,
@@ -6066,12 +6066,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-9-1 09:10",
+                time: "2026-10-28 09:10",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 12:35",
+                time: "2026-10-28 12:35",
               },
               duration: {
                 raw: 205,
@@ -6124,8 +6124,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0Q1VqbDhRbEkzTVRZak1Sb0xDTmZFQmhBQ0dnTlZVMFE0SEhEWHhBWT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiVFBFIiwiQlIiLCI5Il0sWyJUUEUiLCIyMDI2LTA5LTAxIiwiUEVLIiwiQlIiLCI3MTYiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 04:45 PM",
-          arrival_time: "01-09-2026 12:00 PM",
+          departure_time: "26-10-2026 04:45 PM",
+          arrival_time: "28-10-2026 12:00 PM",
           duration: {
             raw: 1695,
             text: "28 hr 15 min",
@@ -6135,12 +6135,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 16:45",
+                time: "2026-10-26 16:45",
               },
               arrival_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-8-31 19:00",
+                time: "2026-10-27 19:00",
               },
               duration: {
                 raw: 615,
@@ -6165,12 +6165,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-9-1 08:55",
+                time: "2026-10-28 08:55",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 12:00",
+                time: "2026-10-28 12:00",
               },
               duration: {
                 raw: 245,
@@ -6223,8 +6223,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0T1NERXhOWHhPU0RrMk1Sb0xDTnpsQmhBQ0dnTlZVMFE0SEhEYzVRWT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSE5EIiwiTkgiLCIxMTUiXSxbIkhORCIsIjIwMjYtMDktMDEiLCJQRUsiLCJOSCIsIjk2MSJdXV1d",
         },
         {
-          departure_time: "30-08-2026 12:30 PM",
-          arrival_time: "01-09-2026 12:00 PM",
+          departure_time: "26-10-2026 12:30 PM",
+          arrival_time: "28-10-2026 12:00 PM",
           duration: {
             raw: 1950,
             text: "32 hr 30 min",
@@ -6234,12 +6234,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 12:30",
+                time: "2026-10-26 12:30",
               },
               arrival_airport: {
                 airport_name: "Narita International Airport",
                 airport_code: "NRT",
-                time: "2026-8-31 14:40",
+                time: "2026-10-27 14:40",
               },
               duration: {
                 raw: 610,
@@ -6264,12 +6264,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-9-1 08:55",
+                time: "2026-10-28 08:55",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 12:00",
+                time: "2026-10-28 12:00",
               },
               duration: {
                 raw: 245,
@@ -6322,8 +6322,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0T1NERXpOWHhPU0RrMk1Sb0xDSVh0QmhBQ0dnTlZVMFE0SEhDRjdRWT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiTlJUIiwiTkgiLCIxMzUiXSxbIkhORCIsIjIwMjYtMDktMDEiLCJQRUsiLCJOSCIsIjk2MSJdXV1d",
         },
         {
-          departure_time: "30-08-2026 12:55 PM",
-          arrival_time: "01-09-2026 09:40 AM",
+          departure_time: "26-10-2026 12:55 PM",
+          arrival_time: "28-10-2026 09:40 AM",
           duration: {
             raw: 1785,
             text: "29 hr 45 min",
@@ -6333,12 +6333,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 12:55",
+                time: "2026-10-26 12:55",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 16:05",
+                time: "2026-10-27 16:05",
               },
               duration: {
                 raw: 670,
@@ -6363,12 +6363,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-9-1 08:15",
+                time: "2026-10-28 08:15",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 09:40",
+                time: "2026-10-28 09:40",
               },
               duration: {
                 raw: 145,
@@ -6421,8 +6421,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwQlF6WXpmRXRGT0RVeEdnc0lzKzRHRUFJYUExVlRSRGdjY0xQdUJnPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSUNOIiwiQUMiLCI2MyJdLFsiSUNOIiwiMjAyNi0wOS0wMSIsIlBFSyIsIktFIiwiODUxIl1dXV0=",
         },
         {
-          departure_time: "30-08-2026 01:25 AM",
-          arrival_time: "31-08-2026 11:55 AM",
+          departure_time: "26-10-2026 01:25 AM",
+          arrival_time: "27-10-2026 11:55 AM",
           duration: {
             raw: 1170,
             text: "19 hr 30 min",
@@ -6432,12 +6432,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:25",
+                time: "2026-10-26 01:25",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 05:35",
+                time: "2026-10-27 05:35",
               },
               duration: {
                 raw: 790,
@@ -6462,12 +6462,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 08:30",
+                time: "2026-10-27 08:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 11:55",
+                time: "2026-10-27 11:55",
               },
               duration: {
                 raw: 205,
@@ -6518,8 +6518,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOWHhEUVRFeE9Cb0xDTHVEQnhBQ0dnTlZVMFE0SEhDN2d3Yz0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjUiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDQSIsIjExOCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 01:25 AM",
-          arrival_time: "31-08-2026 02:00 PM",
+          departure_time: "26-10-2026 01:25 AM",
+          arrival_time: "27-10-2026 02:00 PM",
           duration: {
             raw: 1295,
             text: "21 hr 35 min",
@@ -6529,12 +6529,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:25",
+                time: "2026-10-26 01:25",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 05:35",
+                time: "2026-10-27 05:35",
               },
               duration: {
                 raw: 790,
@@ -6559,12 +6559,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 10:30",
+                time: "2026-10-27 10:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 14:00",
+                time: "2026-10-27 14:00",
               },
               duration: {
                 raw: 210,
@@ -6615,8 +6615,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOWHhEUVRFd09Cb0xDTHVEQnhBQ0dnTlZVMFE0SEhDN2d3Yz0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjUiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDQSIsIjEwOCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 01:25 AM",
-          arrival_time: "31-08-2026 05:15 PM",
+          departure_time: "26-10-2026 01:25 AM",
+          arrival_time: "27-10-2026 05:15 PM",
           duration: {
             raw: 1490,
             text: "24 hr 50 min",
@@ -6626,12 +6626,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:25",
+                time: "2026-10-26 01:25",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 05:35",
+                time: "2026-10-27 05:35",
               },
               duration: {
                 raw: 790,
@@ -6656,12 +6656,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 13:30",
+                time: "2026-10-27 13:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 17:15",
+                time: "2026-10-27 17:15",
               },
               duration: {
                 raw: 225,
@@ -6712,8 +6712,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOWHhEUVRFd01ob0xDTHVEQnhBQ0dnTlZVMFE0SEhDN2d3Yz0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjUiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDQSIsIjEwMiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 01:25 AM",
-          arrival_time: "31-08-2026 06:00 PM",
+          departure_time: "26-10-2026 01:25 AM",
+          arrival_time: "27-10-2026 06:00 PM",
           duration: {
             raw: 1535,
             text: "25 hr 35 min",
@@ -6723,12 +6723,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:25",
+                time: "2026-10-26 01:25",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 05:35",
+                time: "2026-10-27 05:35",
               },
               duration: {
                 raw: 790,
@@ -6753,12 +6753,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 14:35",
+                time: "2026-10-27 14:35",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 18:00",
+                time: "2026-10-27 18:00",
               },
               duration: {
                 raw: 205,
@@ -6808,8 +6808,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0RFdEZzJOWHhEUVRFeE1ob0xDTHVEQnhBQ0dnTlZVMFE0SEhDN2d3Yz0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiQ1giLCI4NjUiXSxbIkhLRyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDQSIsIjExMiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 07:10 PM",
-          arrival_time: "02-09-2026 05:15 AM",
+          departure_time: "26-10-2026 07:10 PM",
+          arrival_time: "29-10-2026 05:15 AM",
           duration: {
             raw: 2585,
             text: "43 hr 5 min",
@@ -6819,12 +6819,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 19:10",
+                time: "2026-10-26 19:10",
               },
               arrival_airport: {
                 airport_name: "Istanbul Airport",
                 airport_code: "IST",
-                time: "2026-8-31 17:10",
+                time: "2026-10-27 17:10",
               },
               duration: {
                 raw: 720,
@@ -6849,12 +6849,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Istanbul Airport",
                 airport_code: "IST",
-                time: "2026-9-1 15:30",
+                time: "2026-10-28 15:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-2 05:15",
+                time: "2026-10-29 05:15",
               },
               duration: {
                 raw: 525,
@@ -6907,8 +6907,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwVVN6YzJmRlJMTVRrMkdnc0k3dFVKRUFJYUExVlRSRGdjY083VkNRPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSVNUIiwiVEsiLCI3NiJdLFsiSVNUIiwiMjAyNi0wOS0wMSIsIlBFSyIsIlRLIiwiMTk2Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 05:50 PM",
-          arrival_time: "01-09-2026 08:55 AM",
+          departure_time: "26-10-2026 05:50 PM",
+          arrival_time: "28-10-2026 08:55 AM",
           duration: {
             raw: 1445,
             text: "24 hr 5 min",
@@ -6918,12 +6918,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 17:50",
+                time: "2026-10-26 17:50",
               },
               arrival_airport: {
                 airport_name: "Amsterdam Airport Schiphol",
                 airport_code: "AMS",
-                time: "2026-8-31 12:05",
+                time: "2026-10-27 12:05",
               },
               duration: {
                 raw: 555,
@@ -6948,12 +6948,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Amsterdam Airport Schiphol",
                 airport_code: "AMS",
-                time: "2026-8-31 16:00",
+                time: "2026-10-27 16:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 08:55",
+                time: "2026-10-28 08:55",
               },
               duration: {
                 raw: 655,
@@ -7006,8 +7006,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0TFREWTRNbnhMVERnNU54b0xDSS9hQ1JBQ0dnTlZVMFE0SEhDUDJnaz0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiQU1TIiwiS0wiLCI2ODIiXSxbIkFNUyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJLTCIsIjg5NyJdXV1d",
         },
         {
-          departure_time: "30-08-2026 01:10 PM",
-          arrival_time: "01-09-2026 08:55 AM",
+          departure_time: "26-10-2026 01:10 PM",
+          arrival_time: "28-10-2026 08:55 AM",
           duration: {
             raw: 1725,
             text: "28 hr 45 min",
@@ -7017,12 +7017,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 13:10",
+                time: "2026-10-26 13:10",
               },
               arrival_airport: {
                 airport_name: "Aéroport de Paris-Charles de Gaulle",
                 airport_code: "CDG",
-                time: "2026-8-31 07:50",
+                time: "2026-10-27 07:50",
               },
               duration: {
                 raw: 580,
@@ -7045,12 +7045,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Aéroport de Paris-Charles de Gaulle",
                 airport_code: "CDG",
-                time: "2026-8-31 10:15",
+                time: "2026-10-27 10:15",
               },
               arrival_airport: {
                 airport_name: "Amsterdam Airport Schiphol",
                 airport_code: "AMS",
-                time: "2026-8-31 11:30",
+                time: "2026-10-27 11:30",
               },
               duration: {
                 raw: 75,
@@ -7072,12 +7072,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Amsterdam Airport Schiphol",
                 airport_code: "AMS",
-                time: "2026-8-31 16:00",
+                time: "2026-10-27 16:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 08:55",
+                time: "2026-10-28 08:55",
               },
               duration: {
                 raw: 655,
@@ -7137,8 +7137,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKQlJqTTNOWHhMVERFME1EWjhTMHc0T1RjYUN3alI2Z2tRQWhvRFZWTkVPQnh3MGVvSiJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJDREciLCJBRiIsIjM3NSJdLFsiQ0RHIiwiMjAyNi0wOC0zMSIsIkFNUyIsIktMIiwiMTQwNiJdLFsiQU1TIiwiMjAyNi0wOC0zMSIsIlBFSyIsIktMIiwiODk3Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 01:10 PM",
-          arrival_time: "01-09-2026 08:55 AM",
+          departure_time: "26-10-2026 01:10 PM",
+          arrival_time: "28-10-2026 08:55 AM",
           duration: {
             raw: 1725,
             text: "28 hr 45 min",
@@ -7148,12 +7148,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 13:10",
+                time: "2026-10-26 13:10",
               },
               arrival_airport: {
                 airport_name: "Aéroport de Paris-Charles de Gaulle",
                 airport_code: "CDG",
-                time: "2026-8-31 07:50",
+                time: "2026-10-27 07:50",
               },
               duration: {
                 raw: 580,
@@ -7176,12 +7176,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Aéroport de Paris-Charles de Gaulle",
                 airport_code: "CDG",
-                time: "2026-8-31 12:15",
+                time: "2026-10-27 12:15",
               },
               arrival_airport: {
                 airport_name: "Amsterdam Airport Schiphol",
                 airport_code: "AMS",
-                time: "2026-8-31 13:40",
+                time: "2026-10-27 13:40",
               },
               duration: {
                 raw: 85,
@@ -7203,12 +7203,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Amsterdam Airport Schiphol",
                 airport_code: "AMS",
-                time: "2026-8-31 16:00",
+                time: "2026-10-27 16:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 08:55",
+                time: "2026-10-28 08:55",
               },
               duration: {
                 raw: 655,
@@ -7268,8 +7268,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKQlJqTTNOWHhCUmpFM05EQjhTMHc0T1RjYUN3amQ4UWtRQWhvRFZWTkVPQnh3M2ZFSiJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJDREciLCJBRiIsIjM3NSJdLFsiQ0RHIiwiMjAyNi0wOC0zMSIsIkFNUyIsIkFGIiwiMTc0MCJdLFsiQU1TIiwiMjAyNi0wOC0zMSIsIlBFSyIsIktMIiwiODk3Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 01:10 PM",
-          arrival_time: "01-09-2026 08:55 AM",
+          departure_time: "26-10-2026 01:10 PM",
+          arrival_time: "28-10-2026 08:55 AM",
           duration: {
             raw: 1725,
             text: "28 hr 45 min",
@@ -7279,12 +7279,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 13:10",
+                time: "2026-10-26 13:10",
               },
               arrival_airport: {
                 airport_name: "Aéroport de Paris-Charles de Gaulle",
                 airport_code: "CDG",
-                time: "2026-8-31 07:50",
+                time: "2026-10-27 07:50",
               },
               duration: {
                 raw: 580,
@@ -7307,12 +7307,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Aéroport de Paris-Charles de Gaulle",
                 airport_code: "CDG",
-                time: "2026-8-31 11:45",
+                time: "2026-10-27 11:45",
               },
               arrival_airport: {
                 airport_name: "Amsterdam Airport Schiphol",
                 airport_code: "AMS",
-                time: "2026-8-31 13:10",
+                time: "2026-10-27 13:10",
               },
               duration: {
                 raw: 85,
@@ -7336,12 +7336,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Amsterdam Airport Schiphol",
                 airport_code: "AMS",
-                time: "2026-8-31 16:00",
+                time: "2026-10-27 16:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 08:55",
+                time: "2026-10-28 08:55",
               },
               duration: {
                 raw: 655,
@@ -7401,8 +7401,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKQlJqTTNOWHhCUmpFMk5EQjhTMHc0T1RjYUN3amQ4UWtRQWhvRFZWTkVPQnh3M2ZFSiJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJDREciLCJBRiIsIjM3NSJdLFsiQ0RHIiwiMjAyNi0wOC0zMSIsIkFNUyIsIkFGIiwiMTY0MCJdLFsiQU1TIiwiMjAyNi0wOC0zMSIsIlBFSyIsIktMIiwiODk3Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 07:10 PM",
-          arrival_time: "01-09-2026 03:35 PM",
+          departure_time: "26-10-2026 07:10 PM",
+          arrival_time: "28-10-2026 03:35 PM",
           duration: {
             raw: 1765,
             text: "29 hr 25 min",
@@ -7412,12 +7412,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 19:10",
+                time: "2026-10-26 19:10",
               },
               arrival_airport: {
                 airport_name: "Istanbul Airport",
                 airport_code: "IST",
-                time: "2026-8-31 17:10",
+                time: "2026-10-27 17:10",
               },
               duration: {
                 raw: 720,
@@ -7442,12 +7442,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Istanbul Airport",
                 airport_code: "IST",
-                time: "2026-9-1 01:40",
+                time: "2026-10-28 01:40",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 15:35",
+                time: "2026-10-28 15:35",
               },
               duration: {
                 raw: 535,
@@ -7500,8 +7500,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdsVVN6YzJmRlJMT0RnYUN3ak41QXNRQWhvRFZWTkVPQnh3emVRTCJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJJU1QiLCJUSyIsIjc2Il0sWyJJU1QiLCIyMDI2LTA5LTAxIiwiUEVLIiwiVEsiLCI4OCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 06:00 AM",
-          arrival_time: "31-08-2026 09:30 PM",
+          departure_time: "26-10-2026 06:00 AM",
+          arrival_time: "27-10-2026 09:30 PM",
           duration: {
             raw: 1470,
             text: "24 hr 30 min",
@@ -7511,12 +7511,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 06:00",
+                time: "2026-10-26 06:00",
               },
               arrival_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-30 07:06",
+                time: "2026-10-26 07:06",
               },
               duration: {
                 raw: 66,
@@ -7540,12 +7540,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-30 13:20",
+                time: "2026-10-26 13:20",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 16:40",
+                time: "2026-10-27 16:40",
               },
               duration: {
                 raw: 680,
@@ -7570,12 +7570,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 20:00",
+                time: "2026-10-27 20:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 21:30",
+                time: "2026-10-27 21:30",
               },
               duration: {
                 raw: 150,
@@ -7635,8 +7635,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhGQlV6SXdNVEY4UzBVME1ueExSVGcyTXhvTENLUzJEQkFDR2dOVlUwUTRISENrdGd3PSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRUEiLCJBUyIsIjIwMTEiXSxbIlNFQSIsIjIwMjYtMDgtMzAiLCJJQ04iLCJLRSIsIjQyIl0sWyJJQ04iLCIyMDI2LTA4LTMxIiwiUEVLIiwiS0UiLCI4NjMiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 07:55 AM",
-          arrival_time: "31-08-2026 09:30 PM",
+          departure_time: "26-10-2026 07:55 AM",
+          arrival_time: "27-10-2026 09:30 PM",
           duration: {
             raw: 1355,
             text: "22 hr 35 min",
@@ -7646,12 +7646,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 07:55",
+                time: "2026-10-26 07:55",
               },
               arrival_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-30 08:59",
+                time: "2026-10-26 08:59",
               },
               duration: {
                 raw: 64,
@@ -7675,12 +7675,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-30 13:20",
+                time: "2026-10-26 13:20",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 16:40",
+                time: "2026-10-27 16:40",
               },
               duration: {
                 raw: 680,
@@ -7705,12 +7705,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 20:00",
+                time: "2026-10-27 20:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 21:30",
+                time: "2026-10-27 21:30",
               },
               duration: {
                 raw: 150,
@@ -7770,8 +7770,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhGQlV6SXdNVEo4UzBVME1ueExSVGcyTXhvTENLUzJEQkFDR2dOVlUwUTRISENrdGd3PSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRUEiLCJBUyIsIjIwMTIiXSxbIlNFQSIsIjIwMjYtMDgtMzAiLCJJQ04iLCJLRSIsIjQyIl0sWyJJQ04iLCIyMDI2LTA4LTMxIiwiUEVLIiwiS0UiLCI4NjMiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 03:15 PM",
-          arrival_time: "01-09-2026 03:25 PM",
+          departure_time: "26-10-2026 03:15 PM",
+          arrival_time: "28-10-2026 03:25 PM",
           duration: {
             raw: 1990,
             text: "33 hr 10 min",
@@ -7781,12 +7781,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 15:15",
+                time: "2026-10-26 15:15",
               },
               arrival_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 17:39",
+                time: "2026-10-26 17:39",
               },
               duration: {
                 raw: 144,
@@ -7811,12 +7811,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-31 10:45",
+                time: "2026-10-27 10:45",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 15:25",
+                time: "2026-10-28 15:25",
               },
               duration: {
                 raw: 820,
@@ -7869,8 +7869,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd4VlFURXlNekI4VlVFNE9EZ2FDd2l6ckEwUUFob0RWVk5FT0J4d3M2d04iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiU0ZPIiwiVUEiLCIxMjMwIl0sWyJTRk8iLCIyMDI2LTA4LTMxIiwiUEVLIiwiVUEiLCI4ODgiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 05:25 PM",
-          arrival_time: "01-09-2026 03:25 PM",
+          departure_time: "26-10-2026 05:25 PM",
+          arrival_time: "28-10-2026 03:25 PM",
           duration: {
             raw: 1860,
             text: "31 hr 0 min",
@@ -7880,12 +7880,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 17:25",
+                time: "2026-10-26 17:25",
               },
               arrival_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 19:49",
+                time: "2026-10-26 19:49",
               },
               duration: {
                 raw: 144,
@@ -7910,12 +7910,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-31 10:45",
+                time: "2026-10-27 10:45",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 15:25",
+                time: "2026-10-28 15:25",
               },
               duration: {
                 raw: 820,
@@ -7968,8 +7968,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0VlFUUTBPSHhWUVRnNE9Cb0xDTE9zRFJBQ0dnTlZVMFE0SEhDenJBMD0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiU0ZPIiwiVUEiLCI0NDgiXSxbIlNGTyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJVQSIsIjg4OCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 12:55 AM",
-          arrival_time: "31-08-2026 02:00 PM",
+          departure_time: "26-10-2026 12:55 AM",
+          arrival_time: "27-10-2026 02:00 PM",
           duration: {
             raw: 1325,
             text: "22 hr 5 min",
@@ -7979,12 +7979,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 00:55",
+                time: "2026-10-26 00:55",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 04:25",
+                time: "2026-10-27 04:25",
               },
               duration: {
                 raw: 690,
@@ -8009,12 +8009,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 12:50",
+                time: "2026-10-27 12:50",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 14:00",
+                time: "2026-10-27 14:00",
               },
               duration: {
                 raw: 130,
@@ -8065,8 +8065,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwTFJUYzJmRTlhTXpNekdnc0l2b0FURUFJYUExVlRSRGdjY0w2QUV3PT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSUNOIiwiS0UiLCI3NiJdLFsiSUNOIiwiMjAyNi0wOC0zMSIsIlBFSyIsIk9aIiwiMzMzIl1dXV0=",
         },
         {
-          departure_time: "30-08-2026 04:15 PM",
-          arrival_time: "01-09-2026 05:45 AM",
+          departure_time: "26-10-2026 04:15 PM",
+          arrival_time: "28-10-2026 05:45 AM",
           duration: {
             raw: 1350,
             text: "22 hr 30 min",
@@ -8076,12 +8076,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 16:15",
+                time: "2026-10-26 16:15",
               },
               arrival_airport: {
                 airport_name: "Frankfurt Airport",
                 airport_code: "FRA",
-                time: "2026-8-31 11:00",
+                time: "2026-10-27 11:00",
               },
               duration: {
                 raw: 585,
@@ -8106,12 +8106,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Frankfurt Airport",
                 airport_code: "FRA",
-                time: "2026-8-31 14:15",
+                time: "2026-10-27 14:15",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 05:45",
+                time: "2026-10-28 05:45",
               },
               duration: {
                 raw: 570,
@@ -8162,8 +8162,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0TVNEUTVNM3hEUVRrMk5ob0xDTGFERlJBQ0dnTlZVMFE0SEhDMmd4VT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiRlJBIiwiTEgiLCI0OTMiXSxbIkZSQSIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDQSIsIjk2NiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 04:15 PM",
-          arrival_time: "01-09-2026 11:15 AM",
+          departure_time: "26-10-2026 04:15 PM",
+          arrival_time: "28-10-2026 11:15 AM",
           duration: {
             raw: 1680,
             text: "28 hr 0 min",
@@ -8173,12 +8173,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 16:15",
+                time: "2026-10-26 16:15",
               },
               arrival_airport: {
                 airport_name: "Frankfurt Airport",
                 airport_code: "FRA",
-                time: "2026-8-31 11:00",
+                time: "2026-10-27 11:00",
               },
               duration: {
                 raw: 585,
@@ -8203,12 +8203,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Frankfurt Airport",
                 airport_code: "FRA",
-                time: "2026-8-31 19:50",
+                time: "2026-10-27 19:50",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 11:15",
+                time: "2026-10-28 11:15",
               },
               duration: {
                 raw: 565,
@@ -8258,8 +8258,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0TVNEUTVNM3hEUVRrek1ob0xDTGFERlJBQ0dnTlZVMFE0SEhDMmd4VT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiRlJBIiwiTEgiLCI0OTMiXSxbIkZSQSIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDQSIsIjkzMiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 12:55 PM",
-          arrival_time: "01-09-2026 02:00 PM",
+          departure_time: "26-10-2026 12:55 PM",
+          arrival_time: "28-10-2026 02:00 PM",
           duration: {
             raw: 2045,
             text: "34 hr 5 min",
@@ -8269,12 +8269,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 12:55",
+                time: "2026-10-26 12:55",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 16:05",
+                time: "2026-10-27 16:05",
               },
               duration: {
                 raw: 670,
@@ -8299,12 +8299,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-9-1 12:50",
+                time: "2026-10-28 12:50",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 14:00",
+                time: "2026-10-28 14:00",
               },
               duration: {
                 raw: 130,
@@ -8355,8 +8355,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwQlF6WXpmRTlhTXpNekdnc0kvOFVXRUFJYUExVlRSRGdjY1AvRkZnPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSUNOIiwiQUMiLCI2MyJdLFsiSUNOIiwiMjAyNi0wOS0wMSIsIlBFSyIsIk9aIiwiMzMzIl1dXV0=",
         },
         {
-          departure_time: "30-08-2026 12:55 PM",
-          arrival_time: "01-09-2026 03:50 PM",
+          departure_time: "26-10-2026 12:55 PM",
+          arrival_time: "28-10-2026 03:50 PM",
           duration: {
             raw: 2155,
             text: "35 hr 55 min",
@@ -8366,12 +8366,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 12:55",
+                time: "2026-10-26 12:55",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 16:05",
+                time: "2026-10-27 16:05",
               },
               duration: {
                 raw: 670,
@@ -8396,12 +8396,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-9-1 14:40",
+                time: "2026-10-28 14:40",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 15:50",
+                time: "2026-10-28 15:50",
               },
               duration: {
                 raw: 130,
@@ -8452,8 +8452,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwQlF6WXpmRTlhTXpNMUdnc0kvOFVXRUFJYUExVlRSRGdjY1AvRkZnPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSUNOIiwiQUMiLCI2MyJdLFsiSUNOIiwiMjAyNi0wOS0wMSIsIlBFSyIsIk9aIiwiMzM1Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 09:35 PM",
-          arrival_time: "01-09-2026 03:50 PM",
+          departure_time: "26-10-2026 09:35 PM",
+          arrival_time: "28-10-2026 03:50 PM",
           duration: {
             raw: 1635,
             text: "27 hr 15 min",
@@ -8463,12 +8463,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 21:35",
+                time: "2026-10-26 21:35",
               },
               arrival_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-30 22:42",
+                time: "2026-10-26 22:42",
               },
               duration: {
                 raw: 67,
@@ -8486,12 +8486,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-31 00:10",
+                time: "2026-10-27 00:10",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-9-1 04:00",
+                time: "2026-10-28 04:00",
               },
               duration: {
                 raw: 710,
@@ -8514,12 +8514,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-9-1 14:40",
+                time: "2026-10-28 14:40",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 15:50",
+                time: "2026-10-28 15:50",
               },
               duration: {
                 raw: 130,
@@ -8577,8 +8577,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKQlF6ZzRNVEI4VDFveU56RjhUMW96TXpVYUN3ait0UmNRQWhvRFZWTkVPQnh3L3JVWCJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRUEiLCJBQyIsIjg4MTAiXSxbIlNFQSIsIjIwMjYtMDgtMzEiLCJJQ04iLCJPWiIsIjI3MSJdLFsiSUNOIiwiMjAyNi0wOS0wMSIsIlBFSyIsIk9aIiwiMzM1Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 06:40 PM",
-          arrival_time: "01-09-2026 11:45 AM",
+          departure_time: "26-10-2026 06:40 PM",
+          arrival_time: "28-10-2026 11:45 AM",
           duration: {
             raw: 1565,
             text: "26 hr 5 min",
@@ -8588,12 +8588,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 18:40",
+                time: "2026-10-26 18:40",
               },
               arrival_airport: {
                 airport_name: "Munich International Airport",
                 airport_code: "MUC",
-                time: "2026-8-31 13:25",
+                time: "2026-10-27 13:25",
               },
               duration: {
                 raw: 585,
@@ -8618,12 +8618,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Munich International Airport",
                 airport_code: "MUC",
-                time: "2026-8-31 19:45",
+                time: "2026-10-27 19:45",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 11:45",
+                time: "2026-10-28 11:45",
               },
               duration: {
                 raw: 600,
@@ -8676,8 +8676,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0TVNEUTNOM3hNU0RjeU1ob0xDTDZIR1JBQ0dnTlZVMFE0SEhDK2h4az0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiTVVDIiwiTEgiLCI0NzciXSxbIk1VQyIsIjIwMjYtMDgtMzEiLCJQRUsiLCJMSCIsIjcyMiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 09:35 PM",
-          arrival_time: "01-09-2026 12:35 PM",
+          departure_time: "26-10-2026 09:35 PM",
+          arrival_time: "28-10-2026 12:35 PM",
           duration: {
             raw: 1440,
             text: "24 hr 0 min",
@@ -8687,12 +8687,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 21:35",
+                time: "2026-10-26 21:35",
               },
               arrival_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-30 22:42",
+                time: "2026-10-26 22:42",
               },
               duration: {
                 raw: 67,
@@ -8710,12 +8710,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-31 02:10",
+                time: "2026-10-27 02:10",
               },
               arrival_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-9-1 05:05",
+                time: "2026-10-28 05:05",
               },
               duration: {
                 raw: 715,
@@ -8740,12 +8740,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Taiwan Taoyuan International Airport",
                 airport_code: "TPE",
-                time: "2026-9-1 09:10",
+                time: "2026-10-28 09:10",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 12:35",
+                time: "2026-10-28 12:35",
               },
               duration: {
                 raw: 205,
@@ -8805,8 +8805,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhGQlF6ZzRNVEI4UWxJeU5YeENVamN4TmhvTENKTFRHUkFDR2dOVlUwUTRISENTMHhrPSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRUEiLCJBQyIsIjg4MTAiXSxbIlNFQSIsIjIwMjYtMDgtMzEiLCJUUEUiLCJCUiIsIjI1Il0sWyJUUEUiLCIyMDI2LTA5LTAxIiwiUEVLIiwiQlIiLCI3MTYiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 01:15 PM",
-          arrival_time: "01-09-2026 05:45 AM",
+          departure_time: "26-10-2026 01:15 PM",
+          arrival_time: "28-10-2026 05:45 AM",
           duration: {
             raw: 1530,
             text: "25 hr 30 min",
@@ -8816,12 +8816,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 13:15",
+                time: "2026-10-26 13:15",
               },
               arrival_airport: {
                 airport_name: "Frankfurt Airport",
                 airport_code: "FRA",
-                time: "2026-8-31 08:05",
+                time: "2026-10-27 08:05",
               },
               duration: {
                 raw: 590,
@@ -8846,12 +8846,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Frankfurt Airport",
                 airport_code: "FRA",
-                time: "2026-8-31 14:15",
+                time: "2026-10-27 14:15",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 05:45",
+                time: "2026-10-28 05:45",
               },
               duration: {
                 raw: 570,
@@ -8902,8 +8902,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0QlF6Z3pPSHhEUVRrMk5ob0xDSU9MSGhBQ0dnTlZVMFE0SEhDRGl4ND0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiRlJBIiwiQUMiLCI4MzgiXSxbIkZSQSIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDQSIsIjk2NiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 08:10 PM",
-          arrival_time: "02-09-2026 04:50 AM",
+          departure_time: "26-10-2026 08:10 PM",
+          arrival_time: "29-10-2026 04:50 AM",
           duration: {
             raw: 2500,
             text: "41 hr 40 min",
@@ -8913,12 +8913,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 20:10",
+                time: "2026-10-26 20:10",
               },
               arrival_airport: {
                 airport_name: "Heathrow Airport",
                 airport_code: "LHR",
-                time: "2026-8-31 13:20",
+                time: "2026-10-27 13:20",
               },
               duration: {
                 raw: 550,
@@ -8943,12 +8943,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Heathrow Airport",
                 airport_code: "LHR",
-                time: "2026-9-1 09:05",
+                time: "2026-10-28 09:05",
               },
               arrival_airport: {
                 airport_name: "Vienna International Airport",
                 airport_code: "VIE",
-                time: "2026-9-1 12:20",
+                time: "2026-10-28 12:20",
               },
               duration: {
                 raw: 135,
@@ -8970,12 +8970,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vienna International Airport",
                 airport_code: "VIE",
-                time: "2026-9-1 13:30",
+                time: "2026-10-28 13:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-2 04:50",
+                time: "2026-10-29 04:50",
               },
               duration: {
                 raw: 560,
@@ -9032,8 +9032,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhGQlF6ZzJNSHhQVXpNek1ueERRVGcwTWhvTENNNlJIaEFDR2dOVlUwUTRISERPa1I0PSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJMSFIiLCJBQyIsIjg2MCJdLFsiTEhSIiwiMjAyNi0wOS0wMSIsIlZJRSIsIk9TIiwiMzMyIl0sWyJWSUUiLCIyMDI2LTA5LTAxIiwiUEVLIiwiQ0EiLCI4NDIiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 08:10 PM",
-          arrival_time: "02-09-2026 04:50 AM",
+          departure_time: "26-10-2026 08:10 PM",
+          arrival_time: "29-10-2026 04:50 AM",
           duration: {
             raw: 2500,
             text: "41 hr 40 min",
@@ -9043,12 +9043,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 20:10",
+                time: "2026-10-26 20:10",
               },
               arrival_airport: {
                 airport_name: "Heathrow Airport",
                 airport_code: "LHR",
-                time: "2026-8-31 13:20",
+                time: "2026-10-27 13:20",
               },
               duration: {
                 raw: 550,
@@ -9073,12 +9073,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Heathrow Airport",
                 airport_code: "LHR",
-                time: "2026-8-31 19:30",
+                time: "2026-10-27 19:30",
               },
               arrival_airport: {
                 airport_name: "Vienna International Airport",
                 airport_code: "VIE",
-                time: "2026-8-31 22:40",
+                time: "2026-10-27 22:40",
               },
               duration: {
                 raw: 130,
@@ -9100,12 +9100,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vienna International Airport",
                 airport_code: "VIE",
-                time: "2026-9-1 13:30",
+                time: "2026-10-28 13:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-2 04:50",
+                time: "2026-10-29 04:50",
               },
               duration: {
                 raw: 560,
@@ -9162,8 +9162,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhGQlF6ZzJNSHhQVXpNek9IeERRVGcwTWhvTENNNlJIaEFDR2dOVlUwUTRISERPa1I0PSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJMSFIiLCJBQyIsIjg2MCJdLFsiTEhSIiwiMjAyNi0wOC0zMSIsIlZJRSIsIk9TIiwiMzM4Il0sWyJWSUUiLCIyMDI2LTA5LTAxIiwiUEVLIiwiQ0EiLCI4NDIiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 08:10 PM",
-          arrival_time: "02-09-2026 04:50 AM",
+          departure_time: "26-10-2026 08:10 PM",
+          arrival_time: "29-10-2026 04:50 AM",
           duration: {
             raw: 2500,
             text: "41 hr 40 min",
@@ -9173,12 +9173,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 20:10",
+                time: "2026-10-26 20:10",
               },
               arrival_airport: {
                 airport_name: "Heathrow Airport",
                 airport_code: "LHR",
-                time: "2026-8-31 13:20",
+                time: "2026-10-27 13:20",
               },
               duration: {
                 raw: 550,
@@ -9203,12 +9203,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Heathrow Airport",
                 airport_code: "LHR",
-                time: "2026-9-1 06:00",
+                time: "2026-10-28 06:00",
               },
               arrival_airport: {
                 airport_name: "Vienna International Airport",
                 airport_code: "VIE",
-                time: "2026-9-1 09:10",
+                time: "2026-10-28 09:10",
               },
               duration: {
                 raw: 130,
@@ -9230,12 +9230,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vienna International Airport",
                 airport_code: "VIE",
-                time: "2026-9-1 13:30",
+                time: "2026-10-28 13:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-2 04:50",
+                time: "2026-10-29 04:50",
               },
               duration: {
                 raw: 560,
@@ -9292,8 +9292,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhGQlF6ZzJNSHhQVXpNME1IeERRVGcwTWhvTENNNlJIaEFDR2dOVlUwUTRISERPa1I0PSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJMSFIiLCJBQyIsIjg2MCJdLFsiTEhSIiwiMjAyNi0wOS0wMSIsIlZJRSIsIk9TIiwiMzQwIl0sWyJWSUUiLCIyMDI2LTA5LTAxIiwiUEVLIiwiQ0EiLCI4NDIiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 09:45 PM",
-          arrival_time: "01-09-2026 03:25 PM",
+          departure_time: "26-10-2026 09:45 PM",
+          arrival_time: "28-10-2026 03:25 PM",
           duration: {
             raw: 1600,
             text: "26 hr 40 min",
@@ -9303,12 +9303,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 21:45",
+                time: "2026-10-26 21:45",
               },
               arrival_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-31 00:07",
+                time: "2026-10-27 00:07",
               },
               duration: {
                 raw: 142,
@@ -9333,12 +9333,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-31 10:45",
+                time: "2026-10-27 10:45",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 15:25",
+                time: "2026-10-28 15:25",
               },
               duration: {
                 raw: 820,
@@ -9391,8 +9391,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd4QlF6ZzRORFo4VlVFNE9EZ2FDd2pXbUNJUUFob0RWVk5FT0J4dzFwZ2kiXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiU0ZPIiwiQUMiLCI4ODQ2Il0sWyJTRk8iLCIyMDI2LTA4LTMxIiwiUEVLIiwiVUEiLCI4ODgiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 07:00 AM",
-          arrival_time: "31-08-2026 07:00 PM",
+          departure_time: "26-10-2026 07:00 AM",
+          arrival_time: "27-10-2026 07:00 PM",
           duration: {
             raw: 1260,
             text: "21 hr 0 min",
@@ -9402,12 +9402,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 07:00",
+                time: "2026-10-26 07:00",
               },
               arrival_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 09:28",
+                time: "2026-10-26 09:28",
               },
               duration: {
                 raw: 148,
@@ -9432,12 +9432,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 10:40",
+                time: "2026-10-26 10:40",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 15:00",
+                time: "2026-10-27 15:00",
               },
               duration: {
                 raw: 740,
@@ -9462,12 +9462,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-8-31 17:50",
+                time: "2026-10-27 17:50",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 19:00",
+                time: "2026-10-27 19:00",
               },
               duration: {
                 raw: 130,
@@ -9524,8 +9524,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKVlFUSXpNako4VlVFNE9UTjhRMEV4TWpZYUN3amtyU01RQWhvRFZWTkVPQnh3NUswaiJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRk8iLCJVQSIsIjIzMjIiXSxbIlNGTyIsIjIwMjYtMDgtMzAiLCJJQ04iLCJVQSIsIjg5MyJdLFsiSUNOIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNBIiwiMTI2Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 07:00 AM",
-          arrival_time: "31-08-2026 07:00 PM",
+          departure_time: "26-10-2026 07:00 AM",
+          arrival_time: "27-10-2026 07:00 PM",
           duration: {
             raw: 1260,
             text: "21 hr 0 min",
@@ -9535,12 +9535,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 07:00",
+                time: "2026-10-26 07:00",
               },
               arrival_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 09:28",
+                time: "2026-10-26 09:28",
               },
               duration: {
                 raw: 148,
@@ -9565,12 +9565,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 10:55",
+                time: "2026-10-26 10:55",
               },
               arrival_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-8-31 13:55",
+                time: "2026-10-27 13:55",
               },
               duration: {
                 raw: 660,
@@ -9595,12 +9595,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-8-31 16:00",
+                time: "2026-10-27 16:00",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 19:00",
+                time: "2026-10-27 19:00",
               },
               duration: {
                 raw: 240,
@@ -9658,8 +9658,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKVlFUSXpNako4VlVFNE56VjhRMEV4TXpRYUN3aUxvaVFRQWhvRFZWTkVPQnh3aTZJayJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRk8iLCJVQSIsIjIzMjIiXSxbIlNGTyIsIjIwMjYtMDgtMzAiLCJITkQiLCJVQSIsIjg3NSJdLFsiSE5EIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNBIiwiMTM0Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 07:00 AM",
-          arrival_time: "31-08-2026 10:15 PM",
+          departure_time: "26-10-2026 07:00 AM",
+          arrival_time: "27-10-2026 10:15 PM",
           duration: {
             raw: 1455,
             text: "24 hr 15 min",
@@ -9669,12 +9669,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 07:00",
+                time: "2026-10-26 07:00",
               },
               arrival_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 09:28",
+                time: "2026-10-26 09:28",
               },
               duration: {
                 raw: 148,
@@ -9699,12 +9699,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 10:55",
+                time: "2026-10-26 10:55",
               },
               arrival_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-8-31 13:55",
+                time: "2026-10-27 13:55",
               },
               duration: {
                 raw: 660,
@@ -9729,12 +9729,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-8-31 19:15",
+                time: "2026-10-27 19:15",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 22:15",
+                time: "2026-10-27 22:15",
               },
               duration: {
                 raw: 240,
@@ -9791,8 +9791,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKVlFUSXpNako4VlVFNE56VjhRMEV4TmpnYUN3aUxvaVFRQWhvRFZWTkVPQnh3aTZJayJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRk8iLCJVQSIsIjIzMjIiXSxbIlNGTyIsIjIwMjYtMDgtMzAiLCJITkQiLCJVQSIsIjg3NSJdLFsiSE5EIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNBIiwiMTY4Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 01:10 PM",
-          arrival_time: "01-09-2026 12:00 PM",
+          departure_time: "26-10-2026 01:10 PM",
+          arrival_time: "28-10-2026 12:00 PM",
           duration: {
             raw: 1910,
             text: "31 hr 50 min",
@@ -9802,12 +9802,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 13:10",
+                time: "2026-10-26 13:10",
               },
               arrival_airport: {
                 airport_name: "Narita International Airport",
                 airport_code: "NRT",
-                time: "2026-8-31 14:55",
+                time: "2026-10-27 14:55",
               },
               duration: {
                 raw: 585,
@@ -9832,12 +9832,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-9-1 08:55",
+                time: "2026-10-28 08:55",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 12:00",
+                time: "2026-10-28 12:00",
               },
               duration: {
                 raw: 245,
@@ -9890,8 +9890,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdsQlF6TjhUa2c1TmpFYUN3aW02Q1FRQWhvRFZWTkVPQnh3cHVnayJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJOUlQiLCJBQyIsIjMiXSxbIkhORCIsIjIwMjYtMDktMDEiLCJQRUsiLCJOSCIsIjk2MSJdXV1d",
         },
         {
-          departure_time: "30-08-2026 09:35 PM",
-          arrival_time: "01-09-2026 11:55 AM",
+          departure_time: "26-10-2026 09:35 PM",
+          arrival_time: "28-10-2026 11:55 AM",
           duration: {
             raw: 1400,
             text: "23 hr 20 min",
@@ -9901,12 +9901,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 21:35",
+                time: "2026-10-26 21:35",
               },
               arrival_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-30 22:42",
+                time: "2026-10-26 22:42",
               },
               duration: {
                 raw: 67,
@@ -9924,12 +9924,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Seattle-Tacoma International Airport",
                 airport_code: "SEA",
-                time: "2026-8-31 00:10",
+                time: "2026-10-27 00:10",
               },
               arrival_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-9-1 04:00",
+                time: "2026-10-28 04:00",
               },
               duration: {
                 raw: 710,
@@ -9952,12 +9952,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Incheon International Airport",
                 airport_code: "ICN",
-                time: "2026-9-1 10:50",
+                time: "2026-10-28 10:50",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 11:55",
+                time: "2026-10-28 11:55",
               },
               duration: {
                 raw: 125,
@@ -10014,8 +10014,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKQlF6ZzRNVEI4VDFveU56RjhRMEUzTVRBYUN3anJvU2NRQWhvRFZWTkVPQnh3NjZFbiJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRUEiLCJBQyIsIjg4MTAiXSxbIlNFQSIsIjIwMjYtMDgtMzEiLCJJQ04iLCJPWiIsIjI3MSJdLFsiSUNOIiwiMjAyNi0wOS0wMSIsIlBFSyIsIkNBIiwiNzEwIl1dXV0=",
         },
         {
-          departure_time: "30-08-2026 01:10 PM",
-          arrival_time: "31-08-2026 10:15 PM",
+          departure_time: "26-10-2026 01:10 PM",
+          arrival_time: "27-10-2026 10:15 PM",
           duration: {
             raw: 1085,
             text: "18 hr 5 min",
@@ -10025,12 +10025,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 13:10",
+                time: "2026-10-26 13:10",
               },
               arrival_airport: {
                 airport_name: "Narita International Airport",
                 airport_code: "NRT",
-                time: "2026-8-31 14:55",
+                time: "2026-10-27 14:55",
               },
               duration: {
                 raw: 585,
@@ -10055,12 +10055,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-8-31 19:15",
+                time: "2026-10-27 19:15",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 22:15",
+                time: "2026-10-27 22:15",
               },
               duration: {
                 raw: 240,
@@ -10111,8 +10111,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdsQlF6TjhRMEV4TmpnYUN3aXRteWtRQWhvRFZWTkVPQnh3clpzcCJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJOUlQiLCJBQyIsIjMiXSxbIkhORCIsIjIwMjYtMDgtMzEiLCJQRUsiLCJDQSIsIjE2OCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 09:45 PM",
-          arrival_time: "01-09-2026 12:00 PM",
+          departure_time: "26-10-2026 09:45 PM",
+          arrival_time: "28-10-2026 12:00 PM",
           duration: {
             raw: 1395,
             text: "23 hr 15 min",
@@ -10122,12 +10122,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 21:45",
+                time: "2026-10-26 21:45",
               },
               arrival_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-31 00:07",
+                time: "2026-10-27 00:07",
               },
               duration: {
                 raw: 142,
@@ -10152,12 +10152,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-31 01:40",
+                time: "2026-10-27 01:40",
               },
               arrival_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-9-1 04:25",
+                time: "2026-10-28 04:25",
               },
               duration: {
                 raw: 645,
@@ -10182,12 +10182,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-9-1 08:55",
+                time: "2026-10-28 08:55",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 12:00",
+                time: "2026-10-28 12:00",
               },
               duration: {
                 raw: 245,
@@ -10247,8 +10247,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKQlF6ZzRORFo4VGtneE1EZDhUa2c1TmpFYUN3ajBwU29RQWhvRFZWTkVPQnh3OUtVcSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRk8iLCJBQyIsIjg4NDYiXSxbIlNGTyIsIjIwMjYtMDgtMzEiLCJITkQiLCJOSCIsIjEwNyJdLFsiSE5EIiwiMjAyNi0wOS0wMSIsIlBFSyIsIk5IIiwiOTYxIl1dXV0=",
         },
         {
-          departure_time: "30-08-2026 07:00 AM",
-          arrival_time: "31-08-2026 07:45 PM",
+          departure_time: "26-10-2026 07:00 AM",
+          arrival_time: "27-10-2026 07:45 PM",
           duration: {
             raw: 1305,
             text: "21 hr 45 min",
@@ -10258,12 +10258,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 07:00",
+                time: "2026-10-26 07:00",
               },
               arrival_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 09:28",
+                time: "2026-10-26 09:28",
               },
               duration: {
                 raw: 148,
@@ -10288,12 +10288,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 10:55",
+                time: "2026-10-26 10:55",
               },
               arrival_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-8-31 13:55",
+                time: "2026-10-27 13:55",
               },
               duration: {
                 raw: 660,
@@ -10318,12 +10318,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-8-31 16:35",
+                time: "2026-10-27 16:35",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 19:45",
+                time: "2026-10-27 19:45",
               },
               duration: {
                 raw: 250,
@@ -10380,8 +10380,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhGVlFUSXpNako4VlVFNE56VjhTa3d5TlJvTENMR2pOaEFDR2dOVlUwUTRISEN4b3pZPSJdXSxbIjIwMjYtMDgtMzAiLCJZVlIiLCJQRUsiLFtbIllWUiIsIjIwMjYtMDgtMzAiLCJTRk8iLCJVQSIsIjIzMjIiXSxbIlNGTyIsIjIwMjYtMDgtMzAiLCJITkQiLCJVQSIsIjg3NSJdLFsiSE5EIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkpMIiwiMjUiXV1dXQ==",
         },
         {
-          departure_time: "30-08-2026 08:00 AM",
-          arrival_time: "31-08-2026 07:45 PM",
+          departure_time: "26-10-2026 08:00 AM",
+          arrival_time: "27-10-2026 07:45 PM",
           duration: {
             raw: 1245,
             text: "20 hr 45 min",
@@ -10391,12 +10391,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 08:00",
+                time: "2026-10-26 08:00",
               },
               arrival_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 10:20",
+                time: "2026-10-26 10:20",
               },
               duration: {
                 raw: 140,
@@ -10421,12 +10421,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "San Francisco International Airport",
                 airport_code: "SFO",
-                time: "2026-8-30 12:25",
+                time: "2026-10-26 12:25",
               },
               arrival_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-8-31 15:05",
+                time: "2026-10-27 15:05",
               },
               duration: {
                 raw: 640,
@@ -10451,12 +10451,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Haneda Airport",
                 airport_code: "HND",
-                time: "2026-8-31 16:35",
+                time: "2026-10-27 16:35",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 19:45",
+                time: "2026-10-27 19:45",
               },
               duration: {
                 raw: 250,
@@ -10513,8 +10513,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWc1QlF6VTJNbnhLVERGOFNrd3lOUm9MQ09iZk94QUNHZ05WVTBRNEhIRG0zenM9Il1dLFsiMjAyNi0wOC0zMCIsIllWUiIsIlBFSyIsW1siWVZSIiwiMjAyNi0wOC0zMCIsIlNGTyIsIkFDIiwiNTYyIl0sWyJTRk8iLCIyMDI2LTA4LTMwIiwiSE5EIiwiSkwiLCIxIl0sWyJITkQiLCIyMDI2LTA4LTMxIiwiUEVLIiwiSkwiLCIyNSJdXV1d",
         },
         {
-          departure_time: "30-08-2026 01:30 AM",
-          arrival_time: "31-08-2026 08:00 PM",
+          departure_time: "26-10-2026 01:30 AM",
+          arrival_time: "27-10-2026 08:00 PM",
           duration: {
             raw: 1650,
             text: "27 hr 30 min",
@@ -10524,12 +10524,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:30",
+                time: "2026-10-26 01:30",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 06:55",
+                time: "2026-10-27 06:55",
               },
               duration: {
                 raw: 865,
@@ -10552,12 +10552,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 16:30",
+                time: "2026-10-27 16:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 20:00",
+                time: "2026-10-27 20:00",
               },
               duration: {
                 raw: 210,
@@ -10607,8 +10607,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwSVdEZ3hmRWhZTXpNMk9Cdz0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiSFgiLCI4MSJdLFsiSEtHIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkhYIiwiMzM2Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 01:30 AM",
-          arrival_time: "31-08-2026 11:40 PM",
+          departure_time: "26-10-2026 01:30 AM",
+          arrival_time: "27-10-2026 11:40 PM",
           duration: {
             raw: 1870,
             text: "31 hr 10 min",
@@ -10618,12 +10618,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 01:30",
+                time: "2026-10-26 01:30",
               },
               arrival_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 06:55",
+                time: "2026-10-27 06:55",
               },
               duration: {
                 raw: 865,
@@ -10646,12 +10646,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Hong Kong International Airport",
                 airport_code: "HKG",
-                time: "2026-8-31 20:20",
+                time: "2026-10-27 20:20",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 23:40",
+                time: "2026-10-27 23:40",
               },
               duration: {
                 raw: 200,
@@ -10701,8 +10701,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWdwSVdEZ3hmRWhZTXpBME9Cdz0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiSEtHIiwiSFgiLCI4MSJdLFsiSEtHIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkhYIiwiMzA0Il1dXV0=",
         },
         {
-          departure_time: "30-08-2026 11:15 AM",
-          arrival_time: "31-08-2026 07:00 PM",
+          departure_time: "26-10-2026 11:15 AM",
+          arrival_time: "27-10-2026 07:00 PM",
           duration: {
             raw: 1005,
             text: "16 hr 45 min",
@@ -10712,12 +10712,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 11:15",
+                time: "2026-10-26 11:15",
               },
               arrival_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 14:05",
+                time: "2026-10-27 14:05",
               },
               duration: {
                 raw: 710,
@@ -10742,12 +10742,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 16:20",
+                time: "2026-10-27 16:20",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 19:00",
+                time: "2026-10-27 19:00",
               },
               duration: {
                 raw: 160,
@@ -10800,8 +10800,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0QlF6STFmRU5CTVRnNE5EZ2MiXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiUFZHIiwiQUMiLCIyNSJdLFsiUFZHIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNBIiwiMTg4NCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 11:15 AM",
-          arrival_time: "31-08-2026 09:15 PM",
+          departure_time: "26-10-2026 11:15 AM",
+          arrival_time: "27-10-2026 09:15 PM",
           duration: {
             raw: 1140,
             text: "19 hr 0 min",
@@ -10811,12 +10811,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 11:15",
+                time: "2026-10-26 11:15",
               },
               arrival_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 14:05",
+                time: "2026-10-27 14:05",
               },
               duration: {
                 raw: 710,
@@ -10841,12 +10841,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Shanghai Hongqiao International Airport",
                 airport_code: "SHA",
-                time: "2026-8-31 18:30",
+                time: "2026-10-27 18:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 21:15",
+                time: "2026-10-27 21:15",
               },
               duration: {
                 raw: 165,
@@ -10896,8 +10896,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0QlF6STFmRU5CTVRVeU1qZ2MiXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiUFZHIiwiQUMiLCIyNSJdLFsiU0hBIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNBIiwiMTUyMiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 11:15 AM",
-          arrival_time: "31-08-2026 09:30 PM",
+          departure_time: "26-10-2026 11:15 AM",
+          arrival_time: "27-10-2026 09:30 PM",
           duration: {
             raw: 1155,
             text: "19 hr 15 min",
@@ -10907,12 +10907,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 11:15",
+                time: "2026-10-26 11:15",
               },
               arrival_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 14:05",
+                time: "2026-10-27 14:05",
               },
               duration: {
                 raw: 710,
@@ -10937,12 +10937,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 18:50",
+                time: "2026-10-27 18:50",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 21:30",
+                time: "2026-10-27 21:30",
               },
               duration: {
                 raw: 160,
@@ -10988,8 +10988,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0QlF6STFmRU5CTVRnek5qZ2MiXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiUFZHIiwiQUMiLCIyNSJdLFsiUFZHIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNBIiwiMTgzNiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 11:15 AM",
-          arrival_time: "31-08-2026 09:45 PM",
+          departure_time: "26-10-2026 11:15 AM",
+          arrival_time: "27-10-2026 09:45 PM",
           duration: {
             raw: 1170,
             text: "19 hr 30 min",
@@ -10999,12 +10999,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 11:15",
+                time: "2026-10-26 11:15",
               },
               arrival_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 14:05",
+                time: "2026-10-27 14:05",
               },
               duration: {
                 raw: 710,
@@ -11029,12 +11029,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Shanghai Hongqiao International Airport",
                 airport_code: "SHA",
-                time: "2026-8-31 19:25",
+                time: "2026-10-27 19:25",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 21:45",
+                time: "2026-10-27 21:45",
               },
               duration: {
                 raw: 140,
@@ -11087,8 +11087,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0QlF6STFmRU5CTVRVeE5qZ2MiXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiUFZHIiwiQUMiLCIyNSJdLFsiU0hBIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNBIiwiMTUxNiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 11:15 AM",
-          arrival_time: "31-08-2026 10:50 PM",
+          departure_time: "26-10-2026 11:15 AM",
+          arrival_time: "27-10-2026 10:50 PM",
           duration: {
             raw: 1235,
             text: "20 hr 35 min",
@@ -11098,12 +11098,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 11:15",
+                time: "2026-10-26 11:15",
               },
               arrival_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 14:05",
+                time: "2026-10-27 14:05",
               },
               duration: {
                 raw: 710,
@@ -11128,12 +11128,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Shanghai Hongqiao International Airport",
                 airport_code: "SHA",
-                time: "2026-8-31 20:25",
+                time: "2026-10-27 20:25",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 22:50",
+                time: "2026-10-27 22:50",
               },
               duration: {
                 raw: 145,
@@ -11183,8 +11183,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0QlF6STFmRU5CTVRVMU1EZ2MiXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiUFZHIiwiQUMiLCIyNSJdLFsiU0hBIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNBIiwiMTU1MCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 11:15 AM",
-          arrival_time: "31-08-2026 11:05 PM",
+          departure_time: "26-10-2026 11:15 AM",
+          arrival_time: "27-10-2026 11:05 PM",
           duration: {
             raw: 1250,
             text: "20 hr 50 min",
@@ -11194,12 +11194,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 11:15",
+                time: "2026-10-26 11:15",
               },
               arrival_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 14:05",
+                time: "2026-10-27 14:05",
               },
               duration: {
                 raw: 710,
@@ -11224,12 +11224,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 17:25",
+                time: "2026-10-27 17:25",
               },
               arrival_airport: {
                 airport_name: "Shenyang Taoxian International Airport",
                 airport_code: "SHE",
-                time: "2026-8-31 20:00",
+                time: "2026-10-27 20:00",
               },
               duration: {
                 raw: 155,
@@ -11251,12 +11251,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Shenyang Taoxian International Airport",
                 airport_code: "SHE",
-                time: "2026-8-31 21:20",
+                time: "2026-10-27 21:20",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 23:05",
+                time: "2026-10-27 23:05",
               },
               duration: {
                 raw: 105,
@@ -11313,8 +11313,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKQlF6STFmRU5CT0RNeE5YeERRVEUyTXpZNEhBPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiUFZHIiwiQUMiLCIyNSJdLFsiUFZHIiwiMjAyNi0wOC0zMSIsIlNIRSIsIkNBIiwiODMxNSJdLFsiU0hFIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNBIiwiMTYzNiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 11:15 AM",
-          arrival_time: "31-08-2026 11:35 PM",
+          departure_time: "26-10-2026 11:15 AM",
+          arrival_time: "27-10-2026 11:35 PM",
           duration: {
             raw: 1280,
             text: "21 hr 20 min",
@@ -11324,12 +11324,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 11:15",
+                time: "2026-10-26 11:15",
               },
               arrival_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 14:05",
+                time: "2026-10-27 14:05",
               },
               duration: {
                 raw: 710,
@@ -11354,12 +11354,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 19:10",
+                time: "2026-10-27 19:10",
               },
               arrival_airport: {
                 airport_name: "Dalian Zhoushuizi International Airport",
                 airport_code: "DLC",
-                time: "2026-8-31 21:05",
+                time: "2026-10-27 21:05",
               },
               duration: {
                 raw: 115,
@@ -11382,12 +11382,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Dalian Zhoushuizi International Airport",
                 airport_code: "DLC",
-                time: "2026-8-31 22:10",
+                time: "2026-10-27 22:10",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 23:35",
+                time: "2026-10-27 23:35",
               },
               duration: {
                 raw: 85,
@@ -11444,8 +11444,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKQlF6STFmRU5CT0RreE1ueERRVGc1TURFNEhBPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiUFZHIiwiQUMiLCIyNSJdLFsiUFZHIiwiMjAyNi0wOC0zMSIsIkRMQyIsIkNBIiwiODkxMiJdLFsiRExDIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNBIiwiODkwMSJdXV1d",
         },
         {
-          departure_time: "30-08-2026 11:15 AM",
-          arrival_time: "31-08-2026 11:55 PM",
+          departure_time: "26-10-2026 11:15 AM",
+          arrival_time: "27-10-2026 11:55 PM",
           duration: {
             raw: 1300,
             text: "21 hr 40 min",
@@ -11455,12 +11455,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 11:15",
+                time: "2026-10-26 11:15",
               },
               arrival_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 14:05",
+                time: "2026-10-27 14:05",
               },
               duration: {
                 raw: 710,
@@ -11485,12 +11485,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Shanghai Hongqiao International Airport",
                 airport_code: "SHA",
-                time: "2026-8-31 21:30",
+                time: "2026-10-27 21:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-8-31 23:55",
+                time: "2026-10-27 23:55",
               },
               duration: {
                 raw: 145,
@@ -11543,8 +11543,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0QlF6STFmRU5CTVRVeE1EZ2MiXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiUFZHIiwiQUMiLCIyNSJdLFsiU0hBIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNBIiwiMTUxMCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 11:15 AM",
-          arrival_time: "01-09-2026 12:05 AM",
+          departure_time: "26-10-2026 11:15 AM",
+          arrival_time: "28-10-2026 12:05 AM",
           duration: {
             raw: 1310,
             text: "21 hr 50 min",
@@ -11554,12 +11554,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 11:15",
+                time: "2026-10-26 11:15",
               },
               arrival_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 14:05",
+                time: "2026-10-27 14:05",
               },
               duration: {
                 raw: 710,
@@ -11584,12 +11584,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 17:05",
+                time: "2026-10-27 17:05",
               },
               arrival_airport: {
                 airport_name: "Guangzhou Baiyun International Airport",
                 airport_code: "CAN",
-                time: "2026-8-31 19:40",
+                time: "2026-10-27 19:40",
               },
               duration: {
                 raw: 155,
@@ -11614,12 +11614,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Guangzhou Baiyun International Airport",
                 airport_code: "CAN",
-                time: "2026-8-31 20:40",
+                time: "2026-10-27 20:40",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 00:05",
+                time: "2026-10-28 00:05",
               },
               duration: {
                 raw: 205,
@@ -11676,8 +11676,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKQlF6STFmRU5CTVRnMk5YeERRVEV6TmpZNEhBPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiUFZHIiwiQUMiLCIyNSJdLFsiUFZHIiwiMjAyNi0wOC0zMSIsIkNBTiIsIkNBIiwiMTg2NSJdLFsiQ0FOIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNBIiwiMTM2NiJdXV1d",
         },
         {
-          departure_time: "30-08-2026 11:15 AM",
-          arrival_time: "01-09-2026 01:20 AM",
+          departure_time: "26-10-2026 11:15 AM",
+          arrival_time: "28-10-2026 01:20 AM",
           duration: {
             raw: 1385,
             text: "23 hr 5 min",
@@ -11687,12 +11687,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 11:15",
+                time: "2026-10-26 11:15",
               },
               arrival_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 14:05",
+                time: "2026-10-27 14:05",
               },
               duration: {
                 raw: 710,
@@ -11717,12 +11717,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 17:45",
+                time: "2026-10-27 17:45",
               },
               arrival_airport: {
                 airport_name: "Daqing Sa'ertu Airport",
                 airport_code: "DQA",
-                time: "2026-8-31 20:50",
+                time: "2026-10-27 20:50",
               },
               duration: {
                 raw: 185,
@@ -11744,12 +11744,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Daqing Sa'ertu Airport",
                 airport_code: "DQA",
-                time: "2026-8-31 23:15",
+                time: "2026-10-27 23:15",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 01:20",
+                time: "2026-10-28 01:20",
               },
               duration: {
                 raw: 125,
@@ -11807,8 +11807,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWhKQlF6STFmRU5CT0RVNE4zeERRVEUyT0RRNEhBPT0iXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiUFZHIiwiQUMiLCIyNSJdLFsiUFZHIiwiMjAyNi0wOC0zMSIsIkRRQSIsIkNBIiwiODU4NyJdLFsiRFFBIiwiMjAyNi0wOC0zMSIsIlBFSyIsIkNBIiwiMTY4NCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 11:15 AM",
-          arrival_time: "01-09-2026 10:10 AM",
+          departure_time: "26-10-2026 11:15 AM",
+          arrival_time: "28-10-2026 10:10 AM",
           duration: {
             raw: 1915,
             text: "31 hr 55 min",
@@ -11818,12 +11818,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 11:15",
+                time: "2026-10-26 11:15",
               },
               arrival_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 14:05",
+                time: "2026-10-27 14:05",
               },
               duration: {
                 raw: 710,
@@ -11848,12 +11848,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Shanghai Hongqiao International Airport",
                 airport_code: "SHA",
-                time: "2026-9-1 07:55",
+                time: "2026-10-28 07:55",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 10:10",
+                time: "2026-10-28 10:10",
               },
               duration: {
                 raw: 135,
@@ -11906,8 +11906,8 @@ export const SAMPLE_FLIGHT_DATA = {
             "W1syLDEsWzEsMCwwLDBdLFsiQ2pSSVZsaFpVSFp3VXpOUVQyTkJSRFZ3ZG5kQ1J5MHRMUzB0TFMwdExYUnNjM1V4TkVGQlFVRkJSM0ZKY0VKTlJuZDJha2RCRWd0QlF6STFmRU5CTVRVMk5EZ2MiXV0sWyIyMDI2LTA4LTMwIiwiWVZSIiwiUEVLIixbWyJZVlIiLCIyMDI2LTA4LTMwIiwiUFZHIiwiQUMiLCIyNSJdLFsiU0hBIiwiMjAyNi0wOS0wMSIsIlBFSyIsIkNBIiwiMTU2NCJdXV1d",
         },
         {
-          departure_time: "30-08-2026 11:15 AM",
-          arrival_time: "01-09-2026 11:40 AM",
+          departure_time: "26-10-2026 11:15 AM",
+          arrival_time: "28-10-2026 11:40 AM",
           duration: {
             raw: 2005,
             text: "33 hr 25 min",
@@ -11917,12 +11917,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Vancouver International Airport",
                 airport_code: "YVR",
-                time: "2026-8-30 11:15",
+                time: "2026-10-26 11:15",
               },
               arrival_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-8-31 14:05",
+                time: "2026-10-27 14:05",
               },
               duration: {
                 raw: 710,
@@ -11947,12 +11947,12 @@ export const SAMPLE_FLIGHT_DATA = {
               departure_airport: {
                 airport_name: "Shanghai Pudong International Airport",
                 airport_code: "PVG",
-                time: "2026-9-1 09:30",
+                time: "2026-10-28 09:30",
               },
               arrival_airport: {
                 airport_name: "Beijing Capital International Airport",
                 airport_code: "PEK",
-                time: "2026-9-1 11:40",
+                time: "2026-10-28 11:40",
               },
               duration: {
                 raw: 130,

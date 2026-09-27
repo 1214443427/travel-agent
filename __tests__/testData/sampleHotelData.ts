@@ -1500,7 +1500,7 @@ export const SAMPLE_HOTEL_DATA = {
               },
               name: "Getaway Deal",
               details:
-                "This property is offering a discount on select stays between Mar 26 and Sep 30, 2026.",
+                "This property is offering a discount on select stays between Oct 26 and Nov 19, 2026.",
               identifier: "campaign_38",
               item_amount: {
                 value: 317.893512987788,
@@ -1529,7 +1529,7 @@ export const SAMPLE_HOTEL_DATA = {
               kind: "badge",
               name: "Getaway Deal",
               details:
-                "This property is offering a discount on select stays between Mar 26 and Sep 30, 2026.",
+                "This property is offering a discount on select stays between Oct 26 and Nov 19, 2026.",
               icon: null,
             },
           ],
@@ -1760,7 +1760,7 @@ export const SAMPLE_HOTEL_DATA = {
             {
               name: "Getaway Deal",
               details:
-                "This property is offering a discount on select stays between Mar 26 and Sep 30, 2026.",
+                "This property is offering a discount on select stays between Oct 26 and Nov 19, 2026.",
               kind: "discount",
               base: {
                 kind: "rate",
@@ -1790,7 +1790,7 @@ export const SAMPLE_HOTEL_DATA = {
             {
               icon: null,
               details:
-                "This property is offering a discount on select stays between Mar 26 and Sep 30, 2026.",
+                "This property is offering a discount on select stays between Oct 26 and Nov 19, 2026.",
               name: "Getaway Deal",
               kind: "badge",
               badge_variant: "constructive",
@@ -2280,7 +2280,7 @@ export const SAMPLE_HOTEL_DATA = {
               icon: null,
               name: "Getaway Deal",
               details:
-                "This property is offering a discount on select stays between Mar 26 and Sep 30, 2026.",
+                "This property is offering a discount on select stays between Oct 26 and Nov 19, 2026.",
               kind: "badge",
               identifier: "getaway-2021",
               badge_variant: "constructive",
@@ -2328,7 +2328,7 @@ export const SAMPLE_HOTEL_DATA = {
               },
               identifier: "campaign_38",
               details:
-                "This property is offering a discount on select stays between Mar 26 and Sep 30, 2026.",
+                "This property is offering a discount on select stays between Oct 26 and Nov 19, 2026.",
               name: "Getaway Deal",
               base: {
                 kind: "rate",
@@ -2929,7 +2929,7 @@ export const SAMPLE_HOTEL_DATA = {
             {
               name: "Getaway Deal",
               details:
-                "This property is offering a discount on select stays between Mar 26 and Sep 30, 2026.",
+                "This property is offering a discount on select stays between Oct 26 and Nov 19, 2026.",
               icon: null,
               kind: "badge",
               badge_variant: "constructive",
@@ -2994,7 +2994,7 @@ export const SAMPLE_HOTEL_DATA = {
                 kind: "rate",
               },
               details:
-                "This property is offering a discount on select stays between Mar 26 and Sep 30, 2026.",
+                "This property is offering a discount on select stays between Oct 26 and Nov 19, 2026.",
               name: "Getaway Deal",
             },
           ],
@@ -3440,7 +3440,7 @@ export const SAMPLE_HOTEL_DATA = {
             {
               kind: "badge",
               details:
-                "This property is offering a discount on select stays between Mar 26 and Sep 30, 2026.",
+                "This property is offering a discount on select stays between Oct 26 and Nov 19, 2026.",
               name: "Getaway Deal",
               icon: null,
               badge_variant: "constructive",
@@ -3474,7 +3474,7 @@ export const SAMPLE_HOTEL_DATA = {
               },
               name: "Getaway Deal",
               details:
-                "This property is offering a discount on select stays between Mar 26 and Sep 30, 2026.",
+                "This property is offering a discount on select stays between Oct 26 and Nov 19, 2026.",
               base: {
                 kind: "rate",
               },

@@ -92,7 +92,6 @@ function DetailsModal({
 
       {error && (
         <ErrorModal className="w-50">
-          {" "}
           <p>{error}</p>
           <Button onClick={() => setError("")}>Close</Button>
         </ErrorModal>

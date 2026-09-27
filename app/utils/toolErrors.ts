@@ -61,11 +61,11 @@ export const TOOL_ERRORS = {
   },
   get_hotels: {
     credentials:
-      "Hotel search is unavailable: our accommodation credentials are invalid or have expired. Do not retry this tool. Give the user a rough nightly rate estimate from your own knowledge, state plainly that it is an estimate, and do not invent a hotel ID.",
+      "Hotel search is unavailable: our accommodation credentials are invalid or have expired. Do not retry this tool. Give the user a rough nightly rate estimate from your own knowledge, state plainly that it is an estimate, and do not invent a ref.",
     retryable:
-      "The hotel search service is temporarily unavailable. Retry once. If it fails again, give a rough nightly rate estimate, state plainly that it is an estimate, and do not invent a hotel ID.",
+      "The hotel search service is temporarily unavailable. Retry once. If it fails again, give a rough nightly rate estimate, state plainly that it is an estimate, and do not invent a ref.",
     generic:
-      "Hotel search failed. Do not retry. Give the user a rough nightly rate estimate, state plainly that it is an estimate, and do not invent a hotel ID.",
+      "Hotel search failed. Do not retry. Give the user a rough nightly rate estimate, state plainly that it is an estimate, and do not invent a ref.",
   },
   get_attractions: {
     credentials:

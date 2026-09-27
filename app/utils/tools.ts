@@ -2,9 +2,10 @@ import { RunContext, tool } from "@openai/agents";
 import z, { string } from "zod";
 import { GEOAPIFY_KEY, WEATHER_API_KEY } from "./config";
 import { fetchAPI, fetchRapidAPI } from "./fetching";
-import { constructUrl, parseData } from "./utils";
+import { addRef, constructUrl, parseData } from "./utils";
 import {
   AirportSchema,
+  BookingHandle,
   FlightSchema,
   HotelsSchema,
   LatLonSchema,
@@ -17,6 +18,8 @@ import {
   SAMPLE_BOOK_TOKEN_FLIGHT,
   SAMPLE_NEXT_TOKEN_FLIGHT,
 } from "@/__tests__/testData/sampleFlightDataWithNextToken";
+import { SAMPLE_HOTEL_DATA } from "@/__tests__/testData/sampleHotelData";
+import { SAMPLE_FLIGHT_DATA } from "@/__tests__/testData/sampleFlightData";
 
 export const getLatLon = tool({
   name: "get_lat_lon",
@@ -177,15 +180,15 @@ function filterFlights(
   const filteredResult = parsedData.data.itineraries.topFlights
     .slice(0, numberOfFlights)
     .map((flight) => {
-      const flightRef = `flt_${context?.context.refs.size ?? 0}`;
-      if (flight.next_token) {
-        context?.context.refs.set(flightRef, { kind: "next", token: flight.next_token });
-      } else if (flight.booking_token) {
-        context?.context.refs.set(flightRef, {
-          kind: "booking",
-          token: flight.booking_token,
-        });
-      }
+      const handle = flight.next_token
+        ? { kind: "next" as const, token: flight.next_token }
+        : flight.booking_token
+          ? {
+              kind: "booking" as const,
+              token: flight.booking_token,
+            }
+          : null;
+      const flightRef = addRef(context, "flt", handle);
       return {
         departureTime: flight.departure_time,
         arrivalTime: flight.arrival_time,
@@ -228,8 +231,9 @@ export const getFlights = tool<typeof getFlightsParams, TravelAgentContext>({
     };
     const url = constructUrl(baseURL, options);
 
-    const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
+    // const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
     // const response = SAMPLE_NEXT_TOKEN_FLIGHT;
+    const response = SAMPLE_FLIGHT_DATA;
 
     const parsedData = parseData(FlightSchema, response);
 
@@ -273,8 +277,8 @@ export const getNextFlight = tool<typeof getNextFlightParams, TravelAgentContext
 
     const url = constructUrl(baseURL, options);
 
-    const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com", 25_000);
-    // const response = SAMPLE_BOOK_TOKEN_FLIGHT;
+    // const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com", 25_000);
+    const response = SAMPLE_BOOK_TOKEN_FLIGHT;
 
     console.log(response);
     const parsedData = parseData(FlightSchema, response);
@@ -295,30 +299,31 @@ export const getNextFlight = tool<typeof getNextFlightParams, TravelAgentContext
 //   flights: [{ departure_airport: any; arrival_airport: any; duration: number }];
 //   layovers: {}[];
 // }
+const getHotelsParams = z.object({
+  lat: z.number().describe("The latitude of the city"),
+  lon: z.number().describe("The longitude of the city"),
+  person: z.number().describe("Number of person staying."),
+  checkInDate: z.iso.date().describe("The date to check in on. "),
+  checkOutDate: z.iso.date().describe("The date to check out on. "),
+  currencyCode: z
+    .string()
+    .nullable()
+    .describe(
+      "The currency to display the price in, in ISO format. e.g. USD, CAD, JPY. Defaults to USD",
+    ),
+});
 
-export const getHotels = tool({
+export const getHotels = tool<typeof getHotelsParams, TravelAgentContext>({
   name: "get_hotels",
   description:
-    "Return a list of available accommodations for a given location. The rate is per night.",
-  parameters: z.object({
-    lat: z.number().describe("The latitude of the city"),
-    lon: z.number().describe("The longitude of the city"),
-    person: z.number().describe("Number of person staying."),
-    checkInDate: z.iso.date().describe("The date to check in on. "),
-    checkOutDate: z.iso.date().describe("The date to check out on. "),
-    currencyCode: z
-      .string()
-      .nullable()
-      .describe(
-        "The currency to display the price in, in ISO format. e.g. USD, CAD, JPY. Defaults to USD",
-      ),
-  }),
+    "Return up to 5 accommodations near a location. price is the all-inclusive total for the whole stay, not per night. Each result includes a ref like 'htl_3'; mention the chosen hotel's ref in your plan.",
+  parameters: getHotelsParams,
   errorFunction(_, error) {
     const toolName = "get_hotels" as const;
     const handler = toolErrorHandler(toolName, TOOL_ERRORS[toolName]);
     return handler(_, error);
   },
-  async execute({ lat, lon, person, checkInDate, checkOutDate, currencyCode }) {
+  async execute({ lat, lon, person, checkInDate, checkOutDate, currencyCode }, context) {
     const baseURL = "https://booking-com15.p.rapidapi.com/api/v1/hotels/searchHotelsByCoordinates";
     const options = {
       latitude: lat,
@@ -331,21 +336,26 @@ export const getHotels = tool({
     const url = constructUrl(baseURL, options);
     const host = "booking-com15.p.rapidapi.com";
 
-    const result = await fetchRapidAPI(url, host);
-    // const result = SAMPLE_HOTEL_DATA;
+    // const result = await fetchRapidAPI(url, host);
+    const result = SAMPLE_HOTEL_DATA;
     const parsedData = parseData(HotelsSchema, result);
-    const filteredResult = parsedData.data.result.map((hotel) => ({
-      name: hotel.hotel_name, //"Cordis, Beijing Capital Airport By Langham Hospitality Group"
-      translatedName: hotel.hotel_name_trans, //"Cordis, Beijing Capital Airport By Langham Hospitality Group"
-      checkInTime: hotel.checkin, //          until: "23:30",from: "14:00",
-      checkOutTime: hotel.checkout, //          {from: "01:00",          until: "12:00",}
-      reviewScore: hotel.review_score, //8.7
-      reviewCount: hotel.review_nr, //1830
-      star: hotel.class, //5
-      price: hotel.composite_price_breakdown.all_inclusive_amount, //{value: 3352.39818467217, currency: "USD"}
-      hotelId: hotel.hotel_id, //247527
-    }));
-    return filteredResult.slice(0, 5);
+    const filteredResult = parsedData.data.result.slice(0, 5).map((hotel) => {
+      const handle: BookingHandle = { kind: "hotel", token: String(hotel.hotel_id) };
+      const ref = addRef(context, "htl", handle);
+      console.log(ref, handle);
+      return {
+        name: hotel.hotel_name, //"Cordis, Beijing Capital Airport By Langham Hospitality Group"
+        translatedName: hotel.hotel_name_trans, //"Cordis, Beijing Capital Airport By Langham Hospitality Group"
+        checkInTime: hotel.checkin, //          until: "23:30",from: "14:00",
+        checkOutTime: hotel.checkout, //          {from: "01:00",          until: "12:00",}
+        reviewScore: hotel.review_score, //8.7
+        reviewCount: hotel.review_nr, //1830
+        star: hotel.class, //5
+        price: hotel.composite_price_breakdown.all_inclusive_amount, //{value: 3352.39818467217, currency: "USD"}
+        ref: ref,
+      };
+    });
+    return filteredResult;
   },
 });
 

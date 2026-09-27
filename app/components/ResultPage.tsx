@@ -53,7 +53,12 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
         message: "We couldn't find this flight. Please try booking directly from the airline.",
       };
 
-    const apiResult = await fetchInternalAPI("/api/flight", flightRouteContract, handle);
+    let apiResult;
+    if (handle.kind === "hotel") {
+      apiResult = await fetchInternalAPI("/api/hotel");
+    } else {
+      apiResult = await fetchInternalAPI("/api/flight", flightRouteContract, handle);
+    }
 
     if (!apiResult.ok) {
       return {

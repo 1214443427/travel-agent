@@ -42,7 +42,7 @@ const FlightAction = z.object({
 
 const HotelAction = z.object({
   type: z.literal("book_hotel"),
-  hotelId: z.number().describe("The `hotelId` of the chosen property."),
+  ref: z.string().describe("The `ref` value shown on the chosen hotel in context, e.g. 'htl_3'."),
 });
 
 const AttractionAction = z.object({
@@ -68,7 +68,7 @@ export const EventSchema = z.object({
 export type EventData = z.infer<typeof EventSchema>;
 
 export const BookingHandleSchema = z.object({
-  kind: z.enum(["next", "booking", "details"]),
+  kind: z.enum(["next", "booking", "details", "hotel"]),
   token: z.string(),
 });
 export type BookingHandle = z.infer<typeof BookingHandleSchema>;

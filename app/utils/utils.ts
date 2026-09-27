@@ -1,5 +1,6 @@
 import z from "zod";
-import { TripStream, TripStreamSchema } from "../type";
+import { BookingHandle, TravelAgentContext, TripStream, TripStreamSchema } from "../type";
+import type { RunContext } from "@openai/agents";
 
 export function combineClassName(baseClass: string, externalClassName?: string) {
   if (externalClassName) {
@@ -77,4 +78,16 @@ export async function* readEventStream(
 
 export function randomInt(max: number) {
   return Math.floor(Math.random() * max);
+}
+
+export function addRef(
+  context: RunContext<TravelAgentContext> | undefined,
+  prefix: string,
+  handle: BookingHandle | null,
+) {
+  if (!context || !handle) return null;
+  const refs = context.context.refs;
+  const ref = `${prefix}_${refs.size}`;
+  refs.set(ref, handle);
+  return ref;
 }
