@@ -51,7 +51,7 @@ export function createPlannerAgent(model: string | Model | undefined) {
       getLatLon,
       getWeather,
       getFlights,
-      // searchAirport,
+      searchAirport,
       getHotels,
       getAttractions,
       getNextFlight,
