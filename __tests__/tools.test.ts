@@ -108,8 +108,14 @@ describe("get_flight tool", () => {
         currency: "USD",
       }),
     );
-    expect(result[0]).toHaveProperty("departureTime", "30-08-2026 12:55 AM");
-    expect(result[0]).toHaveProperty("arrivalTime", "31-08-2026 09:40 AM");
+    expect(result[0]).toHaveProperty(
+      "departureTime",
+      SAMPLE_FLIGHT_DATA.data.itineraries.topFlights[0].departure_time,
+    );
+    expect(result[0]).toHaveProperty(
+      "arrivalTime",
+      SAMPLE_FLIGHT_DATA.data.itineraries.topFlights[0].arrival_time,
+    );
     expect(result[0]).not.toHaveProperty("status");
     expect(JSON.stringify(result)).not.toContain("priceHistory");
     expect(JSON.stringify(result)).not.toContain("carbon_emissions");
@@ -157,8 +163,9 @@ describe("get_flight tool", () => {
 
 describe("get_hotels tool", () => {
   test("The tool should return filtered data", async () => {
+    const refs = new Map<string, BookingHandle>();
     const result = await getHotels.invoke(
-      new RunContext(),
+      new RunContext({ refs: refs }),
       JSON.stringify({
         lat: 39.9,
         lon: 116.4,
@@ -178,7 +185,7 @@ describe("get_hotels tool", () => {
       reviewCount: 1830,
       star: 5,
       price: { value: 3352.39818467217, currency: "USD" },
-      hotelId: 247527,
+      ref: "htl_0",
     });
     expect(JSON.stringify(result)).not.toContain("hotel_include_breakfast");
     expect(JSON.stringify(result)).not.toContain("main_photo_url");

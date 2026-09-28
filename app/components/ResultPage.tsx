@@ -1,5 +1,6 @@
 import React, { startTransition, useActionState, useState } from "react";
 import {
+  BookingHandle,
   BookingStates,
   EventData,
   FlightDetails,
@@ -12,11 +13,24 @@ import DetailsModal from "./DetailsModal";
 import ModalContainer from "./ModalContainer";
 import LoadingMessage from "./LoadingMessage";
 import ErrorModal from "./ErrorModal";
-import { fetchInternalAPI } from "../utils/clientFetching";
-import { flightRouteContract } from "../utils/contract";
+import { ApiResult, fetchInternalAPI } from "../utils/clientFetching";
+import { Contract, flightRouteContract, hotelRouteContract } from "../utils/contract";
 
 function getCityName(location: string) {
   return location.split(",")[0];
+}
+
+function toBookingState<T>(
+  result: ApiResult<T>,
+  onSuccess: (data: T) => BookingStates,
+): BookingStates {
+  if (!result.ok) {
+    return {
+      state: "error",
+      message: result.message,
+    };
+  }
+  return onSuccess(result.data);
 }
 
 function ResultPage({ responseData }: { responseData: ResponseData | undefined }) {
@@ -55,22 +69,22 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
 
     let apiResult;
     if (handle.kind === "hotel") {
-      apiResult = await fetchInternalAPI("/api/hotel");
+      apiResult = await fetchInternalAPI("/api/hotel", hotelRouteContract, handle);
+      return toBookingState(apiResult, (data) => ({ state: "hotel", data }));
     } else {
       apiResult = await fetchInternalAPI("/api/flight", flightRouteContract, handle);
+      return toBookingState(apiResult, (data) => ({ state: "flight", data }));
     }
 
-    if (!apiResult.ok) {
-      return {
-        state: "error",
-        message: apiResult.message,
-      };
-    }
-
-    return {
-      state: "success",
-      data: apiResult.data,
-    };
+    // return handle.kind === "hotel"
+    //   ? {
+    //       state: "hotel",
+    //       data: apiResult,
+    //     }
+    //   : {
+    //       state: "flight",
+    //       data: apiResult.data,
+    //     };
   }
 
   const [bookingState, bookingAction, isPending] = useActionState<BookingStates, string | null>(
@@ -87,7 +101,7 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
     } else if (event.action.type === "book_hotel") {
       window.open("https://booking.com"); //todo: implement real booking api.
     } else if (event.action.type === "book_flight") {
-      if (bookingState.state === "success") {
+      if (bookingState.state === "flight") {
         return setIsModalOpen(true);
       }
       const ref = event.action.flightRef;
@@ -149,7 +163,7 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
       ))}
       {(isPending || isModalOpen) && (
         <ModalContainer>
-          {bookingState.state == "success" ? (
+          {bookingState.state == "flight" ? (
             <DetailsModal
               flightDetails={bookingState.data}
               closeModal={() => {

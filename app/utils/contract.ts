@@ -4,6 +4,7 @@ import {
   BookingApiResponseSchema,
   BookingHandleSchema,
   FlightDetailsSchema,
+  HotelApiResponseSchema,
 } from "../type";
 
 export type Contract<Req extends z.ZodType = z.ZodType, Res extends z.ZodType = z.ZodType> = {
@@ -19,4 +20,9 @@ export const flightRouteContract = {
 export const bookRouteContract = {
   requestSchema: BookingApiRequestSchema,
   responseSchema: BookingApiResponseSchema,
+} satisfies Contract;
+
+export const hotelRouteContract = {
+  requestSchema: BookingApiRequestSchema,
+  responseSchema: HotelApiResponseSchema,
 } satisfies Contract;

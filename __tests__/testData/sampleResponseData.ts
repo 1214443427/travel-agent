@@ -1,11 +1,8 @@
 import { ModelOutput, ResponseData } from "@/app/type";
+import { SAMPLE_FORM_INPUT } from "./sampleFormData";
 
 // Sample data for testing the result page without running the agent.
 export const SAMPLE_FORMATTER_OUTPUT: ModelOutput = {
-  startDate: "2026-08-30",
-  endDate: "2026-09-18",
-  startLocation: "Vancouver",
-  endLocation: "Beijing",
   events: [
     {
       title: "Flight from Vancouver to Beijing",
@@ -17,7 +14,7 @@ export const SAMPLE_FORMATTER_OUTPUT: ModelOutput = {
       title: "Hotel in Beijing",
       description:
         "Stay at Sofitel Beijing Central from Aug 30 to Sep 18, 2026, a short walk from Wangfujing.",
-      action: { type: "book_hotel", hotelId: 123456 },
+      action: { type: "book_hotel", ref: "htl_4" },
     },
     {
       title: "Weather",
@@ -45,7 +42,12 @@ export const SAMPLE_FORMATTER_OUTPUT: ModelOutput = {
 };
 
 export const SAMPLE_RESPONSE_DATA: ResponseData = {
-  ...SAMPLE_FORMATTER_OUTPUT,
+  startDate: SAMPLE_FORM_INPUT.startDate,
+  endDate: SAMPLE_FORM_INPUT.endDate,
+  startLocation: SAMPLE_FORM_INPUT.from,
+  endLocation: SAMPLE_FORM_INPUT.to,
+  personCount: SAMPLE_FORM_INPUT.travelerCount,
+  events: SAMPLE_FORMATTER_OUTPUT.events,
   refs: {
     flt_0: { kind: "booking", token: "sample_booking_token_0" },
     flt_1: { kind: "next", token: "sample_next_token_1" },

@@ -231,9 +231,9 @@ export const getFlights = tool<typeof getFlightsParams, TravelAgentContext>({
     };
     const url = constructUrl(baseURL, options);
 
-    // const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
+    const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
     // const response = SAMPLE_NEXT_TOKEN_FLIGHT;
-    const response = SAMPLE_FLIGHT_DATA;
+    // const response = SAMPLE_FLIGHT_DATA;
 
     const parsedData = parseData(FlightSchema, response);
 
@@ -277,8 +277,8 @@ export const getNextFlight = tool<typeof getNextFlightParams, TravelAgentContext
 
     const url = constructUrl(baseURL, options);
 
-    // const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com", 25_000);
-    const response = SAMPLE_BOOK_TOKEN_FLIGHT;
+    const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com", 25_000);
+    // const response = SAMPLE_BOOK_TOKEN_FLIGHT;
 
     console.log(response);
     const parsedData = parseData(FlightSchema, response);
@@ -336,8 +336,8 @@ export const getHotels = tool<typeof getHotelsParams, TravelAgentContext>({
     const url = constructUrl(baseURL, options);
     const host = "booking-com15.p.rapidapi.com";
 
-    // const result = await fetchRapidAPI(url, host);
-    const result = SAMPLE_HOTEL_DATA;
+    const result = await fetchRapidAPI(url, host);
+    // const result = SAMPLE_HOTEL_DATA;
     const parsedData = parseData(HotelsSchema, result);
     const filteredResult = parsedData.data.result.slice(0, 5).map((hotel) => {
       const handle: BookingHandle = { kind: "hotel", token: String(hotel.hotel_id) };

@@ -81,22 +81,26 @@ export type TravelAgentContext = z.infer<typeof TravelAgentContextSchema>;
 
 const RefsWireSchema = z.record(z.string(), BookingHandleSchema);
 
-export const ResponseSchema = z.object({
-  startDate: z.string().describe("Should match the ones given in the prompt."),
-  endDate: z.string().describe("Should match the ones given in the prompt."),
-  startLocation: z.string().describe("Should match the ones given in the prompt."),
-  endLocation: z.string().describe("Should match the ones given in the prompt."),
+export const ModelOutputSchema = z.object({
   events: z
     .array(EventSchema)
     .describe(
       "An array of cards to render. Including weather, transit, hotel stay, activities for the user, etc.",
     ),
+});
+
+export const ResponseSchema = ModelOutputSchema.extend({
+  startDate: z.string().describe("Should match the ones given in the prompt."),
+  endDate: z.string().describe("Should match the ones given in the prompt."),
+  startLocation: z.string().describe("Should match the ones given in the prompt."),
+  endLocation: z.string().describe("Should match the ones given in the prompt."),
+  personCount: z.number(),
   refs: RefsWireSchema,
 });
 
+// export const ModelOutputSchema = ResponseSchema.omit({ refs: true });
 export type ResponseData = z.infer<typeof ResponseSchema>;
 
-export const ModelOutputSchema = ResponseSchema.omit({ refs: true });
 export type ModelOutput = z.infer<typeof ModelOutputSchema>;
 
 export class APIError extends Error {
@@ -304,6 +308,21 @@ export const FlightDetailsSchema = z.object({
 
 export type FlightDetails = z.infer<typeof FlightDetailsSchema>;
 
+export const HotelApiBookingSchema = z.object({
+  token: z.string(),
+  arrivalDate: z.iso.date(),
+});
+
+export const HotelApiResponseSchema = z.object({
+  url: z.url(),
+  hotelName: z.string(),
+  address: z.string().nullish(),
+  pricePerNight: z.string(),
+  propertyHighlight: z.array(z.string()).catch([]),
+});
+
+type HotelDetails = z.infer<typeof HotelApiResponseSchema>;
+
 export type BookingStates =
   | { state: "init" }
   | {
@@ -311,8 +330,12 @@ export type BookingStates =
       message: string;
     }
   | {
-      state: "success";
+      state: "flight";
       data: FlightDetails;
+    }
+  | {
+      state: "hotel";
+      data: HotelDetails;
     };
 
 export const BookingApiRequestSchema = z.object({

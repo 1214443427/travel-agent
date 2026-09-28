@@ -12,8 +12,8 @@ describe("ResultPage", () => {
 
   test("renders the duration and location of the travel", () => {
     render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} />);
-    expect(screen.getByText("→ Aug 30, 26")).toBeInTheDocument();
-    expect(screen.getByText("Sep 18, 26 ←")).toBeInTheDocument();
+    expect(screen.getByText("→ Aug 30, 27")).toBeInTheDocument();
+    expect(screen.getByText("Sep 18, 27 ←")).toBeInTheDocument();
     expect(screen.getByText("Vancouver → Beijing")).toBeInTheDocument();
   });
 

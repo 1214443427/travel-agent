@@ -10,10 +10,6 @@ import { type AgentInputItem } from "@openai/agents";
 import { formatterAgent, plannerAgent } from "./agent";
 
 const EXAMPLE_OUTPUT: ModelOutput = {
-  startDate: "2026-08-31",
-  endDate: "2026-09-18",
-  startLocation: "Vancouver",
-  endLocation: "Beijing",
   events: [
     {
       title: "Weather",
@@ -138,6 +134,17 @@ export async function* planTrip(
     }
 
     yield { type: "tool_finished", tool: "format_itinerary" };
-    yield { type: "done", output: { ...jsonResult.finalOutput, refs: Object.fromEntries(refs) } };
+    yield {
+      type: "done",
+      output: {
+        startDate: data.startDate,
+        endDate: data.endDate,
+        startLocation: data.from,
+        endLocation: data.to,
+        personCount: data.travelerCount,
+        events: jsonResult.finalOutput.events,
+        refs: Object.fromEntries(refs),
+      },
+    };
   }
 }

@@ -218,7 +218,9 @@ describe("Formatter agent", () => {
   });
 
   test("The formatter rejects incorrectly formatted data", async () => {
-    const model = new ScriptedModel([[assistantMessage(JSON.stringify({ events: [] }))]]);
+    const model = new ScriptedModel([
+      [assistantMessage(JSON.stringify({ notExpectedObject: [] }))],
+    ]);
     const formatterAgent = createFormatterAgent(model);
     const runner = new Runner({ tracingDisabled: true });
     await expect(runner.run(formatterAgent, "Format this data: ...")).rejects.toThrow(

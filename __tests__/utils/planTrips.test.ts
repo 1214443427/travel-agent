@@ -6,7 +6,7 @@ import { planTrip } from "@/app/utils/planTrip";
 import { assistantMessage, functionCall, ScriptedModel } from "@openai/agents/testing";
 import { describe, expect, test } from "vitest";
 import { SAMPLE_FORM_INPUT } from "../testData/sampleFormData";
-import { SAMPLE_FORMATTER_OUTPUT } from "../testData/sampleResponseData";
+import { SAMPLE_FORMATTER_OUTPUT, SAMPLE_RESPONSE_DATA } from "../testData/sampleResponseData";
 
 describe("planTrips", () => {
   test("The function should generate events based on model actions.", async () => {
@@ -44,7 +44,10 @@ describe("planTrips", () => {
     expect(events[1]).toEqual({ type: "tool_finished", tool: "get_lat_lon" });
     expect(events[2]).toEqual({ type: "tool_started", tool: "format_itinerary" });
     expect(events[3]).toEqual({ type: "tool_finished", tool: "format_itinerary" });
-    expect(events[4]).toEqual({ type: "done", output: { ...SAMPLE_FORMATTER_OUTPUT, refs: {} } });
+    expect(
+      events[4],
+      "The final output of planTrips should include meta data such as startDate, etc. ",
+    ).toEqual({ type: "done", output: { ...SAMPLE_RESPONSE_DATA, refs: {} } });
   });
 
   test("throws if planner did not return an itinerary. ", async () => {
