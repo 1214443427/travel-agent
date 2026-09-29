@@ -1,5 +1,6 @@
 //@vitest-environment node
 import {
+  addRef,
   combineClassName,
   constructUrl,
   parseData,
@@ -9,7 +10,8 @@ import {
 import { expect, test, vi, describe } from "vitest";
 import z, { ZodError } from "zod";
 import { SAMPLE_RESPONSE_DATA } from "../testData/sampleResponseData";
-import { TripStream } from "@/app/type";
+import { BookingHandle, TravelAgentContext, TripStream } from "@/app/type";
+import { RunContext } from "@openai/agents";
 
 describe("constructUrl", () => {
   const baseUrl = "https://www.flights.com/api/mock";
@@ -177,5 +179,37 @@ describe("randomInt", () => {
     }
     expect(result.some((x) => x == 0)).toBe(true);
     expect(result.some((x) => x == 3)).toBe(false);
+  });
+});
+
+describe("addRef", () => {
+  test("returns null when RunContext is undefined", () => {
+    const result = addRef(undefined, "htl", { kind: "booking", token: "test_token" });
+    expect(result).toBe(null);
+  });
+  test("Adds ref to the run context", () => {
+    const refs = new Map<string, BookingHandle>([
+      ["flt_0", { kind: "next", token: "test_next_token" }],
+    ]);
+    const runContext = new RunContext<TravelAgentContext>({ refs: refs });
+    const result = addRef(runContext, "flt", { kind: "booking", token: "test_token" });
+    expect(result).toBe("flt_1");
+    expect(runContext.context.refs.get("flt_1")).toEqual({ kind: "booking", token: "test_token" });
+
+    const resultHotel = addRef(runContext, "htl", {
+      kind: "hotel",
+      token: "test_token",
+      adults: 2,
+      checkIn: "2026-11-12",
+      checkOut: "2026-11-15",
+    });
+    expect(resultHotel).toBe("htl_2");
+    expect(runContext.context.refs.get("htl_2")).toEqual({
+      kind: "hotel",
+      token: "test_token",
+      adults: 2,
+      checkIn: "2026-11-12",
+      checkOut: "2026-11-15",
+    });
   });
 });

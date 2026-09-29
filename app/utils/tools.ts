@@ -268,7 +268,7 @@ export const getNextFlight = tool<typeof getNextFlightParams, TravelAgentContext
       return `Unknown ref ${ref}. Please select a different flight. `;
     }
     if (handle.kind != "next") {
-      return `${ref} is not a outbound flight. Please use an entry from the result of get_flights tool. `;
+      return `${ref} is not a outbound flight. Please use an entry from the result of get_flights tool.`;
     }
     const baseURL = "https://google-flights2.p.rapidapi.com/api/v1/getNextFlights";
     const options = {
@@ -349,7 +349,6 @@ export const getHotels = tool<typeof getHotelsParams, TravelAgentContext>({
         adults: person,
       };
       const ref = addRef(context, "htl", handle);
-      console.log(ref, handle);
       return {
         name: hotel.hotel_name, //"Cordis, Beijing Capital Airport By Langham Hospitality Group"
         translatedName: hotel.hotel_name_trans, //"Cordis, Beijing Capital Airport By Langham Hospitality Group"

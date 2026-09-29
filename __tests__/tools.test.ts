@@ -5,15 +5,17 @@ import {
   getFlights,
   getHotels,
   getLatLon,
+  getNextFlight,
   getWeather,
   searchAirport,
 } from "@/app/utils/tools";
 import { RunContext } from "@openai/agents";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import { testUpstreamFailures } from "./helper/toolFailures";
 import { TOOL_ERRORS } from "@/app/utils/toolErrors";
 import { BookingHandle } from "@/app/type";
 import { SAMPLE_FLIGHT_DATA } from "./testData/sampleFlightData";
+import { SAMPLE_BOOK_TOKEN_FLIGHT } from "./testData/sampleFlightDataWithNextToken";
 
 describe("get_lat_lon tool", () => {
   test("The tool correctly filters API data down to the useful fields. ", async () => {
@@ -243,5 +245,96 @@ describe("get_attractions tool", () => {
       retryable: TOOL_ERRORS.get_attractions.retryable,
       generic: TOOL_ERRORS.get_attractions.generic,
     },
+  });
+});
+
+describe("get_next_flights tool", () => {
+  test("The tool returns filtered data", async () => {
+    const refs = new Map<string, BookingHandle>();
+    refs.set("flt_3", { kind: "next", token: "test_flight_token" });
+    const result = await getNextFlight.invoke(
+      new RunContext({ refs }),
+      JSON.stringify({
+        ref: "flt_3",
+        currency: null,
+      }),
+    );
+    expect(result.length).toBeLessThanOrEqual(3);
+    expect(JSON.stringify(result)).toContain('"departureTime":"19-11-2026 05:30 PM"');
+    expect(JSON.stringify(result)).toContain('"arrivalTime":"19-11-2026 08:31 PM"');
+    expect(JSON.stringify(result)).not.toContain("Emissions estimate");
+    expect(JSON.stringify(result)).not.toContain("booking_token");
+  });
+
+  test("The tool populates refs with booking handles for the return flight.", async () => {
+    const refs = new Map<string, BookingHandle>();
+    refs.set("flt_0", { kind: "next", token: "test_flight_token" });
+    await getNextFlight.invoke(
+      new RunContext({ refs }),
+      JSON.stringify({
+        ref: "flt_0",
+        currency: null,
+      }),
+    );
+    expect(refs.size).toBe(4);
+    expect(refs.get("flt_1")).toEqual({
+      kind: "booking",
+      token: SAMPLE_BOOK_TOKEN_FLIGHT.data.itineraries.topFlights[0].booking_token,
+    });
+  });
+
+  test("The tool fails for incorrect kind of booking handle", async () => {
+    const refs = new Map<string, BookingHandle>();
+    refs.set("flt_0", { kind: "booking", token: "test_flight_token" });
+    const result = await getNextFlight.invoke(
+      new RunContext({ refs }),
+      JSON.stringify({
+        ref: "flt_0",
+        currency: null,
+      }),
+    );
+    expect(result).toBe(
+      `flt_0 is not a outbound flight. Please use an entry from the result of get_flights tool.`,
+    );
+    const resultFromNullRef = await getNextFlight.invoke(
+      new RunContext({ refs }),
+      JSON.stringify({
+        ref: "flt_1",
+        currency: null,
+      }),
+    );
+    expect(resultFromNullRef).toBe(`Unknown ref flt_1. Please select a different flight. `);
+  });
+
+  test("The tool correctly obtains the token from context", async () => {
+    const refs = new Map<string, BookingHandle>();
+    refs.set("flt_0", { kind: "next", token: "test_flight_token" });
+    const spy = vi.spyOn(globalThis, "fetch");
+    await getNextFlight.invoke(
+      new RunContext({ refs }),
+      JSON.stringify({
+        ref: "flt_0",
+        currency: null,
+      }),
+    );
+
+    const [url] = spy.mock.calls[0] as [URL];
+    expect(url).toBeInstanceOf(URL);
+    expect(url.searchParams.get("next_token")).toBe("test_flight_token");
+  });
+
+  testUpstreamFailures({
+    tool: getNextFlight,
+    endpoint: "https://google-flights2.p.rapidapi.com/api/v1/getNextFlights",
+    args: {
+      ref: "flt_1",
+      currency: null,
+    },
+    messages: {
+      credentials: TOOL_ERRORS.get_next_flights.credentials,
+      retryable: TOOL_ERRORS.get_next_flights.retryable,
+      generic: TOOL_ERRORS.get_next_flights.generic,
+    },
+    refs: new Map([["flt_1", { kind: "next", token: "test_next_token" }]]),
   });
 });

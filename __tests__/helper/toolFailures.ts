@@ -2,7 +2,7 @@ import { FunctionTool, RunContext } from "@openai/agents";
 import { http, HttpResponse } from "msw";
 import { beforeEach, expect, test, vi } from "vitest";
 import { server } from "../test-setup";
-import type { ErrorMessages, TravelAgentContext } from "@/app/type";
+import type { BookingHandle, ErrorMessages, TravelAgentContext } from "@/app/type";
 
 const FAILURES = [
   {
@@ -48,12 +48,14 @@ export function testUpstreamFailures({
   endpoint,
   args,
   messages,
+  refs,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tool: FunctionTool<unknown, any, any> | FunctionTool<TravelAgentContext, any, any>;
   endpoint: string;
   args: unknown;
   messages: ErrorMessages;
+  refs?: Map<string, BookingHandle>;
 }) {
   beforeEach(() => {
     vi.spyOn(console, "error").mockImplementation(() => {});
@@ -61,7 +63,10 @@ export function testUpstreamFailures({
 
   test.for(FAILURES)("$label returns the $kind guidance", async ({ respond, kind }) => {
     server.use(http.get(endpoint, respond));
-    const result = await tool.invoke(new RunContext(), JSON.stringify(args));
+    const result = await tool.invoke(
+      new RunContext({ refs: refs ? refs : new Map<string, BookingHandle>() }),
+      JSON.stringify(args),
+    );
     expect(result).toBe(messages[kind]);
   });
 }
