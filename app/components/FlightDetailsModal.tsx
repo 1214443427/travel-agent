@@ -8,7 +8,7 @@ import { fetchInternalAPI } from "../utils/clientFetching";
 import { bookRouteContract } from "../utils/contract";
 import ErrorModal from "./ErrorModal";
 
-function DetailsModal({
+function FlightDetailsModal({
   flightDetails,
   closeModal,
   isPending,
@@ -100,4 +100,4 @@ function DetailsModal({
   );
 }
 
-export default DetailsModal;
+export default FlightDetailsModal;

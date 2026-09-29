@@ -4,6 +4,7 @@ import {
   BookingApiResponseSchema,
   BookingHandleSchema,
   FlightDetailsSchema,
+  HotelApiRequestSchema,
   HotelApiResponseSchema,
 } from "../type";
 
@@ -23,6 +24,6 @@ export const bookRouteContract = {
 } satisfies Contract;
 
 export const hotelRouteContract = {
-  requestSchema: BookingApiRequestSchema,
+  requestSchema: HotelApiRequestSchema,
   responseSchema: HotelApiResponseSchema,
 } satisfies Contract;

@@ -24,7 +24,6 @@ const handler = async (body: BookingHandle) => {
 
   const baseURL = "https://google-flights2.p.rapidapi.com/api/v1/getBookingDetails";
 
-  console.log(body.token);
   const options = {
     booking_token: body.token,
     currency: "USD", // TODO: Add currency to LLM response.
@@ -35,7 +34,6 @@ const handler = async (body: BookingHandle) => {
 
   try {
     const result = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");
-    console.log(result);
     const parsedData = parseData(FlightDetailsSchema, result);
     const airlineOffering = parsedData.data.filter((entry) => entry.is_airline === true);
     const responseBody: FlightDetails = {

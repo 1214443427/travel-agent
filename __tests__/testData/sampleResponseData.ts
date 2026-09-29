@@ -51,5 +51,12 @@ export const SAMPLE_RESPONSE_DATA: ResponseData = {
   refs: {
     flt_0: { kind: "booking", token: "sample_booking_token_0" },
     flt_1: { kind: "next", token: "sample_next_token_1" },
+    htl_4: {
+      kind: "hotel",
+      token: "test_hotel_token",
+      adults: 2,
+      checkIn: "2026-11-11",
+      checkOut: "2026-12-12",
+    },
   },
 };

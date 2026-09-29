@@ -67,11 +67,26 @@ export const EventSchema = z.object({
 
 export type EventData = z.infer<typeof EventSchema>;
 
-export const BookingHandleSchema = z.object({
-  kind: z.enum(["next", "booking", "details", "hotel"]),
+export const FlightHandleSchema = z.object({
+  kind: z.enum(["next", "booking", "details"]),
   token: z.string(),
 });
+
+export const HotelHandleSchema = z.object({
+  kind: z.literal("hotel"),
+  token: z.string(),
+  checkIn: z.iso.date(),
+  checkOut: z.iso.date(),
+  adults: z.number().int().min(1),
+});
+
+export const BookingHandleSchema = z.discriminatedUnion("kind", [
+  FlightHandleSchema,
+  HotelHandleSchema,
+]);
+
 export type BookingHandle = z.infer<typeof BookingHandleSchema>;
+export type HotelHandle = z.infer<typeof HotelHandleSchema>;
 
 const TravelAgentContextSchema = z.object({
   refs: z.map(z.string(), BookingHandleSchema),
@@ -308,20 +323,24 @@ export const FlightDetailsSchema = z.object({
 
 export type FlightDetails = z.infer<typeof FlightDetailsSchema>;
 
-export const HotelApiBookingSchema = z.object({
+export const HotelApiRequestSchema = z.object({
   token: z.string(),
   arrivalDate: z.iso.date(),
+  departureDate: z.iso.date(),
+  adults: z.number(),
 });
+
+export type HotelApiRequest = z.infer<typeof HotelApiRequestSchema>;
 
 export const HotelApiResponseSchema = z.object({
   url: z.url(),
   hotelName: z.string(),
   address: z.string().nullish(),
-  pricePerNight: z.string(),
+  totalPrice: z.string(),
   propertyHighlight: z.array(z.string()).catch([]),
 });
 
-type HotelDetails = z.infer<typeof HotelApiResponseSchema>;
+export type HotelDetails = z.infer<typeof HotelApiResponseSchema>;
 
 export type BookingStates =
   | { state: "init" }
@@ -346,4 +365,23 @@ export type BookingApiType = z.infer<typeof BookingApiRequestSchema>;
 
 export const BookingApiResponseSchema = z.object({
   data: z.string(),
+});
+
+export const HotelDetailsSchema = z.object({
+  data: z.object({
+    hotel_name: z.string(),
+    url: z.url(),
+    address: z.string(),
+    composite_price_breakdown: z.object({
+      all_inclusive_amount: z.object({
+        currency: z.string(),
+        amount_rounded: z.string(),
+      }),
+    }),
+    property_highlight_strip: z.array(
+      z.object({
+        name: z.string(),
+      }),
+    ),
+  }),
 });

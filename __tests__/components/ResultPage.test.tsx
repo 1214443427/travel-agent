@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 import { SAMPLE_RESPONSE_DATA } from "../testData/sampleResponseData";
 import userEvent from "@testing-library/user-event";
+import { SAMPLE_HOTEL_DETAILS_DATA } from "../testData/sampleHotelDetailsData";
 
 describe("ResultPage", () => {
   test("renders the title", () => {
@@ -50,14 +51,18 @@ describe("ResultPage", () => {
     expect(open).toHaveBeenCalledWith(`https://en.wikipedia.org/wiki/en:Forbidden City`);
   });
 
-  test("Book button redirects the user to booking.com", async () => {
+  test("Book button opens a booking details modal", async () => {
     render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} />);
     const user = userEvent.setup();
     const open = vi.spyOn(window, "open");
 
     const bookBtn = screen.getAllByRole("button", { name: "Book" })[1]; // Needs to be more specific.
     await user.click(bookBtn);
-    expect(open).toHaveBeenCalledWith(`https://booking.com`);
+
+    expect(await screen.findByText("Hotel Details")).toBeInTheDocument();
+    expect(screen.getByText(SAMPLE_HOTEL_DETAILS_DATA.data.hotel_name)).toBeInTheDocument();
+
+    // expect(open).toHaveBeenCalledWith(`https://booking.com`);
   });
 
   test("loads fallback UI when data is empty.", () => {

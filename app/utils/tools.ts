@@ -1,5 +1,5 @@
 import { RunContext, tool } from "@openai/agents";
-import z, { string } from "zod";
+import z from "zod";
 import { GEOAPIFY_KEY, WEATHER_API_KEY } from "./config";
 import { fetchAPI, fetchRapidAPI } from "./fetching";
 import { addRef, constructUrl, parseData } from "./utils";
@@ -7,6 +7,7 @@ import {
   AirportSchema,
   BookingHandle,
   FlightSchema,
+  HotelHandle,
   HotelsSchema,
   LatLonSchema,
   PlacesSchema,
@@ -340,7 +341,13 @@ export const getHotels = tool<typeof getHotelsParams, TravelAgentContext>({
     // const result = SAMPLE_HOTEL_DATA;
     const parsedData = parseData(HotelsSchema, result);
     const filteredResult = parsedData.data.result.slice(0, 5).map((hotel) => {
-      const handle: BookingHandle = { kind: "hotel", token: String(hotel.hotel_id) };
+      const handle: HotelHandle = {
+        kind: "hotel",
+        token: String(hotel.hotel_id),
+        checkIn: checkInDate,
+        checkOut: checkOutDate,
+        adults: person,
+      };
       const ref = addRef(context, "htl", handle);
       console.log(ref, handle);
       return {

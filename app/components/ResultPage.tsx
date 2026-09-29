@@ -9,12 +9,13 @@ import {
 } from "../type";
 import TextBox from "./TextBox";
 import Button from "./Button";
-import DetailsModal from "./DetailsModal";
+import FlightDetailsModal from "./FlightDetailsModal";
 import ModalContainer from "./ModalContainer";
 import LoadingMessage from "./LoadingMessage";
 import ErrorModal from "./ErrorModal";
 import { ApiResult, fetchInternalAPI } from "../utils/clientFetching";
 import { Contract, flightRouteContract, hotelRouteContract } from "../utils/contract";
+import HotelDetailsModal from "./HotelDetailsModal";
 
 function getCityName(location: string) {
   return location.split(",")[0];
@@ -69,7 +70,12 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
 
     let apiResult;
     if (handle.kind === "hotel") {
-      apiResult = await fetchInternalAPI("/api/hotel", hotelRouteContract, handle);
+      apiResult = await fetchInternalAPI("/api/hotel", hotelRouteContract, {
+        token: handle.token,
+        adults: responseData.personCount,
+        arrivalDate: responseData.startDate,
+        departureDate: responseData.endDate,
+      });
       return toBookingState(apiResult, (data) => ({ state: "hotel", data }));
     } else {
       apiResult = await fetchInternalAPI("/api/flight", flightRouteContract, handle);
@@ -99,7 +105,14 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
     if (event.action.type === "view_attraction") {
       window.open(`https://en.wikipedia.org/wiki/${event.action?.wikipedia}`);
     } else if (event.action.type === "book_hotel") {
-      window.open("https://booking.com"); //todo: implement real booking api.
+      if (bookingState.state === "hotel") {
+        return setIsModalOpen(true);
+      }
+      const ref = event.action.ref;
+      setIsModalOpen(true);
+      startTransition(() => {
+        bookingAction(ref);
+      });
     } else if (event.action.type === "book_flight") {
       if (bookingState.state === "flight") {
         return setIsModalOpen(true);
@@ -164,13 +177,13 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
       {(isPending || isModalOpen) && (
         <ModalContainer>
           {bookingState.state == "flight" ? (
-            <DetailsModal
+            <FlightDetailsModal
               flightDetails={bookingState.data}
               closeModal={() => {
                 setIsModalOpen(false);
               }}
               isPending={isPending}
-            ></DetailsModal>
+            ></FlightDetailsModal>
           ) : bookingState.state == "error" ? (
             <ErrorModal className="w-60">
               {bookingState.message}
@@ -182,6 +195,13 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
                 Close
               </Button>
             </ErrorModal>
+          ) : bookingState.state === "hotel" ? (
+            <HotelDetailsModal
+              hotelDetails={bookingState.data}
+              closeModal={() => {
+                setIsModalOpen(false);
+              }}
+            />
           ) : (
             <LoadingMessage message="Loading..." />
           )}
