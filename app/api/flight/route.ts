@@ -37,7 +37,7 @@ const handler = async (body: BookingHandle) => {
     const parsedData = parseData(FlightDetailsSchema, result);
     const airlineOffering = parsedData.data.filter((entry) => entry.is_airline === true);
     const responseBody: FlightDetails = {
-      data: airlineOffering,
+      data: airlineOffering.length > 0 ? airlineOffering : parsedData.data,
     };
     return responseBody;
   } catch (error) {

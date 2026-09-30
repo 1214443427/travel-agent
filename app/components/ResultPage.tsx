@@ -42,8 +42,6 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
     prevState: BookingStates,
     ref: string | null,
   ): Promise<BookingStates> {
-    console.log("ref", ref);
-
     if (prevState.state === "error") {
       setIsModalOpen(false);
       return {
@@ -55,7 +53,7 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
       return {
         state: "error",
         message:
-          "We encountered an unexpected error. Please try booking directly from the airline. ",
+          "We encountered an unexpected error. Please try booking directly from the airline or hotel.",
       };
     }
 
@@ -65,7 +63,8 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
     if (!handle)
       return {
         state: "error",
-        message: "We couldn't find this flight. Please try booking directly from the airline.",
+        message:
+          "We couldn't find this booking. Please try booking directly from the airline or hotel.",
       };
 
     let apiResult;

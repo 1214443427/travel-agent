@@ -49,7 +49,7 @@ function FlightDetailsModal({
   return (
     <div className="flex flex-col w-80 h-213 overflow-scroll items-center gap-6">
       <h1 className="border-2 w-4/5 text-2xl font-bold bg-white border-[#4BDCB0] rounded-3xl">
-        Options
+        Flight Options
       </h1>
 
       {isPending ? (
@@ -81,7 +81,7 @@ function FlightDetailsModal({
         className="border-2 p-2 capitalize text-2xl cursor-pointer hover:bg-red-100 font-bold bg-white border-red-600 rounded-full"
         onClick={closeModal}
       >
-        close
+        Close
       </Button>
 
       {bookPending && (

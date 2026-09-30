@@ -19,7 +19,6 @@ export const POST = jsonRoute(bookRouteContract, async (data) => {
     }),
   };
 
-  console.log(options);
   //   return new Response(
   //     JSON.stringify({
   //       data: "https://www.google.com",
@@ -52,6 +51,6 @@ export const POST = jsonRoute(bookRouteContract, async (data) => {
       "We encountered an error when retrieving data from our flight information provider. Please try booking directly from the airline.",
     );
   }
-  console.log(parsedData);
+
   return parsedData;
 });

@@ -74,4 +74,8 @@ export const httpHandlers = [
       ),
     });
   }),
+
+  http.post("/api/book", () => {
+    return HttpResponse.json(SAMPLE_BOOKING_URL);
+  }),
 ];
