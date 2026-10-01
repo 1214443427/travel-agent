@@ -38,5 +38,5 @@ export async function fetchRapidAPI(url: string | URL, host: string, timeout?: n
       "x-rapidapi-host": host,
     },
   };
-  return await fetchAPI(url, options);
+  return await fetchAPI(url, options, timeout);
 }

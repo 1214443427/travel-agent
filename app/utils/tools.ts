@@ -278,10 +278,9 @@ export const getNextFlight = tool<typeof getNextFlightParams, TravelAgentContext
 
     const url = constructUrl(baseURL, options);
 
-    const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com", 25_000);
+    const response = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com", 60_000);
     // const response = SAMPLE_BOOK_TOKEN_FLIGHT;
 
-    console.log(response);
     const parsedData = parseData(FlightSchema, response);
     //Todo: handle edge case where topFlights is empty
     return filterFlights(parsedData, 3, context);

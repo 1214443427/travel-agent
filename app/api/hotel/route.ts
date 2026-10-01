@@ -21,7 +21,7 @@ async function handler({ token, arrivalDate, departureDate, adults }: HotelApiRe
   };
   const fullUrl = constructUrl(baseURL, options);
   try {
-    const result = fetchRapidAPI(fullUrl, "booking-com15.p.rapidapi.com");
+    const result = await fetchRapidAPI(fullUrl, "booking-com15.p.rapidapi.com");
     // const result = SAMPLE_HOTEL_DETAILS_DATA;
     const parsedData = parseData(HotelDetailsSchema, result).data;
 

@@ -46,7 +46,7 @@ export const formatterProviderData = isOpenRouter
       provider: {
         require_parameters: true,
         allow_fallbacks: true,
-        //  sort: "throughput"
+        sort: "throughput",
       },
       reasoning: { enabled: false },
     }
