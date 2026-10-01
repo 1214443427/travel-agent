@@ -100,5 +100,48 @@ describe("Flight details modal", () => {
 
     const filteredFlights = SAMPLE_FLIGHT_DETAILS.data.filter((flight) => flight.is_airline);
     expect(screen.getAllByRole("button").length).toEqual(filteredFlights.length + 1);
+    for (const flight of filteredFlights) {
+      expect(screen.getByText(flight.cabin, { exact: false }));
+      for (const feature of flight.meta.features) {
+        const featureMatcher = new RegExp(feature, "i");
+        expect(screen.getAllByText(featureMatcher));
+      }
+    }
+  });
+
+  test("The modal renders loading state correctly.", () => {
+    const closeModalFn = vi.fn();
+    const { rerender } = render(
+      <FlightDetailsModal
+        flightDetails={SAMPLE_FLIGHT_DETAILS}
+        closeModal={closeModalFn}
+        isPending={true}
+      />,
+    );
+
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
+    rerender(
+      <FlightDetailsModal
+        flightDetails={SAMPLE_FLIGHT_DETAILS}
+        closeModal={closeModalFn}
+        isPending={false}
+      />,
+    );
+    expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
+  });
+
+  test("The modal renders fallback values for missing fields", () => {
+    render(
+      <FlightDetailsModal
+        flightDetails={{
+          ...SAMPLE_FLIGHT_DETAILS,
+          data: [{ title: "Test Flight", is_airline: false, meta: null, price: 123, token: "abc" }],
+        }}
+        closeModal={vi.fn()}
+        isPending={false}
+      />,
+    );
+    expect(screen.getByRole("heading", { name: "cabin not listed" })).toBeInTheDocument();
+    expect(screen.getByText("Visit the website for more information.")).toBeInTheDocument();
   });
 });

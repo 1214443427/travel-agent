@@ -1,5 +1,3 @@
-import React from "react";
-import ModalContainer from "./ModalContainer";
 import { HotelDetails } from "../type";
 import Button from "./Button";
 

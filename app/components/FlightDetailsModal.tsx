@@ -61,16 +61,18 @@ function FlightDetailsModal({
           {flightDetails.data.map((option, index) => (
             <TextBox key={index} className="flex flex-col items-center bg-green-100 gap-1 px-3">
               <h1 className="capitalize bg-white py-0.5 px-3 rounded-2xl text-xl font-medium">
-                {(option.cabin ?? "basic").toLocaleLowerCase()}
+                {(option.cabin ?? "cabin not listed").toLocaleLowerCase()}
               </h1>
               <ul>
-                {option.meta
-                  ? option.meta.features.map((feature, index) => (
-                      <li key={index} className="text-left">
-                        ➡️ {feature}
-                      </li>
-                    ))
-                  : "Visit the website for more information."}
+                {option.meta ? (
+                  option.meta.features.map((feature, index) => (
+                    <li key={index} className="text-left">
+                      ➡️ {feature}
+                    </li>
+                  ))
+                ) : (
+                  <li>Visit the website for more information.</li>
+                )}
               </ul>
               <Button onClick={() => bookingOnClick(option.token)}>${option.price}</Button>
             </TextBox>
