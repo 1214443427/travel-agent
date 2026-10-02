@@ -17,13 +17,19 @@ After the agent finishes planning the trip, the result is shown to the user.
 <img src="public/readme-asset/result-screenshot-1.png" alt="screenshot of result" width="200"/>
 <img src="public/readme-asset/result-screenshot-2.png" alt="second part of the result" width="200"/>
 
-Currently, clicking the "Book" or "View Details" buttons will redirect the user to booking.com and Wikipedia respectively.
+Clicking the "Book" button on Flights or Hotels will open a modal showing details about the flight or hotel. These data are retrieved from the same API provider as the agent tools. 
+
+The flight details modal renders a list of options, prioritizing airline offerings. When the user selects an option, they will be redirected to the airline's booking interface with the exact same offering. 
+
+The hotel details modal will render a list of features and a book button. Clicking the book button redirects the user to the hotel's Booking.com listing. The external site's form will be pre-populated based on the LLM's choice. 
+
+"View Details" buttons will redirect the user to Wikipedia.
 
 ## Technical Details
 
 ### Framework
 
-The app uses Next.js 16 with the App Router, which allowed the backend to be built alongside the frontend in a single project and keeps sensitive API keys off the frontend.
+The app uses Next.js 16 with the App Router, which allows the backend to be built alongside the frontend in a single project and keeps sensitive API keys off the frontend.
 
 ### Frontend
 
@@ -54,7 +60,7 @@ The tools also filter what the APIs return, extracting only the important fields
 
 #### Agent Context
 
-The `getFlights` tool uses the Google Flights API, whose endpoints return a `booking_token` used to link to a booking for a given flight. The tokens are long strings with high randomness. To prevent the LLM from hallucinating non-existent tokens, they are saved to the agent context programmatically. Each token is assigned a `ref` as identification, and the Planner Agent is instructed to include that `ref` in its output.
+The `getFlights` tool uses the Google Flights API, whose endpoints return a `booking_token` used to link to a booking for a given flight. The tokens are long strings with high randomness. To prevent the LLM from hallucinating non-existent tokens, they are saved to the agent context programmatically. Each token is assigned a `ref` as an identifier, and the Planner Agent is instructed to include that `ref` in its output.
 
 The refs are sent to the frontend along with the itinerary, so the booking button has the real token available to it. Redeeming it is not implemented yet — see [Roadmap](#roadmap).
 
@@ -99,8 +105,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Roadmap
 
-- **Real booking.** The "Book" button currently opens booking.com rather than completing a reservation. The token plumbing described above is already in place; what remains is redeeming it against the provider.
-- **Forecast weather.** `getWeather` reads current conditions, so for a trip planned months out it indicates typical conditions rather than an actual forecast for those dates.
+- **Forecast weather.** `getWeather` reads current conditions, so for a trip planned months out, it indicates typical conditions rather than an actual forecast for those dates.
 
 ## License
 
