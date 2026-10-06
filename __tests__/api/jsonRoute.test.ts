@@ -1,7 +1,7 @@
 import { jsonRoute } from "@/app/api/jsonRoute";
 import { APIError } from "@/app/type";
 import { Contract } from "@/app/utils/contract";
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, test } from "vitest";
 import z from "zod";
 
 const testContract = {

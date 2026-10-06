@@ -127,7 +127,7 @@ export async function* planTrip(
     const jsonResult = await run(
       formatter,
       getFormatterPrompt(userPrompt, textResult.finalOutput),
-      { signal: signal },
+      { signal: signal, maxTurns: 2 },
     );
     if (!jsonResult.finalOutput) {
       throw new Error("Formatter failed to produce a final output.");

@@ -263,6 +263,15 @@ describe("Form", () => {
         "invalid messages should remain on unedited field.",
       );
     });
+
+    test("return date selector updates automatically based on start date", () => {
+      setUpForm();
+      const startInput = screen.getByLabelText("From Date");
+      const toInput = screen.getByLabelText("To Date") as HTMLInputElement;
+      fireEvent.change(toInput, { target: { value: "2025-09-01" } });
+      fireEvent.change(startInput, { target: { value: "2026-11-01" } });
+      expect(toInput.value).toEqual("2026-11-01");
+    });
   });
 
   describe("handles error gracefully", () => {
@@ -352,6 +361,26 @@ describe("Form", () => {
       expect(
         screen.getByText("The server stopped responding before finishing. Please try again."),
       ).toBeInTheDocument();
+    });
+
+    test("handles the case where the server sends a non json response.", async () => {
+      setUpForm();
+      const user = userEvent.setup();
+      server.use(
+        http.post("/api/trip", () => {
+          return new HttpResponse(`<html>Gateway Timeout</html>`, {
+            status: 504,
+            statusText: "Gateway Timeout",
+            headers: { "Content-Type": "text/html" },
+          });
+        }),
+      );
+      await fillValidForm(user);
+      await submitForm(user);
+
+      expect(await screen.findByText("504")).toBeInTheDocument();
+      expect(screen.getByRole("heading", { name: "Error" })).toBeInTheDocument();
+      expect(screen.getByText("Gateway Timeout")).toBeInTheDocument();
     });
 
     test("handles empty response", async () => {

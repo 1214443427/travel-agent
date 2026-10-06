@@ -13,7 +13,7 @@ export const POST = withJsonBody(FormSchema, async (inputData: FormInputData, re
         try {
           controller.enqueue(encoder.encode(`data:${data} \n\n`));
         } catch {
-          console.error("Stream is aborted. ");
+          console.error("Stream is aborted.");
         }
       };
 

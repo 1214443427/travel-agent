@@ -1,4 +1,4 @@
-import { APIError, BookingApiRequestSchema, BookingApiType } from "@/app/type";
+import { APIError } from "@/app/type";
 import { RAPID_API_KEY } from "@/app/utils/config";
 import { jsonRoute } from "../jsonRoute";
 import { bookRouteContract } from "@/app/utils/contract";
@@ -20,11 +20,9 @@ export const POST = jsonRoute(bookRouteContract, async (data) => {
     signal: AbortSignal.timeout(10_000),
   };
 
-  //   return new Response(
-  //     JSON.stringify({
-  //       data: "https://www.google.com",
-  //     }),
-  //   );
+  // return {
+  //   data: "https://www.google.com",
+  // };
   let response;
   try {
     response = await fetch(url, options);

@@ -21,7 +21,7 @@ function InputField({ label, className, invalid, invalidMessage, ...rest }: Prop
         {...rest}
         className={inputStyling}
         aria-invalid={invalid}
-        aria-describedby={`${label}-error-message`}
+        aria-describedby={`${rest.name}-error-message`}
       ></input>
       {invalid && (
         <p className="text-red-600 -mt-2" id={`${label}-error-message`}>

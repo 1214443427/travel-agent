@@ -1,10 +1,7 @@
 import React, { Dispatch, SetStateAction, startTransition, useActionState, useState } from "react";
 import {
-  BookingHandle,
   BookingStates,
   EventData,
-  FlightDetails,
-  FlightDetailsSchema,
   ResponseData,
 } from "../type";
 import TextBox from "./TextBox";
@@ -14,7 +11,7 @@ import ModalContainer from "./ModalContainer";
 import LoadingMessage from "./LoadingMessage";
 import ErrorModal from "./ErrorModal";
 import { ApiResult, fetchInternalAPI } from "../utils/clientFetching";
-import { Contract, flightRouteContract, hotelRouteContract } from "../utils/contract";
+import { flightRouteContract, hotelRouteContract } from "../utils/contract";
 import HotelDetailsModal from "./HotelDetailsModal";
 
 function getCityName(location: string) {
@@ -189,7 +186,6 @@ function ResultPage({
               closeModal={() => {
                 setIsModalOpen(false);
               }}
-              isPending={isPending}
             ></FlightDetailsModal>
           ) : bookingState.state == "error" ? (
             <ErrorModal className="w-60">

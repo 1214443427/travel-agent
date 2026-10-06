@@ -111,9 +111,9 @@ function Form({
         return {
           phase: "error",
           error: {
-            name: response.statusText,
+            name: response.statusText || "Server error",
             code: response.status,
-            message: response.statusText,
+            message: "The server returned an unexpected response. Please try again.",
           },
           prevData: formData,
         };

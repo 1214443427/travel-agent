@@ -7,6 +7,7 @@ import { assistantMessage, functionCall, ScriptedModel } from "@openai/agents/te
 import { describe, expect, test } from "vitest";
 import { SAMPLE_FORM_INPUT } from "../testData/sampleFormData";
 import { SAMPLE_FORMATTER_OUTPUT, SAMPLE_RESPONSE_DATA } from "../testData/sampleResponseData";
+import { MaxTurnsExceededError, ModelBehaviorError } from "@openai/agents";
 
 describe("planTrips", () => {
   test("The function should generate events based on model actions.", async () => {
@@ -86,23 +87,54 @@ describe("planTrips", () => {
     );
   });
 
-  //   test("throws if formatter did not return a proper output. ", async () => {
-  //     const plannerModel = new ScriptedModel([[assistantMessage("Text Response")]]);
-  //     const formatterModel = new ScriptedModel([[assistantMessage("")]]);
-  //     const plannerAgent = createPlannerAgent(plannerModel);
-  //     const formatterAgent = createFormatterAgent(formatterModel);
+  test.each([
+    ["JSON", "not json"],
+    ["proper formatted", JSON.stringify({ data: "not correct format" })],
+  ])("throws if formatter did not return a %s output. ", async (_, data) => {
+    const plannerModel = new ScriptedModel([[assistantMessage("Text Response")]]);
+    const formatterModel = new ScriptedModel([[assistantMessage(data)]]);
+    const plannerAgent = createPlannerAgent(plannerModel);
+    const formatterAgent = createFormatterAgent(formatterModel);
 
-  //     const events: TripStream[] = [];
-  //     const stream = planTrip(
-  //       SAMPLE_FORM_INPUT,
-  //       new AbortController().signal,
-  //       plannerAgent,
-  //       formatterAgent,
-  //     );
-  //     await expect(async () => {
-  //       for await (const event of stream) {
-  //         events.push(event);
-  //       }
-  //     }).rejects.toThrow("Formatter failed to produce a final output.");
-  //   });
+    const events: TripStream[] = [];
+    const stream = planTrip(
+      SAMPLE_FORM_INPUT,
+      new AbortController().signal,
+      plannerAgent,
+      formatterAgent,
+    );
+    await expect(async () => {
+      for await (const event of stream) {
+        events.push(event);
+      }
+    }).rejects.toThrow(ModelBehaviorError);
+
+    expect(events).toEqual([{ type: "tool_started", tool: "format_itinerary" }]);
+  });
+
+  test("formatter tries maximum of 2 times before giving up.", async () => {
+    const plannerModel = new ScriptedModel([[assistantMessage("Text Response")]]);
+    const formatterModel = new ScriptedModel([
+      [assistantMessage("")],
+      [assistantMessage("")],
+      [assistantMessage("")],
+    ]);
+    const plannerAgent = createPlannerAgent(plannerModel);
+    const formatterAgent = createFormatterAgent(formatterModel);
+
+    const events: TripStream[] = [];
+    const stream = planTrip(
+      SAMPLE_FORM_INPUT,
+      new AbortController().signal,
+      plannerAgent,
+      formatterAgent,
+    );
+
+    await expect(async () => {
+      for await (const event of stream) {
+        events.push(event);
+      }
+    }).rejects.toThrow(MaxTurnsExceededError);
+    expect(formatterModel.calls).toHaveLength(2);
+  });
 });

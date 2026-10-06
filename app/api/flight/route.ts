@@ -1,4 +1,3 @@
-import { SAMPLE_FLIGHT_DETAILS } from "@/__tests__/testData/sampleFlightDataWithNextToken";
 import {
   APIError,
   BookingHandle,
@@ -30,7 +29,7 @@ const handler = async (body: BookingHandle) => {
   };
   const url = constructUrl(baseURL, options);
 
-  // return new Response(JSON.stringify(FlightDetailsSchema.safeParse(SAMPLE_FLIGHT_DETAILS).data));
+  // return FlightDetailsSchema.safeParse(SAMPLE_FLIGHT_DETAILS).data;
 
   try {
     const result = await fetchRapidAPI(url, "google-flights2.p.rapidapi.com");

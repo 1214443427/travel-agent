@@ -5,7 +5,6 @@ import { fetchAPI, fetchRapidAPI } from "./fetching";
 import { addRef, constructUrl, parseData } from "./utils";
 import {
   AirportSchema,
-  BookingHandle,
   FlightSchema,
   HotelHandle,
   HotelsSchema,
@@ -20,12 +19,6 @@ import {
   TOOL_ERRORS,
   toolErrorHandler,
 } from "./toolErrors";
-import {
-  SAMPLE_BOOK_TOKEN_FLIGHT,
-  SAMPLE_NEXT_TOKEN_FLIGHT,
-} from "@/__tests__/testData/sampleFlightDataWithNextToken";
-import { SAMPLE_HOTEL_DATA } from "@/__tests__/testData/sampleHotelData";
-import { SAMPLE_FLIGHT_DATA } from "@/__tests__/testData/sampleFlightData";
 
 export const getLatLon = tool({
   name: "get_lat_lon",

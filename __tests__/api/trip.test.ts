@@ -23,6 +23,17 @@ async function post(body: string) {
 describe("trip Route", () => {
   const decoder = new TextDecoder();
 
+  function gatedPlanTrip() {
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => (release = resolve)); //make release a function that resolves the gate;
+    planTripMock.mockImplementation(async function* (): AsyncGenerator<TripStream> {
+      yield { type: "tool_started", tool: "get_weather" };
+      await gate;
+      yield { type: "tool_finished", tool: "get_weather" };
+    });
+    return release;
+  }
+
   test("The route should stream events based on the planTrip function.", async () => {
     planTripMock.mockImplementation(async function* (): AsyncGenerator<TripStream> {
       yield { type: "tool_started", tool: "get_weather" };
@@ -55,13 +66,7 @@ describe("trip Route", () => {
   });
 
   test("Each event arrives on its own, and not together as a single body.", async () => {
-    let release!: () => void;
-    const gate = new Promise<void>((resolve) => (release = resolve)); //make release a function that resolves the gate;
-    planTripMock.mockImplementation(async function* (): AsyncGenerator<TripStream> {
-      yield { type: "tool_started", tool: "get_weather" };
-      await gate;
-      yield { type: "tool_finished", tool: "get_weather" };
-    });
+    const release = gatedPlanTrip();
 
     const result = await post(JSON.stringify(SAMPLE_FORM_BODY));
     const stream = result.body;
@@ -143,6 +148,7 @@ describe("trip Route", () => {
       seenSignal = signal;
       yield { type: "tool_started", tool: "get_weather" };
       await gate;
+      yield { type: "tool_finished", tool: "get_weather" };
     });
 
     const controller = new AbortController();
@@ -161,5 +167,39 @@ describe("trip Route", () => {
     controller.abort();
     expect(seenSignal!.aborted).toBe(true);
     release();
+
+    expect((await events.next()).done).toBe(true);
+  });
+
+  // test("stops sending events once the request is aborted", async () => {
+  //   const release = gatedPlanTrip();
+  //   const controller = new AbortController();
+  //   const result = await POST(
+  //     new Request("https://localhost:3000/api/trip", {
+  //       method: "POST",
+  //       body: JSON.stringify(SAMPLE_FORM_BODY),
+  //       signal: controller.signal,
+  //     }),
+  //   );
+
+  //   const events = readEventStream(result.body!);
+  //   expect((await events.next()).value).toEqual({ type: "tool_started", tool: "get_weather" });
+
+  //   controller.abort();
+  //   release();
+
+  //   expect((await events.next()).done).toBe(true);
+  // });
+
+  test("logs error when reader cancels the stream", async () => {
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    const release = gatedPlanTrip();
+    const result = await post(JSON.stringify(SAMPLE_FORM_BODY));
+    const reader = result.body!.getReader();
+    await reader.read();
+    await reader.cancel();
+
+    release();
+    await vi.waitFor(() => expect(errorSpy).toHaveBeenCalledWith("Stream is aborted."));
   });
 });

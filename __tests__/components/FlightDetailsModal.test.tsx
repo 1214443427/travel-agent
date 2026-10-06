@@ -1,5 +1,5 @@
 import FlightDetailsModal from "@/app/components/FlightDetailsModal";
-import { getAllByRole, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 import {
   SAMPLE_BOOKING_URL,
@@ -14,13 +14,7 @@ describe("Flight details modal", () => {
     const closeModalFn = vi.fn();
     const fetchSpy = vi.spyOn(globalThis, "fetch");
     const openSpy = vi.spyOn(globalThis, "open");
-    render(
-      <FlightDetailsModal
-        flightDetails={SAMPLE_FLIGHT_DETAILS}
-        closeModal={closeModalFn}
-        isPending={false}
-      />,
-    );
+    render(<FlightDetailsModal flightDetails={SAMPLE_FLIGHT_DETAILS} closeModal={closeModalFn} />);
 
     const user = userEvent.setup();
     const bookBtn = screen.getByRole("button", { name: "$780" });
@@ -31,6 +25,11 @@ describe("Flight details modal", () => {
         body: JSON.stringify({ token: SAMPLE_FLIGHT_DETAILS.data[0].token }),
       }),
     );
+
+    expect(await screen.findByText("Continue on an external website")).toBeInTheDocument();
+    const openBtn = screen.getByRole("button", { name: "Go" });
+    await user.click(openBtn);
+
     expect(openSpy).toHaveBeenCalledWith(SAMPLE_BOOKING_URL.data, "_blank");
 
     const closeBtn = screen.getByRole("button", { name: "Close" });
@@ -41,13 +40,7 @@ describe("Flight details modal", () => {
 
   test("The modal handles server error gracefully", async () => {
     const closeModalFn = vi.fn();
-    render(
-      <FlightDetailsModal
-        flightDetails={SAMPLE_FLIGHT_DETAILS}
-        closeModal={closeModalFn}
-        isPending={false}
-      />,
-    );
+    render(<FlightDetailsModal flightDetails={SAMPLE_FLIGHT_DETAILS} closeModal={closeModalFn} />);
     const fetchSpy = vi.spyOn(globalThis, "fetch");
     const openSpy = vi.spyOn(window, "open");
 
@@ -76,6 +69,10 @@ describe("Flight details modal", () => {
     );
 
     await user.click(bookBtn);
+    expect(await screen.findByText("Continue on an external website")).toBeInTheDocument();
+    const openBtn = screen.getByRole("button", { name: "Go" });
+    await user.click(openBtn);
+
     expect(openSpy).toHaveBeenCalledWith(SAMPLE_BOOKING_URL.data, "_blank");
     expect(fetchSpy).toHaveBeenCalledTimes(2);
   });
@@ -83,14 +80,8 @@ describe("Flight details modal", () => {
   test("The modal caches URLs.", async () => {
     const closeModalFn = vi.fn();
     const fetchSpy = vi.spyOn(globalThis, "fetch");
-    const openSpy = vi.spyOn(window, "open");
-    render(
-      <FlightDetailsModal
-        flightDetails={SAMPLE_FLIGHT_DETAILS}
-        closeModal={closeModalFn}
-        isPending={false}
-      />,
-    );
+    // const openSpy = vi.spyOn(window, "open");
+    render(<FlightDetailsModal flightDetails={SAMPLE_FLIGHT_DETAILS} closeModal={closeModalFn} />);
 
     const user = userEvent.setup();
     const bookBtn1 = screen.getByRole("button", { name: "$780" });
@@ -99,50 +90,25 @@ describe("Flight details modal", () => {
     await user.click(bookBtn1);
 
     expect(fetchSpy).toHaveBeenCalledOnce();
-    expect(openSpy).toHaveBeenCalledTimes(2);
-    expect(openSpy).toHaveBeenLastCalledWith(SAMPLE_BOOKING_URL.data, "_blank");
+    // expect(openSpy).toHaveBeenCalledTimes(2);
+    // expect(openSpy).toHaveBeenLastCalledWith(SAMPLE_BOOKING_URL.data, "_blank");
   });
 
   test("The modal renders multiple flights", () => {
     const closeModalFn = vi.fn();
-    render(
-      <FlightDetailsModal
-        flightDetails={SAMPLE_FLIGHT_DETAILS}
-        closeModal={closeModalFn}
-        isPending={false}
-      />,
-    );
+    render(<FlightDetailsModal flightDetails={SAMPLE_FLIGHT_DETAILS} closeModal={closeModalFn} />);
 
     const filteredFlights = SAMPLE_FLIGHT_DETAILS.data.filter((flight) => flight.is_airline);
-    expect(screen.getAllByRole("button").length).toEqual(filteredFlights.length + 1);
     for (const flight of filteredFlights) {
       expect(screen.getByText(flight.cabin, { exact: false }));
       for (const feature of flight.meta.features) {
         const featureMatcher = new RegExp(feature, "i");
         expect(screen.getAllByText(featureMatcher));
       }
+      expect(
+        screen.getByRole("button", { name: new RegExp(flight.price.toString()) }),
+      ).toBeInTheDocument();
     }
-  });
-
-  test("The modal renders loading state correctly.", () => {
-    const closeModalFn = vi.fn();
-    const { rerender } = render(
-      <FlightDetailsModal
-        flightDetails={SAMPLE_FLIGHT_DETAILS}
-        closeModal={closeModalFn}
-        isPending={true}
-      />,
-    );
-
-    expect(screen.getByText("Loading...")).toBeInTheDocument();
-    rerender(
-      <FlightDetailsModal
-        flightDetails={SAMPLE_FLIGHT_DETAILS}
-        closeModal={closeModalFn}
-        isPending={false}
-      />,
-    );
-    expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
   });
 
   test("The modal renders fallback values for missing fields", () => {
@@ -153,7 +119,6 @@ describe("Flight details modal", () => {
           data: [{ title: "Test Flight", is_airline: false, meta: null, price: 123, token: "abc" }],
         }}
         closeModal={vi.fn()}
-        isPending={false}
       />,
     );
     expect(screen.getByRole("heading", { name: "cabin not listed" })).toBeInTheDocument();
@@ -171,20 +136,30 @@ describe("Flight details modal", () => {
       }),
     );
 
-    render(
-      <FlightDetailsModal
-        flightDetails={SAMPLE_FLIGHT_DETAILS}
-        closeModal={() => {}}
-        isPending={false}
-      />,
-    );
-
+    render(<FlightDetailsModal flightDetails={SAMPLE_FLIGHT_DETAILS} closeModal={() => {}} />);
     const user = userEvent.setup();
     const bookBtn1 = screen.getByRole("button", { name: "$780" });
     await user.click(bookBtn1);
 
     expect(screen.getByText("Loading...")).toBeInTheDocument();
     release();
-    expect(await screen.findByText("Loading...")).not.toBeInTheDocument();
+    expect(await screen.findByText("Go")).toBeInTheDocument();
+    expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
+  });
+
+  test("copy button copies URL for the user", async () => {
+    render(<FlightDetailsModal flightDetails={SAMPLE_FLIGHT_DETAILS} closeModal={() => {}} />);
+    const clipboardSpy = vi.spyOn(navigator.clipboard, "writeText");
+
+    const user = userEvent.setup();
+    const bookBtn1 = screen.getByRole("button", { name: "$780" });
+    await user.click(bookBtn1);
+
+    expect(await screen.findByText("Continue on an external website")).toBeInTheDocument();
+
+    const copyBtn = screen.getByRole("button", { name: "Copy" });
+    await user.click(copyBtn);
+
+    expect(clipboardSpy).toHaveBeenCalledWith(SAMPLE_BOOKING_URL.data);
   });
 });

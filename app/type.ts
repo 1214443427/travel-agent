@@ -88,10 +88,12 @@ export const BookingHandleSchema = z.discriminatedUnion("kind", [
 export type BookingHandle = z.infer<typeof BookingHandleSchema>;
 export type HotelHandle = z.infer<typeof HotelHandleSchema>;
 
-const TravelAgentContextSchema = z.object({
-  refs: z.map(z.string(), BookingHandleSchema),
-});
-export type TravelAgentContext = z.infer<typeof TravelAgentContextSchema>;
+// export const TravelAgentContextSchema = z.object({
+//   refs: z.map(z.string(), BookingHandleSchema),
+// });
+export type TravelAgentContext = {
+  refs: Map<string, BookingHandle>;
+};
 // { refs: Map<string, BookingHandle> };
 
 const RefsWireSchema = z.record(z.string(), BookingHandleSchema);

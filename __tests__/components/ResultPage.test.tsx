@@ -1,13 +1,11 @@
 import ResultPage from "@/app/components/ResultPage";
-import { findByText, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, test, vi } from "vitest";
 import { SAMPLE_RESPONSE_DATA } from "../testData/sampleResponseData";
 import userEvent from "@testing-library/user-event";
 import { SAMPLE_HOTEL_DETAILS_DATA } from "../testData/sampleHotelDetailsData";
 import { server } from "../test-setup";
 import { http } from "msw";
-import { SAMPLE_FLIGHT_DATA } from "../testData/sampleFlightData";
-import { SAMPLE_FLIGHT_DETAILS } from "../testData/sampleFlightDataWithNextToken";
 
 describe("ResultPage", () => {
   test("renders the title", () => {

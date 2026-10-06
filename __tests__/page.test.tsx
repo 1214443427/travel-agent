@@ -61,8 +61,13 @@ describe("Page", () => {
     expect(flightBookingBtn).toBeInTheDocument();
 
     await user.click(flightBookingBtn);
+    expect(await screen.findByText("Continue on an external website")).toBeInTheDocument();
+    const bookBtn = screen.getByRole("button", { name: "Go" });
+    await user.click(bookBtn);
+
     expect(openSpy).toHaveBeenCalledExactlyOnceWith(SAMPLE_BOOKING_URL.data, "_blank");
 
+    await user.click(screen.getByRole("button", { name: "Cancel" }));
     await user.click(screen.getByRole("button", { name: "Close" }));
 
     await user.click(bookBtns[1]);

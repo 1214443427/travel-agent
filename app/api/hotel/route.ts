@@ -9,7 +9,6 @@ import {
 } from "@/app/type";
 import { fetchRapidAPI } from "@/app/utils/fetching";
 import { constructUrl, parseData } from "@/app/utils/utils";
-import { SAMPLE_HOTEL_DETAILS_DATA } from "@/__tests__/testData/sampleHotelDetailsData";
 
 async function handler({ token, arrivalDate, departureDate, adults }: HotelApiRequest) {
   const baseURL = "https://booking-com15.p.rapidapi.com/api/v1/hotels/getHotelDetails";
