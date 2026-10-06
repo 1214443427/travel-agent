@@ -17,11 +17,18 @@ After the agent finishes planning the trip, the result is shown to the user.
 <img src="public/readme-asset/result-screenshot-1.png" alt="screenshot of result" width="200"/>
 <img src="public/readme-asset/result-screenshot-2.png" alt="second part of the result" width="200"/>
 
-Clicking the "Book" button on Flights or Hotels will open a modal showing details about the flight or hotel. These data are retrieved from the same API provider as the agent tools. 
+Clicking the "Book" button on Flights or Hotels will open a modal showing details about the flight or hotel. These data are retrieved from the same API provider as the agent tools.
 
-The flight details modal renders a list of options, prioritizing airline offerings. When the user selects an option, they will be redirected to the airline's booking interface with the exact same offering. 
+The flight details modal renders a list of options, prioritizing airline offerings. When the user selects an option, they will be redirected to the airline's booking interface with the exact same offering.
 
-The hotel details modal will render a list of features and a book button. Clicking the book button redirects the user to the hotel's Booking.com listing. The external site's form will be pre-populated based on the LLM's choice. 
+<img src="public/readme-asset/flight-details-modal.png" alt="flight details modal showing 3 options" width="200"/>
+
+<img src="public/readme-asset/airline-redirect.png" alt="airline's website showing the unrounded $1047.80 price tag." width="400"/>
+
+The hotel details modal will render a list of features and a book button. Clicking the book button redirects the user to the hotel's Booking.com listing. The external site's form will be pre-populated based on the LLM's choice.
+
+<img src="public/readme-asset/hotel-details-modal.png" alt="hotel details modal" width="200"/>
+<img src="public/readme-asset/booking-com-redirect-newyork.png" alt="Booking.com listing of the hotel, with check-in/checkout date pre-filled." width="400"/>
 
 "View Details" buttons will redirect the user to Wikipedia.
 

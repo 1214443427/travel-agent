@@ -29,5 +29,15 @@ export function useMessageQueue(initial: string, delay: number) {
       drainMessage();
     }
   }
-  return { message, queueMessage };
+
+  function reset() {
+    setMessage(initial);
+    queueRef.current = [];
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = null;
+  }
+
+  return { message, queueMessage, reset };
 }

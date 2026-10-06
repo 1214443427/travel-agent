@@ -46,7 +46,7 @@ async function handler({ token, arrivalDate, departureDate, adults }: HotelApiRe
     console.log(error);
     if (error instanceof FetchError) {
       throw new APIError(
-        error.status ?? 500,
+        502,
         "We encountered an error when retrieving data from our hotel information provider. Please try manually look up the hotel.",
       );
     }

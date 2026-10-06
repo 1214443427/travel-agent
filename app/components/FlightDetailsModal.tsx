@@ -38,7 +38,7 @@ function FlightDetailsModal({
 
   function bookingOnClick(token: string) {
     if (bookMap.has(token)) {
-      window.open(bookMap.get(token));
+      window.open(bookMap.get(token), "_blank");
     } else {
       startTransition(() => {
         bookAction(token);

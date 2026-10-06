@@ -17,6 +17,7 @@ export const POST = jsonRoute(bookRouteContract, async (data) => {
     body: JSON.stringify({
       token: data.token,
     }),
+    signal: AbortSignal.timeout(10_000),
   };
 
   //   return new Response(

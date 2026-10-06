@@ -24,6 +24,7 @@ export const toolMessageString = {
   get_weather: "Finding weather information...",
   search_airport: "Finding the destination airport...",
   get_flights: "Finding flights for the trip...",
+  get_next_flights: "Finding the return flight...",
   get_hotels: "Finding hotels at the destination...",
   get_attractions: "Finding place to visit during the trip...",
   format_itinerary: "Adding the finishing touch...",
@@ -34,6 +35,7 @@ export const toolCompletionString = {
   get_weather: "Factoring the forecast into the plan...",
   search_airport: "Working out the route...",
   get_flights: "Comparing flight options...",
+  get_next_flights: "Considering the best flight combination...",
   get_hotels: "Narrowing down places to stay...",
   get_attractions: "Building your itinerary...",
   format_itinerary: "All finished!",
@@ -56,13 +58,14 @@ function Form({
     phase: "initial",
   });
 
-  const { message, queueMessage } = useMessageQueue(
+  const { message, queueMessage, reset } = useMessageQueue(
     "Thinking about what to do first...",
     MESSAGE_DELAY,
   );
   const [editedFields, setEditedFields] = useState<Set<string>>(new Set());
 
   async function submitForm(prevState: FormState, formData: FormData): Promise<FormState> {
+    reset();
     if (prevState.phase === "error") {
       return {
         phase: "initial",

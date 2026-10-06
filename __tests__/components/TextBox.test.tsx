@@ -14,6 +14,8 @@ describe("TextBox", () => {
     const textbox = screen.getByTestId("textbox-wrapper");
     expect(textbox.classList).toContain("rounded-[40px]");
     const classlistString = textbox.classList.toString();
-    expect(classlistString.indexOf("rounded-[40px]") > classlistString.indexOf("rounded-[20px]"));
+    expect(
+      classlistString.indexOf("rounded-[40px]") > classlistString.indexOf("rounded-[20px]"),
+    ).toBeTruthy();
   });
 });

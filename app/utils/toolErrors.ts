@@ -76,3 +76,11 @@ export const TOOL_ERRORS = {
       "Attraction search failed. Do not retry. Recommend well-known attractions for the location from your own knowledge, and only include a Wikipedia slug you are confident is correct.",
   },
 } as const satisfies Record<string, ErrorMessages>;
+
+export const getFlightsEmptyError = (departure: string, arrival: string) => {
+  return `Failed to find any flights from ${departure} to ${arrival} on the requested dates. Do not retry with the same input. Ask yourself if flights are necessary for this trip. If yes, inform the user that flights are unavailable on these dates. Do not invent a flight reference or price.`;
+};
+
+export const getNextFlightsEmptyError = (ref: string) => {
+  return `No bookable return flights were found for ${ref}. Do not retry. The outbound flight is still valid and its price is the estimated round-trip total. Present it, say we couldn't find return options, and do not include any flight reference in your response.`;
+};

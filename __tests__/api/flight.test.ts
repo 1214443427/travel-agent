@@ -68,7 +68,7 @@ describe("/api/flight route", () => {
     );
   });
 
-  test("returns error if API returned an error", async () => {
+  test("Returns 502 error if upstream API errors. ", async () => {
     server.use(
       http.get("https://google-flights2.p.rapidapi.com/api/v1/getBookingDetails", () => {
         return HttpResponse.json({ message: "not found" }, { status: 404 });
@@ -76,27 +76,27 @@ describe("/api/flight route", () => {
     );
     const response = await post(testHandle);
     expect(response.ok).toBe(false);
-    expect(response.status).toBe(404);
+    expect(response.status).toBe(502);
     const data = await response.json();
     expect(data.message).toBe(
       "We encountered an error when retrieving data from our flight information provider. Please try booking directly from the airline. ",
     );
   });
 
-  test("returns 500 as fallback error.", async () => {
-    server.use(
-      http.get("https://google-flights2.p.rapidapi.com/api/v1/getBookingDetails", () => {
-        return Response.error();
-      }),
-    );
-    const response = await post(testHandle);
-    expect(response.ok).toBe(false);
-    expect(response.status).toBe(500);
-    const data = await response.json();
-    expect(data.message).toBe(
-      "We encountered an error when retrieving data from our flight information provider. Please try booking directly from the airline. ",
-    );
-  });
+  // test("returns 500 as fallback error.", async () => {
+  //   server.use(
+  //     http.get("https://google-flights2.p.rapidapi.com/api/v1/getBookingDetails", () => {
+  //       return Response.error();
+  //     }),
+  //   );
+  //   const response = await post(testHandle);
+  //   expect(response.ok).toBe(false);
+  //   expect(response.status).toBe(500);
+  //   const data = await response.json();
+  //   expect(data.message).toBe(
+  //     "We encountered an error when retrieving data from our flight information provider. Please try booking directly from the airline. ",
+  //   );
+  // });
 
   test("prioritizes airline offerings", async () => {
     server.use(

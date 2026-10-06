@@ -14,7 +14,12 @@ import {
   TravelAgentContext,
   WeatherSchema,
 } from "../type";
-import { TOOL_ERRORS, toolErrorHandler } from "./toolErrors";
+import {
+  getFlightsEmptyError,
+  getNextFlightsEmptyError,
+  TOOL_ERRORS,
+  toolErrorHandler,
+} from "./toolErrors";
 import {
   SAMPLE_BOOK_TOKEN_FLIGHT,
   SAMPLE_NEXT_TOKEN_FLIGHT,
@@ -178,32 +183,36 @@ function filterFlights(
   numberOfFlights: number,
   context?: RunContext<TravelAgentContext>,
 ) {
-  const filteredResult = parsedData.data.itineraries.topFlights
-    .slice(0, numberOfFlights)
-    .map((flight) => {
-      const handle = flight.next_token
-        ? { kind: "next" as const, token: flight.next_token }
-        : flight.booking_token
-          ? {
-              kind: "booking" as const,
-              token: flight.booking_token,
-            }
-          : null;
-      const flightRef = addRef(context, "flt", handle);
-      return {
-        departureTime: flight.departure_time,
-        arrivalTime: flight.arrival_time,
-        duration: flight.duration,
-        roundTripPrice: flight.price,
-        segments: flight.flights.map((leg) => ({
-          departure: leg.departure_airport,
-          arrival: leg.arrival_airport,
-          duration: leg.duration,
-        })),
-        layovers: flight.layovers,
-        ref: flightRef,
-      };
-    });
+  const itineraries = parsedData.data.itineraries;
+  const flights = itineraries.topFlights?.length
+    ? itineraries.topFlights
+    : itineraries.otherFlights?.length
+      ? itineraries.otherFlights
+      : [];
+  const filteredResult = flights.slice(0, numberOfFlights).map((flight) => {
+    const handle = flight.next_token
+      ? { kind: "next" as const, token: flight.next_token }
+      : flight.booking_token
+        ? {
+            kind: "booking" as const,
+            token: flight.booking_token,
+          }
+        : null;
+    const flightRef = addRef(context, "flt", handle);
+    return {
+      departureTime: flight.departure_time,
+      arrivalTime: flight.arrival_time,
+      duration: flight.duration,
+      roundTripPrice: flight.price,
+      segments: flight.flights.map((leg) => ({
+        departure: leg.departure_airport,
+        arrival: leg.arrival_airport,
+        duration: leg.duration,
+      })),
+      layovers: flight.layovers,
+      ref: flightRef,
+    };
+  });
   return filteredResult;
 }
 
@@ -237,8 +246,13 @@ export const getFlights = tool<typeof getFlightsParams, TravelAgentContext>({
     // const response = SAMPLE_FLIGHT_DATA;
 
     const parsedData = parseData(FlightSchema, response);
+    const filteredFlights = filterFlights(parsedData, 3, context);
 
-    return filterFlights(parsedData, 3, context);
+    if (filteredFlights.length === 0) {
+      return getFlightsEmptyError(departure, arrival);
+    }
+
+    return filteredFlights;
   },
 });
 
@@ -282,8 +296,14 @@ export const getNextFlight = tool<typeof getNextFlightParams, TravelAgentContext
     // const response = SAMPLE_BOOK_TOKEN_FLIGHT;
 
     const parsedData = parseData(FlightSchema, response);
-    //Todo: handle edge case where topFlights is empty
-    return filterFlights(parsedData, 3, context);
+
+    const filteredFlights = filterFlights(parsedData, 3, context);
+
+    if (filteredFlights.length === 0) {
+      return getNextFlightsEmptyError(ref);
+    }
+
+    return filteredFlights;
   },
 });
 
@@ -332,6 +352,7 @@ export const getHotels = tool<typeof getHotelsParams, TravelAgentContext>({
       departure_date: checkOutDate,
       adults: person,
       currency_code: currencyCode ?? "USD",
+      radius: 20,
     };
     const url = constructUrl(baseURL, options);
     const host = "booking-com15.p.rapidapi.com";

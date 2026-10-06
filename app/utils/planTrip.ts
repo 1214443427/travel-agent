@@ -105,7 +105,7 @@ export async function* planTrip(
 
   const textResult = await run(planner, userPrompt, {
     stream: true,
-    maxTurns: 12,
+    maxTurns: 20,
     signal: signal,
     context: agentContext,
   });

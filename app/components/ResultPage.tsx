@@ -1,4 +1,4 @@
-import React, { startTransition, useActionState, useState } from "react";
+import React, { Dispatch, SetStateAction, startTransition, useActionState, useState } from "react";
 import {
   BookingHandle,
   BookingStates,
@@ -34,7 +34,13 @@ function toBookingState<T>(
   return onSuccess(result.data);
 }
 
-function ResultPage({ responseData }: { responseData: ResponseData | undefined }) {
+function ResultPage({
+  responseData,
+  setPhase,
+}: {
+  responseData: ResponseData | undefined;
+  setPhase: Dispatch<SetStateAction<"form" | "start" | "result">>;
+}) {
   // const [flightDetails, setFlightDetails] = useState<FlightDetails | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -58,7 +64,7 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
     }
 
     // If LLM returned more than one ref, attempt to recover the last one.
-    const cleanedRef = ref.split(",").at(-1) ?? ref;
+    const cleanedRef = ref.split(",").at(-1)?.trim() ?? ref;
     const handle = responseData?.refs[cleanedRef];
     if (!handle)
       return {
@@ -71,9 +77,9 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
     if (handle.kind === "hotel") {
       apiResult = await fetchInternalAPI("/api/hotel", hotelRouteContract, {
         token: handle.token,
-        adults: responseData.personCount,
-        arrivalDate: responseData.startDate,
-        departureDate: responseData.endDate,
+        adults: handle.adults,
+        arrivalDate: handle.checkIn,
+        departureDate: handle.checkOut,
       });
       return toBookingState(apiResult, (data) => ({ state: "hotel", data }));
     } else {
@@ -175,7 +181,9 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
       ))}
       {(isPending || isModalOpen) && (
         <ModalContainer>
-          {bookingState.state == "flight" ? (
+          {isPending || bookingState.state == "init" ? (
+            <LoadingMessage message="Loading..." />
+          ) : bookingState.state == "flight" ? (
             <FlightDetailsModal
               flightDetails={bookingState.data}
               closeModal={() => {
@@ -194,18 +202,20 @@ function ResultPage({ responseData }: { responseData: ResponseData | undefined }
                 Close
               </Button>
             </ErrorModal>
-          ) : bookingState.state === "hotel" ? (
+          ) : (
             <HotelDetailsModal
               hotelDetails={bookingState.data}
               closeModal={() => {
                 setIsModalOpen(false);
               }}
             />
-          ) : (
-            <LoadingMessage message="Loading..." />
           )}
         </ModalContainer>
       )}
+
+      <Button className="bg-amber-200" onClick={() => setPhase("start")}>
+        Plan Another Trip
+      </Button>
     </div>
   );
 }

@@ -204,36 +204,41 @@ const FlightSegmentAirportSchema = z.object({
   time: z.string(),
 });
 
+const FlightItinerarySchema = z.object({
+  departure_time: z.string(),
+  arrival_time: z.string(),
+  duration: z.object({ raw: z.number(), text: z.string() }),
+  price: z.number(),
+  flights: z.array(
+    z.object({
+      departure_airport: FlightSegmentAirportSchema,
+      arrival_airport: FlightSegmentAirportSchema,
+      duration: z.object({ raw: z.number(), text: z.string() }),
+      airline: z.string(),
+    }),
+  ),
+  layovers: z
+    .array(
+      z.object({
+        airport_code: z.string(),
+        airport_name: z.string(),
+        duration: z.number(),
+      }),
+    )
+    .nullable(),
+  booking_token: z.string().nullish(),
+  next_token: z.string().nullish(),
+});
+
+const FlightListSchema = z
+  .array(FlightItinerarySchema.nullable().catch(null))
+  .transform((arr) => arr.filter((flight) => flight != null));
+
 export const FlightSchema = z.object({
   data: z.object({
     itineraries: z.object({
-      topFlights: z.array(
-        z.object({
-          departure_time: z.string(),
-          arrival_time: z.string(),
-          duration: z.object({ raw: z.number(), text: z.string() }),
-          price: z.number(),
-          flights: z.array(
-            z.object({
-              departure_airport: FlightSegmentAirportSchema,
-              arrival_airport: FlightSegmentAirportSchema,
-              duration: z.object({ raw: z.number(), text: z.string() }),
-              airline: z.string(),
-            }),
-          ),
-          layovers: z
-            .array(
-              z.object({
-                airport_code: z.string(),
-                airport_name: z.string(),
-                duration: z.number(),
-              }),
-            )
-            .nullable(),
-          booking_token: z.string().nullish(),
-          next_token: z.string().nullish(),
-        }),
-      ),
+      topFlights: FlightListSchema.optional(),
+      otherFlights: FlightListSchema.optional(),
     }),
   }),
 });
@@ -333,7 +338,7 @@ export const HotelApiRequestSchema = z.object({
 export type HotelApiRequest = z.infer<typeof HotelApiRequestSchema>;
 
 export const HotelApiResponseSchema = z.object({
-  url: z.url(),
+  url: z.httpUrl(),
   hotelName: z.string(),
   address: z.string().nullish(),
   totalPrice: z.string(),
@@ -364,13 +369,13 @@ export const BookingApiRequestSchema = z.object({
 export type BookingApiType = z.infer<typeof BookingApiRequestSchema>;
 
 export const BookingApiResponseSchema = z.object({
-  data: z.string(),
+  data: z.httpUrl(),
 });
 
 export const HotelDetailsSchema = z.object({
   data: z.object({
     hotel_name: z.string(),
-    url: z.url(),
+    url: z.httpUrl(),
     address: z.string(),
     composite_price_breakdown: z.object({
       all_inclusive_amount: z.object({

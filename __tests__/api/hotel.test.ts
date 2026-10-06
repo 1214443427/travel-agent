@@ -51,34 +51,47 @@ describe("/api/hotel route", () => {
     );
     const response = await post(testBody);
     expect(response.ok).toBe(false);
+    expect(response.status).toBe(500);
     const data = await response.json();
     expect(data.message).toBe(
       "We encountered an unexpected error. Please try manually look up the hotel.",
     );
   });
 
-  test("returns error if API returned error", async () => {
+  test("returns error if API returned non JSON data", async () => {
     server.use(
       http.get("https://booking-com15.p.rapidapi.com/api/v1/hotels/getHotelDetails", () => {
-        return HttpResponse.json({ data: "not found" }, { status: 404 });
+        return new HttpResponse(`<h1>Hello World</h1>`);
       }),
     );
     const response = await post(testBody);
     expect(response.ok).toBe(false);
-    expect(response.status).toBe(404);
+    expect(response.status).toBe(502);
     const data = await response.json();
     expect(data.message).toBe(
       "We encountered an error when retrieving data from our hotel information provider. Please try manually look up the hotel.",
     );
   });
 
-  test("fallback to 500 for errors without status. ", async () => {
+  test.each([401, 429, 500])("returns 502 error for upstream API error", async (status) => {
     server.use(
       http.get("https://booking-com15.p.rapidapi.com/api/v1/hotels/getHotelDetails", () => {
-        return HttpResponse.error();
+        return HttpResponse.json({ data: "not found" }, { status: status });
       }),
     );
     const response = await post(testBody);
-    expect(response.status).toBe(500);
+    expect(response.ok).toBe(false);
+    expect(response.status).toBe(502);
+    const data = await response.json();
+    expect(data.message).toBe(
+      "We encountered an error when retrieving data from our hotel information provider. Please try manually look up the hotel.",
+    );
+  });
+
+  test("rejects invalid request", async () => {
+    const response = await post({ ...testBody, arrivalDate: "not an ISO date" });
+    expect(response.ok).toBe(false);
+    expect(response.status).toBe(400);
+    expect((await response.json()).message).toBe("The request is malformed.");
   });
 });

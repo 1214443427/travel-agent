@@ -7,6 +7,9 @@ import { httpHandlers } from "./httpHandlers";
 // Clean up the DOM after each test
 beforeEach(() => {
   cleanup();
+  if (typeof window !== "undefined") {
+    vi.spyOn(window, "open").mockImplementation(() => null);
+  }
 });
 
 export const server = setupServer(...httpHandlers);

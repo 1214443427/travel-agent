@@ -48,6 +48,8 @@ describe("Flight details modal", () => {
         isPending={false}
       />,
     );
+    const fetchSpy = vi.spyOn(globalThis, "fetch");
+    const openSpy = vi.spyOn(window, "open");
 
     server.use(
       http.post("/api/book", () => {
@@ -65,11 +67,23 @@ describe("Flight details modal", () => {
     const closeBtn = screen.getAllByRole("button", { name: "Close" })[1];
     await user.click(closeBtn);
     expect(screen.queryByRole("heading", { name: "Error" })).not.toBeInTheDocument();
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+
+    server.use(
+      http.post("/api/book", () => {
+        return HttpResponse.json(SAMPLE_BOOKING_URL);
+      }),
+    );
+
+    await user.click(bookBtn);
+    expect(openSpy).toHaveBeenCalledWith(SAMPLE_BOOKING_URL.data, "_blank");
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
   });
 
   test("The modal caches URLs.", async () => {
     const closeModalFn = vi.fn();
     const fetchSpy = vi.spyOn(globalThis, "fetch");
+    const openSpy = vi.spyOn(window, "open");
     render(
       <FlightDetailsModal
         flightDetails={SAMPLE_FLIGHT_DETAILS}
@@ -81,11 +95,12 @@ describe("Flight details modal", () => {
     const user = userEvent.setup();
     const bookBtn1 = screen.getByRole("button", { name: "$780" });
     await user.click(bookBtn1);
-    const closeBtn = screen.getByRole("button", { name: "Close" });
-    await user.click(closeBtn);
+
     await user.click(bookBtn1);
 
     expect(fetchSpy).toHaveBeenCalledOnce();
+    expect(openSpy).toHaveBeenCalledTimes(2);
+    expect(openSpy).toHaveBeenLastCalledWith(SAMPLE_BOOKING_URL.data, "_blank");
   });
 
   test("The modal renders multiple flights", () => {
@@ -143,5 +158,33 @@ describe("Flight details modal", () => {
     );
     expect(screen.getByRole("heading", { name: "cabin not listed" })).toBeInTheDocument();
     expect(screen.getByText("Visit the website for more information.")).toBeInTheDocument();
+  });
+
+  test("renders loading modal when fetching data", async () => {
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => (release = resolve));
+
+    server.use(
+      http.post("/api/book", async () => {
+        await gate;
+        return HttpResponse.json(SAMPLE_BOOKING_URL);
+      }),
+    );
+
+    render(
+      <FlightDetailsModal
+        flightDetails={SAMPLE_FLIGHT_DETAILS}
+        closeModal={() => {}}
+        isPending={false}
+      />,
+    );
+
+    const user = userEvent.setup();
+    const bookBtn1 = screen.getByRole("button", { name: "$780" });
+    await user.click(bookBtn1);
+
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
+    release();
+    expect(await screen.findByText("Loading...")).not.toBeInTheDocument();
   });
 });

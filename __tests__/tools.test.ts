@@ -12,10 +12,18 @@ import {
 import { RunContext } from "@openai/agents";
 import { describe, expect, test, vi } from "vitest";
 import { testUpstreamFailures } from "./helper/toolFailures";
-import { TOOL_ERRORS } from "@/app/utils/toolErrors";
+import {
+  getFlightsEmptyError,
+  getNextFlightsEmptyError,
+  TOOL_ERRORS,
+} from "@/app/utils/toolErrors";
 import { BookingHandle } from "@/app/type";
-import { SAMPLE_FLIGHT_DATA } from "./testData/sampleFlightData";
-import { SAMPLE_BOOK_TOKEN_FLIGHT } from "./testData/sampleFlightDataWithNextToken";
+import {
+  SAMPLE_BOOK_TOKEN_FLIGHT,
+  SAMPLE_NEXT_TOKEN_FLIGHT,
+} from "./testData/sampleFlightDataWithNextToken";
+import { server } from "./test-setup";
+import { http, HttpResponse } from "msw";
 
 describe("get_lat_lon tool", () => {
   test("The tool correctly filters API data down to the useful fields. ", async () => {
@@ -112,11 +120,11 @@ describe("get_flight tool", () => {
     );
     expect(result[0]).toHaveProperty(
       "departureTime",
-      SAMPLE_FLIGHT_DATA.data.itineraries.topFlights[0].departure_time,
+      SAMPLE_NEXT_TOKEN_FLIGHT.data.itineraries.topFlights[0].departure_time,
     );
     expect(result[0]).toHaveProperty(
       "arrivalTime",
-      SAMPLE_FLIGHT_DATA.data.itineraries.topFlights[0].arrival_time,
+      SAMPLE_NEXT_TOKEN_FLIGHT.data.itineraries.topFlights[0].arrival_time,
     );
     expect(result[0]).not.toHaveProperty("status");
     expect(JSON.stringify(result)).not.toContain("priceHistory");
@@ -124,7 +132,7 @@ describe("get_flight tool", () => {
     expect(result.length).toBeLessThanOrEqual(3);
   });
 
-  test("The tool should return refs to correct booking tokens.", async () => {
+  test("The tool should return refs to correct next tokens.", async () => {
     const refs = new Map<string, BookingHandle>();
     await getFlights.invoke(
       new RunContext({ refs: refs }),
@@ -139,9 +147,76 @@ describe("get_flight tool", () => {
     );
     expect(refs.has("flt_0")).toBe(true);
     expect(refs.get("flt_0")).toEqual({
-      kind: "booking",
-      token: SAMPLE_FLIGHT_DATA.data.itineraries.topFlights[0].booking_token,
+      kind: "next",
+      token: SAMPLE_NEXT_TOKEN_FLIGHT.data.itineraries.topFlights[0].next_token,
     });
+  });
+
+  test("The tool should use otherFlights if topFlights are empty.", async () => {
+    const refs = new Map<string, BookingHandle>();
+    server.use(
+      http.get("https://google-flights2.p.rapidapi.com/api/v1/searchFlights", () => {
+        return HttpResponse.json({
+          ...SAMPLE_NEXT_TOKEN_FLIGHT,
+          data: {
+            itineraries: {
+              topFlights: [],
+              otherFlights: SAMPLE_NEXT_TOKEN_FLIGHT.data.itineraries.otherFlights,
+            },
+          },
+        });
+      }),
+    );
+    const result = await getFlights.invoke(
+      new RunContext({ refs: refs }),
+      JSON.stringify({
+        departure: "YVR",
+        arrival: "PEK",
+        departureDate: "2026-08-30",
+        returningDate: "2026-09-18",
+        personCount: 1,
+        currency: "USD",
+      }),
+    );
+    expect(refs.has("flt_0")).toBe(true);
+    expect(refs.get("flt_0")).toEqual({
+      kind: "next",
+      token: SAMPLE_NEXT_TOKEN_FLIGHT.data.itineraries.otherFlights[0].next_token,
+    });
+    expect(result[0]).toHaveProperty("ref", "flt_0");
+    expect(result[0]).toHaveProperty(
+      "departureTime",
+      SAMPLE_NEXT_TOKEN_FLIGHT.data.itineraries.otherFlights[0].departure_time,
+    );
+  });
+
+  test("The tool should return instructions on how to proceed if both topFlights and otherFlights are empty.", async () => {
+    const refs = new Map<string, BookingHandle>();
+    server.use(
+      http.get("https://google-flights2.p.rapidapi.com/api/v1/searchFlights", () => {
+        return HttpResponse.json({
+          ...SAMPLE_NEXT_TOKEN_FLIGHT,
+          data: {
+            itineraries: {
+              topFlights: [],
+              otherFlights: [],
+            },
+          },
+        });
+      }),
+    );
+    const result = await getFlights.invoke(
+      new RunContext({ refs: refs }),
+      JSON.stringify({
+        departure: "YVR",
+        arrival: "PEK",
+        departureDate: "2026-08-30",
+        returningDate: "2026-09-18",
+        personCount: 1,
+        currency: "USD",
+      }),
+    );
+    expect(result).toBe(getFlightsEmptyError("YVR", "PEK"));
   });
 
   testUpstreamFailures({
@@ -281,6 +356,67 @@ describe("get_next_flights tool", () => {
       kind: "booking",
       token: SAMPLE_BOOK_TOKEN_FLIGHT.data.itineraries.topFlights[0].booking_token,
     });
+  });
+
+  test("The tool should use otherFlights if topFlights are empty.", async () => {
+    const refs = new Map<string, BookingHandle>();
+    server.use(
+      http.get("https://google-flights2.p.rapidapi.com/api/v1/getNextFlights", () => {
+        return HttpResponse.json({
+          ...SAMPLE_BOOK_TOKEN_FLIGHT,
+          data: {
+            itineraries: {
+              topFlights: [],
+              otherFlights: SAMPLE_BOOK_TOKEN_FLIGHT.data.itineraries.otherFlights,
+            },
+          },
+        });
+      }),
+    );
+    refs.set("flt_0", { kind: "next", token: "test_flight_token" });
+    const result = await getNextFlight.invoke(
+      new RunContext({ refs }),
+      JSON.stringify({
+        ref: "flt_0",
+        currency: null,
+      }),
+    );
+    expect(refs.size).toBe(4);
+    expect(refs.get("flt_1")).toEqual({
+      kind: "booking",
+      token: SAMPLE_BOOK_TOKEN_FLIGHT.data.itineraries.otherFlights[0].booking_token,
+    });
+    expect(result[0]).toHaveProperty("ref", "flt_1");
+    expect(result[0]).toHaveProperty(
+      "departureTime",
+      SAMPLE_BOOK_TOKEN_FLIGHT.data.itineraries.otherFlights[0].departure_time,
+    );
+  });
+
+  test("The tool should return instructions on how to proceed if both topFlights and otherFlights are empty.", async () => {
+    const refs = new Map<string, BookingHandle>();
+    server.use(
+      http.get("https://google-flights2.p.rapidapi.com/api/v1/getNextFlights", () => {
+        return HttpResponse.json({
+          ...SAMPLE_BOOK_TOKEN_FLIGHT,
+          data: {
+            itineraries: {
+              topFlights: [],
+              otherFlights: [],
+            },
+          },
+        });
+      }),
+    );
+    refs.set("flt_0", { kind: "next", token: "test_flight_token" });
+    const result = await getNextFlight.invoke(
+      new RunContext({ refs: refs }),
+      JSON.stringify({
+        ref: "flt_0",
+        currency: null,
+      }),
+    );
+    expect(result).toBe(getNextFlightsEmptyError("flt_0"));
   });
 
   test("The tool fails for incorrect kind of booking handle", async () => {

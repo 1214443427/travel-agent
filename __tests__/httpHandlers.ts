@@ -2,7 +2,6 @@ import { http, HttpResponse } from "msw";
 import { SAMPLE_LATLON } from "./testData/sampleLatLonData";
 import { SAMPLE_WEATHER } from "./testData/sampleWeatherData";
 import { SAMPLE_AIRPORT_DATA } from "./testData/sampleAirportData";
-import { SAMPLE_FLIGHT_DATA } from "./testData/sampleFlightData";
 import { SAMPLE_HOTEL_DATA } from "./testData/sampleHotelData";
 import { SAMPLE_ATTRACTIONS_DATA } from "./testData/sampleAttractionData";
 import { SAMPLE_HOTEL_DETAILS_DATA } from "./testData/sampleHotelDetailsData";
@@ -10,6 +9,7 @@ import {
   SAMPLE_BOOK_TOKEN_FLIGHT,
   SAMPLE_BOOKING_URL,
   SAMPLE_FLIGHT_DETAILS,
+  SAMPLE_NEXT_TOKEN_FLIGHT,
 } from "./testData/sampleFlightDataWithNextToken";
 import { FlightDetailsSchema } from "@/app/type";
 
@@ -25,12 +25,12 @@ export const httpHandlers = [
     return HttpResponse.json(SAMPLE_AIRPORT_DATA);
   }),
   http.get("https://google-flights2.p.rapidapi.com/api/v1/searchFlights", () => {
-    return HttpResponse.json(SAMPLE_FLIGHT_DATA);
+    return HttpResponse.json(SAMPLE_NEXT_TOKEN_FLIGHT);
   }),
   http.get("https://google-flights2.p.rapidapi.com/api/v1/getNextFlights", () => {
     return HttpResponse.json(SAMPLE_BOOK_TOKEN_FLIGHT);
   }),
-  http.get("https://google-flights2.p.rapidapi.com/api/v1/getBookingURL", () => {
+  http.post("https://google-flights2.p.rapidapi.com/api/v1/getBookingURL", () => {
     return HttpResponse.json(SAMPLE_BOOKING_URL);
   }),
   http.get("https://google-flights2.p.rapidapi.com/api/v1/getBookingDetails", () => {

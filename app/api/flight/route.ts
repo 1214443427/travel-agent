@@ -14,7 +14,7 @@ import { flightRouteContract } from "@/app/utils/contract";
 const handler = async (body: BookingHandle) => {
   // const sleep = () =>
   //   new Promise((resolve) => {
-  //     setTimeout(resolve, 2000);
+  //     setTimeout(resolve, 5000);
   //   });
   // await sleep();
 
@@ -44,7 +44,7 @@ const handler = async (body: BookingHandle) => {
     console.error(error);
     if (error instanceof FetchError) {
       throw new APIError(
-        error.status ?? 500,
+        502,
         "We encountered an error when retrieving data from our flight information provider. Please try booking directly from the airline. ",
       );
     }

@@ -11,19 +11,19 @@ import { SAMPLE_FLIGHT_DETAILS } from "../testData/sampleFlightDataWithNextToken
 
 describe("ResultPage", () => {
   test("renders the title", () => {
-    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} />);
+    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} setPhase={() => {}} />);
     expect(screen.getByRole("heading", { name: "Your Trip" })).toBeInTheDocument();
   });
 
   test("renders the duration and location of the travel", () => {
-    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} />);
+    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} setPhase={() => {}} />);
     expect(screen.getByText("→ Aug 30, 27")).toBeInTheDocument();
     expect(screen.getByText("Sep 18, 27 ←")).toBeInTheDocument();
     expect(screen.getByText("Vancouver → Beijing")).toBeInTheDocument();
   });
 
   test("renders events with heading and description", () => {
-    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} />);
+    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} setPhase={() => {}} />);
     for (const event of SAMPLE_RESPONSE_DATA.events) {
       expect(screen.getByRole("heading", { name: event.title })).toBeInTheDocument();
       expect(screen.getByText(event.description)).toBeInTheDocument();
@@ -31,7 +31,7 @@ describe("ResultPage", () => {
   });
 
   test("renders activation buttons for the events", () => {
-    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} />);
+    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} setPhase={() => {}} />);
     const bookEvents = SAMPLE_RESPONSE_DATA.events.filter((event) => {
       return event.action?.type === "book_flight" || event.action?.type === "book_hotel";
     });
@@ -46,7 +46,7 @@ describe("ResultPage", () => {
   });
 
   test("View details button redirects the user to wikipedia", async () => {
-    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} />);
+    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} setPhase={() => {}} />);
     const user = userEvent.setup();
     const open = vi.spyOn(window, "open");
 
@@ -56,7 +56,7 @@ describe("ResultPage", () => {
   });
 
   test("Flight details is cached for future button clicks.", async () => {
-    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} />);
+    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} setPhase={() => {}} />);
     const user = userEvent.setup();
     const fetchSpy = vi.spyOn(globalThis, "fetch");
 
@@ -82,7 +82,7 @@ describe("ResultPage", () => {
   });
 
   test("Book hotel button opens a hotel details modal", async () => {
-    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} />);
+    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} setPhase={() => {}} />);
     const user = userEvent.setup();
     const fetchSpy = vi.spyOn(globalThis, "fetch");
 
@@ -103,7 +103,7 @@ describe("ResultPage", () => {
   });
 
   test("loads fallback UI when data is empty.", () => {
-    render(<ResultPage responseData={undefined} />);
+    render(<ResultPage responseData={undefined} setPhase={() => {}} />);
     expect(screen.getByText("Data missing")).toBeInTheDocument();
   });
 
@@ -111,6 +111,7 @@ describe("ResultPage", () => {
     render(
       <ResultPage
         responseData={{ ...SAMPLE_RESPONSE_DATA, startLocation: "San Francisco, California, US" }}
+        setPhase={() => {}}
       />,
     );
     expect(screen.getByText("San Francisco → Beijing")).toBeInTheDocument();
@@ -124,7 +125,7 @@ describe("ResultPage", () => {
       }),
     );
 
-    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} />);
+    render(<ResultPage responseData={SAMPLE_RESPONSE_DATA} setPhase={() => {}} />);
     const user = userEvent.setup();
 
     const bookBtn = screen.getAllByRole("button", { name: "Book" })[1]; // Needs to be more specific.
@@ -138,7 +139,7 @@ describe("ResultPage", () => {
   });
 
   test("Shows error modal when ref is not found in context", async () => {
-    render(<ResultPage responseData={{ ...SAMPLE_RESPONSE_DATA, refs: {} }} />);
+    render(<ResultPage responseData={{ ...SAMPLE_RESPONSE_DATA, refs: {} }} setPhase={() => {}} />);
     const user = userEvent.setup();
 
     const bookBtn = screen.getAllByRole("button", { name: "Book" })[1]; // Needs to be more specific.
@@ -164,6 +165,7 @@ describe("ResultPage", () => {
             },
           ],
         }}
+        setPhase={() => {}}
       />,
     );
     const user = userEvent.setup();
@@ -191,6 +193,7 @@ describe("ResultPage", () => {
             },
           ],
         }}
+        setPhase={() => {}}
       />,
     );
     const user = userEvent.setup();

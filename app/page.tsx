@@ -21,7 +21,7 @@ export default function Home() {
       ) : phase === "form" ? (
         <Form setPhase={setPhase} setResponseData={setResponseData} />
       ) : (
-        <ResultPage responseData={responseData}>{}</ResultPage>
+        <ResultPage responseData={responseData} setPhase={setPhase} />
       )}
     </div>
   );

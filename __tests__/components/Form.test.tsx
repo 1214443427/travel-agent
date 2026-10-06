@@ -257,7 +257,7 @@ describe("Form", () => {
       expect(await screen.findByText("Too big: expected number to be <=10")).toBeInTheDocument();
       expect(screen.getByText("Please state your origin location.")).toBeInTheDocument();
       await user.clear(input);
-      expect(screen.queryByRole("Too big: expected number to be <=10")).not.toBeInTheDocument();
+      expect(screen.queryByText("Too big: expected number to be <=10")).not.toBeInTheDocument();
       expect(
         screen.getByText("Please state your origin location."),
         "invalid messages should remain on unedited field.",
