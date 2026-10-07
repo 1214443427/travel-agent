@@ -82,7 +82,7 @@ describe("/api/book route", () => {
       }),
     );
     const response = await post(testBody);
-    expect(response.status).toBe(500);
+    expect(response.status).toBe(502);
     expect((await response.json()).message).toBe(
       "Failed to fetch booking URL. Please try booking directly from the airline. ",
     );

@@ -30,7 +30,7 @@ describe("Flight details modal", () => {
     const openBtn = screen.getByRole("button", { name: "Go" });
     await user.click(openBtn);
 
-    expect(openSpy).toHaveBeenCalledWith(SAMPLE_BOOKING_URL.data, "_blank");
+    expect(openSpy).toHaveBeenCalledWith(SAMPLE_BOOKING_URL.data, "_blank", "noopener");
 
     const closeBtn = screen.getByRole("button", { name: "Close" });
 
@@ -73,7 +73,7 @@ describe("Flight details modal", () => {
     const openBtn = screen.getByRole("button", { name: "Go" });
     await user.click(openBtn);
 
-    expect(openSpy).toHaveBeenCalledWith(SAMPLE_BOOKING_URL.data, "_blank");
+    expect(openSpy).toHaveBeenCalledWith(SAMPLE_BOOKING_URL.data, "_blank", "noopener");
     expect(fetchSpy).toHaveBeenCalledTimes(2);
   });
 

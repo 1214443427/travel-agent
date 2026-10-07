@@ -102,7 +102,10 @@ function FlightDetailsModal({
           <div className="border-2 w-60 text-2xl font-bold bg-white border-[#4BDCB0] rounded-3xl p-2">
             <p>Continue on an external website</p>
             <div className="flex items-stretch gap-2">
-              <Button className="w-1/2 mx-auto" onClick={() => window.open(url, "_blank")}>
+              <Button
+                className="w-1/2 mx-auto"
+                onClick={() => window.open(url, "_blank", "noopener")}
+              >
                 Go
               </Button>
               <Button className="w-1/2 mx-auto" onClick={() => navigator.clipboard.writeText(url)}>

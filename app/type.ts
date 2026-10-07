@@ -1,5 +1,8 @@
 import * as z from "zod";
 
+const earliestToday = () =>
+  new Date(Date.now()).toLocaleDateString("en-CA", { timeZone: "Etc/GMT+12" });
+
 export const FormSchema = z
   .object({
     travelerCount: z.coerce.number().int().min(1).max(10),
@@ -7,16 +10,8 @@ export const FormSchema = z
     to: z.string().nonempty("Please state your desired destination."),
     startDate: z.iso
       .date("Please set a date in mm/dd/yyyy format.")
-      .refine(
-        (date) => date >= new Date().toLocaleDateString("en-CA"),
-        "Start date must be greater or equal to today",
-      ),
-    endDate: z.iso
-      .date("Please set a date in mm/dd/yyyy format.")
-      .refine(
-        (date) => date >= new Date().toLocaleDateString("en-CA"),
-        "End date must be greater or equal to today",
-      ),
+      .refine((date) => date >= earliestToday(), "Start date must be greater or equal to today"),
+    endDate: z.iso.date("Please set a date in mm/dd/yyyy format."),
     budget: z
       .string()
       .min(1, "Please set a budget.")

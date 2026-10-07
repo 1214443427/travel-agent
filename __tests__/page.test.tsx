@@ -65,7 +65,7 @@ describe("Page", () => {
     const bookBtn = screen.getByRole("button", { name: "Go" });
     await user.click(bookBtn);
 
-    expect(openSpy).toHaveBeenCalledExactlyOnceWith(SAMPLE_BOOKING_URL.data, "_blank");
+    expect(openSpy).toHaveBeenCalledExactlyOnceWith(SAMPLE_BOOKING_URL.data, "_blank", "noopener");
 
     await user.click(screen.getByRole("button", { name: "Cancel" }));
     await user.click(screen.getByRole("button", { name: "Close" }));

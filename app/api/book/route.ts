@@ -29,7 +29,7 @@ export const POST = jsonRoute(bookRouteContract, async (data) => {
   } catch (error) {
     console.error(error);
     throw new APIError(
-      500,
+      502,
       "Failed to fetch booking URL. Please try booking directly from the airline. ",
     );
   }

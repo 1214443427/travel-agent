@@ -215,7 +215,6 @@ describe("Form", () => {
       expect(
         await screen.findByText("Start date must be greater or equal to today"),
       ).toBeInTheDocument();
-      expect(screen.getByText("End date must be greater or equal to today")).toBeInTheDocument();
       fireEvent.change(startInput, { target: { value: nextWeekString } });
       fireEvent.change(toInput, { target: { value: todayString } });
       fireEvent.submit(form);
